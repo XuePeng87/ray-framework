@@ -1,0 +1,111 @@
+package cc.xuepeng.ray.framework.core.web.log.annotation;
+
+import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
+import cc.xuepeng.ray.framework.core.auth.service.AuthService;
+import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
+import cc.xuepeng.ray.framework.core.web.log.dao.AuthLogDao;
+import cc.xuepeng.ray.framework.core.web.log.enums.AuthLogAction;
+import cc.xuepeng.ray.framework.core.web.log.model.AuthLogInfo;
+import cc.xuepeng.ray.framework.core.web.util.WebUtil;
+import cn.hutool.core.date.LocalDateTimeUtil;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
+/**
+ * 登录日志的切面类
+ *
+ * @author xuepeng
+ */
+@Component
+@Aspect
+@Slf4j
+public class LoginLogAspect {
+
+    /**
+     * ThreadLocal中的Key
+     */
+    private static final String THREAD_LOCAL_KEY = "LoginLog";
+
+    /**
+     * 对注解修饰的方法进行切面处理
+     */
+    @Pointcut(value = "@annotation(cc.xuepeng.ray.framework.core.web.log.annotation.LoginLog)")
+    private void operation() {
+        // 对请求进行切面处理
+    }
+
+    /**
+     * 方法执行前的处理
+     *
+     * @param joinPoint 连接点
+     */
+    @Before("operation()")
+    public void doBefore(JoinPoint joinPoint) {
+        // 获取本次请求的元数据
+        final HttpServletRequest request = WebUtil.getHttpServletRequest();
+        final AuthLogInfo loginLogInfo = new AuthLogInfo();
+        loginLogInfo.setUserAgentInfo(request);
+        loginLogInfo.setCreateTime(LocalDateTime.now());
+        loginLogInfo.setLoginIp(WebUtil.getIPAddress(request));
+        // 保存封装信息到ThreadLocal中
+        ThreadLocalUtil.put(THREAD_LOCAL_KEY, loginLogInfo);
+    }
+
+    /**
+     * 方法返回后的处理
+     *
+     * @param joinPoint 连接点
+     * @param result    返回值
+     */
+    @AfterReturning(value = "operation()", returning = "result")
+    public void doAfterReturning(JoinPoint joinPoint, Object result) {
+        try {
+            if (authService.isLogin()) {
+                final AuthLogInfo authLogInfo = (AuthLogInfo) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
+                final CurrentUser currentUser = authService.getCurrentUser();
+                authLogInfo.setCreateUser(currentUser.getUserCode());
+                final long exeTime = LocalDateTimeUtil.between(
+                        authLogInfo.getCreateTime(), LocalDateTime.now(), ChronoUnit.MILLIS
+                );
+                authLogInfo.setExeTime(exeTime);
+                authLogInfo.setAction(AuthLogAction.LOGIN.name());
+                authLogDao.saveLoginLog(authLogInfo);
+            }
+        } catch (Exception e) {
+            log.error("保存登录日志失败：{}", e.getMessage());
+        } finally {
+            ThreadLocalUtil.remove(THREAD_LOCAL_KEY);
+        }
+    }
+
+    /**
+     * 方法异常后的处理
+     *
+     * @param joinPoint 连接点
+     * @param throwable 异常
+     */
+    @AfterThrowing(pointcut = "operation()", throwing = "throwable")
+    public void doAfterThrowing(JoinPoint joinPoint, Throwable throwable) {
+        ThreadLocalUtil.remove(THREAD_LOCAL_KEY);
+    }
+
+    /**
+     * 认证鉴权的业务处理接口
+     */
+    @Resource
+    private AuthService authService;
+
+    /**
+     * 登录日志持久化接口
+     */
+    @Resource
+    private AuthLogDao authLogDao;
+
+}

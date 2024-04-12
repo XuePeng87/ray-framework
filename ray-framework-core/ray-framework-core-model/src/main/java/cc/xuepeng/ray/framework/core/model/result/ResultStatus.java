@@ -1,0 +1,21 @@
+package cc.xuepeng.ray.framework.core.model.result;
+
+/**
+ * Result状态的接口
+ *
+ * @author xuepeng
+ */
+
+public interface ResultStatus {
+
+    /**
+     * @return 获得状态编码
+     */
+    int getCode();
+
+    /**
+     * @return 获得状态描述
+     */
+    String getDesc();
+
+}

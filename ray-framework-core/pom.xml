@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cc.xuepeng</groupId>
+        <artifactId>ray-framework</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>ray-framework-core</artifactId>
+    <packaging>pom</packaging>
+    <name>Ray Framework Core</name>
+
+    <!-- 子模块 -->
+    <modules>
+        <module>ray-framework-core-model</module>
+        <module>ray-framework-core-common</module>
+        <module>ray-framework-core-web</module>
+        <module>ray-framework-core-auth</module>
+        <module>ray-framework-core-redis</module>
+        <module>ray-framework-core-mybatis</module>
+        <module>ray-framework-core-oss</module>
+    </modules>
+
+    <!-- 属性管理 -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+</project>
