@@ -4,8 +4,10 @@ import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.core.auth.service.AuthService;
 import cc.xuepeng.ray.framework.core.common.consts.PunctuationConst;
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
-import cc.xuepeng.ray.framework.core.web.log.dao.OperateLogDao;
-import cc.xuepeng.ray.framework.core.web.log.model.OperateLogInfo;
+import cc.xuepeng.ray.framework.core.web.log.domain.dto.SysOperateLogDto;
+import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogType;
+import cc.xuepeng.ray.framework.core.web.log.service.SysOperateLogService;
+import cc.xuepeng.ray.framework.core.web.log.util.UserAgentInfoUtil;
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import jakarta.annotation.Resource;
@@ -23,7 +25,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 /**
- * 操作日志的切面类
+ * 系统操作日志的切面类
  *
  * @author xuepeng
  */
@@ -38,7 +40,7 @@ public class OperateLogAspect {
     private static final String THREAD_LOCAL_KEY = "OperateLogInfo";
 
     /**
-     * 对被操作日志注解修饰的方法进行切面处理
+     * 对被系统操作日志注解修饰的方法进行切面处理
      */
     @Pointcut(value = "@annotation(cc.xuepeng.ray.framework.core.web.log.annotation.OperateLog)")
     private void operation() {
@@ -55,14 +57,14 @@ public class OperateLogAspect {
         // 获取本次请求的元数据
         final HttpServletRequest request = WebUtil.getHttpServletRequest();
         final Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
-        OperateLogInfo operateLogInfo = new OperateLogInfo();
-        operateLogInfo.setUserAgentInfo(request);
+        final SysOperateLogDto sysOperateLogDto = new SysOperateLogDto();
+        UserAgentInfoUtil.setUserAgentInfo(sysOperateLogDto, request);
         // 封装Request信息
-        setRequestInfo(operateLogInfo, request, joinPoint);
+        setRequestInfo(sysOperateLogDto, request, joinPoint);
         // 封装注解信息
-        setAnnotationInfo(operateLogInfo, method.getAnnotation(OperateLog.class));
+        setAnnotationInfo(sysOperateLogDto, method.getAnnotation(OperateLog.class));
         // 保存封装信息到ThreadLocal中
-        ThreadLocalUtil.put(THREAD_LOCAL_KEY, operateLogInfo);
+        ThreadLocalUtil.put(THREAD_LOCAL_KEY, sysOperateLogDto);
     }
 
     /**
@@ -74,19 +76,20 @@ public class OperateLogAspect {
     @AfterReturning(value = "operation()", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, Object result) {
         try {
-            final OperateLogInfo operateLogInfo = (OperateLogInfo) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
+            final SysOperateLogDto sysOperateLogDto = (SysOperateLogDto) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
             // 设置认证信息
-            setAuthInfo(operateLogInfo);
+            setAuthInfo(sysOperateLogDto);
             if (ObjectUtils.isNotEmpty(result)) {
-                operateLogInfo.getDetail().setResult(result.toString());
+                sysOperateLogDto.getDetail().setResult(result.toString());
             }
-            operateLogInfo.setExeTime(exeTime(operateLogInfo.getCreateTime()));
+            sysOperateLogDto.setType(SysOperateLogType.ACCESS);
+            sysOperateLogDto.setExeTime(exeTime(sysOperateLogDto.getCreateTime()));
             // 持久化访问日志
             if (isPersistent(joinPoint)) {
-                operateLogDao.saveAccessLog(operateLogInfo);
+                sysOperateLogService.create(sysOperateLogDto);
             }
         } catch (Exception e) {
-            log.error("保存操作日志失败：{}", e.getMessage());
+            log.error("保存系统操作日志失败：{}", e.getMessage());
         } finally {
             ThreadLocalUtil.remove(THREAD_LOCAL_KEY);
         }
@@ -101,15 +104,16 @@ public class OperateLogAspect {
     @AfterThrowing(pointcut = "operation()", throwing = "throwable")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable throwable) {
         try {
-            final OperateLogInfo operateLogInfo = (OperateLogInfo) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
+            final SysOperateLogDto sysOperateLogDto = (SysOperateLogDto) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
             // 设置认证信息
-            setAuthInfo(operateLogInfo);
-            operateLogInfo.getDetail().setError(throwable.getMessage());
-            operateLogInfo.setExeTime(exeTime(operateLogInfo.getCreateTime()));
-            log.error(operateLogInfo.toString(), throwable);
+            setAuthInfo(sysOperateLogDto);
+            sysOperateLogDto.getDetail().setError(throwable.getMessage());
+            sysOperateLogDto.setType(SysOperateLogType.ERROR);
+            sysOperateLogDto.setExeTime(exeTime(sysOperateLogDto.getCreateTime()));
+            log.error(sysOperateLogDto.toString(), throwable);
             // 持久化错误日志
             if (isPersistent(joinPoint)) {
-                operateLogDao.saveErrorLog(operateLogInfo);
+                sysOperateLogService.create(sysOperateLogDto);
             }
         } catch (Exception e) {
             log.error("保存错误日志失败：{}", e.getMessage());
@@ -119,35 +123,35 @@ public class OperateLogAspect {
     }
 
     /**
-     * 设置操作日志的认证信息
+     * 设置系统操作日志的认证信息
      *
-     * @param operateLogInfo 操作日志信息
+     * @param sysOperateLogDto 系统操作日志数的据传输对象
      */
-    private void setAuthInfo(final OperateLogInfo operateLogInfo) {
+    private void setAuthInfo(final SysOperateLogDto sysOperateLogDto) {
         // 设置用户信息
         if (authService.isLogin()) {
             final CurrentUser currentUser = authService.getCurrentUser();
-            operateLogInfo.setCreateUser(currentUser.getUserAccount());
+            sysOperateLogDto.setCreateUser(currentUser.getUserAccount());
         }
     }
 
     /**
      * 设置Request信息
      *
-     * @param operateLogInfo 操作日志信息
-     * @param request        请求对象
-     * @param joinPoint      连接点对象
+     * @param sysOperateLogDto 系统操作日志数的据传输对象
+     * @param request          请求对象
+     * @param joinPoint        连接点对象
      */
-    private void setRequestInfo(final OperateLogInfo operateLogInfo,
+    private void setRequestInfo(final SysOperateLogDto sysOperateLogDto,
                                 final HttpServletRequest request,
                                 final JoinPoint joinPoint) {
         // 请求信息
-        operateLogInfo.setCreateTime(LocalDateTime.now());
-        operateLogInfo.setUrl(request.getRequestURL().toString());
-        operateLogInfo.setUri(request.getRequestURI());
-        operateLogInfo.setMethod(request.getMethod());
-        operateLogInfo.setIp(WebUtil.getIPAddress(request));
-        operateLogInfo.setClassName(joinPoint.getTarget().getClass().getName());
+        sysOperateLogDto.setCreateTime(LocalDateTime.now());
+        sysOperateLogDto.setUrl(request.getRequestURL().toString());
+        sysOperateLogDto.setUri(request.getRequestURI());
+        sysOperateLogDto.setMethod(request.getMethod());
+        sysOperateLogDto.setIp(WebUtil.getIPAddress(request));
+        sysOperateLogDto.setClassName(joinPoint.getTarget().getClass().getName());
         // API Params信息
         final StringBuilder params = new StringBuilder();
         final Map<String, String[]> parameterMap = request.getParameterMap();
@@ -157,7 +161,7 @@ public class OperateLogAspect {
                 .append(v[0])
                 .append(PunctuationConst.SEMICOLON)
         );
-        operateLogInfo.getDetail().setParam(params.toString());
+        sysOperateLogDto.getDetail().setParam(params.toString());
         // API Args信息
         final StringBuilder args = new StringBuilder();
         for (int i = 0; i < joinPoint.getArgs().length; i++) {
@@ -168,24 +172,24 @@ public class OperateLogAspect {
                     .append(joinPoint.getArgs()[i])
                     .append(PunctuationConst.RIGHT_SQUARE_BRACKETS);
         }
-        operateLogInfo.getDetail().setArgs(args.toString());
+        sysOperateLogDto.getDetail().setArgs(args.toString());
     }
 
     /**
      * 设置注解信息
      *
-     * @param operateLogInfo 操作日志信息
-     * @param operateLog     操作日志注解
+     * @param sysOperateLogDto 系统操作日志的数据传输对象
+     * @param operateLog       系统操作日志注解
      */
-    private void setAnnotationInfo(final OperateLogInfo operateLogInfo, final OperateLog operateLog) {
-        operateLogInfo.setModule(operateLog.module());
-        operateLogInfo.setFunc(operateLog.func());
-        operateLogInfo.setRemark(operateLog.remark());
-        operateLogInfo.setAction(operateLog.action().name());
+    private void setAnnotationInfo(final SysOperateLogDto sysOperateLogDto, final OperateLog operateLog) {
+        sysOperateLogDto.setModule(operateLog.module());
+        sysOperateLogDto.setFunc(operateLog.func());
+        sysOperateLogDto.setRemark(operateLog.remark());
+        sysOperateLogDto.setAction(operateLog.action().name());
     }
 
     /**
-     * 操作日志是否需要持久化
+     * 系统操作日志是否需要持久化
      *
      * @param joinPoint 连接点
      * @return 是否需要持久化
@@ -203,15 +207,15 @@ public class OperateLogAspect {
     }
 
     /**
-     * 认证鉴权的业务处理接口
+     * 认证的业务处理接口
      */
     @Resource
     private AuthService authService;
 
     /**
-     * 操作日志持久化接口
+     * 系统操作日志持久化接口
      */
     @Resource
-    private OperateLogDao operateLogDao;
+    private SysOperateLogService sysOperateLogService;
 
 }

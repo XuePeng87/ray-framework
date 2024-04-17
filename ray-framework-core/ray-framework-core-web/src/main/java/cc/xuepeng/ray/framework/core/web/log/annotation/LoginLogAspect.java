@@ -3,9 +3,10 @@ package cc.xuepeng.ray.framework.core.web.log.annotation;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.core.auth.service.AuthService;
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
-import cc.xuepeng.ray.framework.core.web.log.dao.AuthLogDao;
-import cc.xuepeng.ray.framework.core.web.log.enums.AuthLogAction;
-import cc.xuepeng.ray.framework.core.web.log.model.AuthLogInfo;
+import cc.xuepeng.ray.framework.core.web.log.domain.dto.SysAuthLogDto;
+import cc.xuepeng.ray.framework.core.web.log.enums.SysAuthLogType;
+import cc.xuepeng.ray.framework.core.web.log.service.SysAuthLogService;
+import cc.xuepeng.ray.framework.core.web.log.util.UserAgentInfoUtil;
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import jakarta.annotation.Resource;
@@ -50,12 +51,10 @@ public class LoginLogAspect {
     public void doBefore(JoinPoint joinPoint) {
         // 获取本次请求的元数据
         final HttpServletRequest request = WebUtil.getHttpServletRequest();
-        final AuthLogInfo loginLogInfo = new AuthLogInfo();
-        loginLogInfo.setUserAgentInfo(request);
-        loginLogInfo.setCreateTime(LocalDateTime.now());
-        loginLogInfo.setLoginIp(WebUtil.getIPAddress(request));
+        final SysAuthLogDto sysAuthLogDto = new SysAuthLogDto();
+        UserAgentInfoUtil.setUserAgentInfo(sysAuthLogDto, request);
         // 保存封装信息到ThreadLocal中
-        ThreadLocalUtil.put(THREAD_LOCAL_KEY, loginLogInfo);
+        ThreadLocalUtil.put(THREAD_LOCAL_KEY, sysAuthLogDto);
     }
 
     /**
@@ -68,15 +67,15 @@ public class LoginLogAspect {
     public void doAfterReturning(JoinPoint joinPoint, Object result) {
         try {
             if (authService.isLogin()) {
-                final AuthLogInfo authLogInfo = (AuthLogInfo) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
+                final SysAuthLogDto sysAuthLogDto = (SysAuthLogDto) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
                 final CurrentUser currentUser = authService.getCurrentUser();
-                authLogInfo.setCreateUser(currentUser.getUserCode());
+                sysAuthLogDto.setCreateUser(currentUser.getUserCode());
                 final long exeTime = LocalDateTimeUtil.between(
-                        authLogInfo.getCreateTime(), LocalDateTime.now(), ChronoUnit.MILLIS
+                        sysAuthLogDto.getCreateTime(), LocalDateTime.now(), ChronoUnit.MILLIS
                 );
-                authLogInfo.setExeTime(exeTime);
-                authLogInfo.setAction(AuthLogAction.LOGIN.name());
-                authLogDao.saveLoginLog(authLogInfo);
+                sysAuthLogDto.setExeTime(exeTime);
+                sysAuthLogDto.setType(SysAuthLogType.LOGIN);
+                sysAuthLogService.create(sysAuthLogDto);
             }
         } catch (Exception e) {
             log.error("保存登录日志失败：{}", e.getMessage());
@@ -97,7 +96,7 @@ public class LoginLogAspect {
     }
 
     /**
-     * 认证鉴权的业务处理接口
+     * 认证的业务处理接口
      */
     @Resource
     private AuthService authService;
@@ -106,6 +105,6 @@ public class LoginLogAspect {
      * 登录日志持久化接口
      */
     @Resource
-    private AuthLogDao authLogDao;
+    private SysAuthLogService sysAuthLogService;
 
 }

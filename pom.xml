@@ -20,6 +20,7 @@
     <!-- 子模块 -->
     <modules>
         <module>ray-framework-core</module>
+        <module>ray-framework-sdk</module>
     </modules>
 
     <!-- 属性管理 -->
@@ -37,6 +38,7 @@
         <hutool.version>5.8.27</hutool.version>
         <jackson.version>2.17.0</jackson.version>
         <lombok.version>1.18.32</lombok.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <reflectasm.version>1.11.9</reflectasm.version>
         <sa-token.version>1.37.0</sa-token.version>
     </properties>
@@ -67,7 +69,7 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+            <!-- Hutool -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -79,16 +81,32 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
+            <!-- MapStruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
             <!-- ReflectASM -->
             <dependency>
                 <groupId>com.esotericsoftware</groupId>
                 <artifactId>reflectasm</artifactId>
                 <version>${reflectasm.version}</version>
             </dependency>
-            <!-- Sa-Token -->
+            <!-- SaToken -->
             <dependency>
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-spring-boot-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
                 <version>${sa-token.version}</version>
             </dependency>
         </dependencies>

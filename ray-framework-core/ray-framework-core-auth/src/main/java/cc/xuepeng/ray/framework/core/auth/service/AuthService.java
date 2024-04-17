@@ -3,7 +3,7 @@ package cc.xuepeng.ray.framework.core.auth.service;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 
 /**
- * 认证鉴权的业务处理接口
+ * 认证的业务处理接口
  *
  * @author xuepeng
  */

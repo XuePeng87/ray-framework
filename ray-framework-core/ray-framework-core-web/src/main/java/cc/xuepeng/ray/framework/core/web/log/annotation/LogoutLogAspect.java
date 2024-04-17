@@ -3,9 +3,10 @@ package cc.xuepeng.ray.framework.core.web.log.annotation;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.core.auth.service.AuthService;
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
-import cc.xuepeng.ray.framework.core.web.log.dao.AuthLogDao;
-import cc.xuepeng.ray.framework.core.web.log.enums.AuthLogAction;
-import cc.xuepeng.ray.framework.core.web.log.model.AuthLogInfo;
+import cc.xuepeng.ray.framework.core.web.log.domain.dto.SysAuthLogDto;
+import cc.xuepeng.ray.framework.core.web.log.enums.SysAuthLogType;
+import cc.xuepeng.ray.framework.core.web.log.service.SysAuthLogService;
+import cc.xuepeng.ray.framework.core.web.log.util.UserAgentInfoUtil;
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import jakarta.annotation.Resource;
@@ -50,16 +51,16 @@ public class LogoutLogAspect {
     public void doBefore(JoinPoint joinPoint) {
         // 获取本次请求的元数据
         final HttpServletRequest request = WebUtil.getHttpServletRequest();
-        final AuthLogInfo authLogInfo = new AuthLogInfo();
-        authLogInfo.setUserAgentInfo(request);
-        authLogInfo.setCreateTime(LocalDateTime.now());
-        authLogInfo.setLoginIp(WebUtil.getIPAddress(request));
+        final SysAuthLogDto sysAuthLogDto = new SysAuthLogDto();
+        UserAgentInfoUtil.setUserAgentInfo(sysAuthLogDto, request);
+        sysAuthLogDto.setCreateTime(LocalDateTime.now());
+        sysAuthLogDto.setLoginIp(WebUtil.getIPAddress(request));
         if (authService.isLogin()) {
             final CurrentUser currentUser = authService.getCurrentUser();
-            authLogInfo.setCreateUser(currentUser.getUserCode());
+            sysAuthLogDto.setCreateUser(currentUser.getUserCode());
         }
         // 保存封装信息到ThreadLocal中
-        ThreadLocalUtil.put(THREAD_LOCAL_KEY, authLogInfo);
+        ThreadLocalUtil.put(THREAD_LOCAL_KEY, sysAuthLogDto);
     }
 
     /**
@@ -71,13 +72,13 @@ public class LogoutLogAspect {
     @AfterReturning(value = "operation()", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, Object result) {
         try {
-            final AuthLogInfo authLogInfo = (AuthLogInfo) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
+            final SysAuthLogDto sysAuthLogDto = (SysAuthLogDto) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
             final long exeTime = LocalDateTimeUtil.between(
-                    authLogInfo.getCreateTime(), LocalDateTime.now(), ChronoUnit.MILLIS
+                    sysAuthLogDto.getCreateTime(), LocalDateTime.now(), ChronoUnit.MILLIS
             );
-            authLogInfo.setExeTime(exeTime);
-            authLogInfo.setAction(AuthLogAction.LOGOUT.name());
-            authLogDao.saveLoginLog(authLogInfo);
+            sysAuthLogDto.setExeTime(exeTime);
+            sysAuthLogDto.setType(SysAuthLogType.LOGOUT);
+            sysAuthLogService.create(sysAuthLogDto);
         } catch (Exception e) {
             log.error("保存登出日志失败：{}", e.getMessage());
         } finally {
@@ -97,7 +98,7 @@ public class LogoutLogAspect {
     }
 
     /**
-     * 认证鉴权的业务处理接口
+     * 认证的业务处理接口
      */
     @Resource
     private AuthService authService;
@@ -106,6 +107,6 @@ public class LogoutLogAspect {
      * 登录日志持久化接口
      */
     @Resource
-    private AuthLogDao authLogDao;
+    private SysAuthLogService sysAuthLogService;
 
 }

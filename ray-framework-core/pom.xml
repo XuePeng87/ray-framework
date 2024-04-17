@@ -17,11 +17,11 @@
     <modules>
         <module>ray-framework-core-model</module>
         <module>ray-framework-core-common</module>
-        <module>ray-framework-core-web</module>
-        <module>ray-framework-core-auth</module>
         <module>ray-framework-core-redis</module>
         <module>ray-framework-core-mybatis</module>
         <module>ray-framework-core-oss</module>
+        <module>ray-framework-core-auth</module>
+        <module>ray-framework-core-web</module>
     </modules>
 
     <!-- 属性管理 -->

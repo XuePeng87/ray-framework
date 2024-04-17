@@ -29,12 +29,7 @@
         </dependency>
         <dependency>
             <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-core-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-core-model</artifactId>
+            <artifactId>ray-framework-core-mybatis</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- SpringBoot -->

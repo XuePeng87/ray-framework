@@ -1,11 +1,11 @@
 package cc.xuepeng.ray.framework.core.web.log.annotation;
 
-import cc.xuepeng.ray.framework.core.web.log.enums.OperateLogAction;
+import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogAction;
 
 import java.lang.annotation.*;
 
 /**
- * 操作日志的注解
+ * 系统操作日志的注解
  *
  * @author xuepeng
  */
@@ -32,7 +32,7 @@ public @interface OperateLog {
     /**
      * @return 动作
      */
-    OperateLogAction action();
+    SysOperateLogAction action();
 
     /**
      * @return 是否持久化
