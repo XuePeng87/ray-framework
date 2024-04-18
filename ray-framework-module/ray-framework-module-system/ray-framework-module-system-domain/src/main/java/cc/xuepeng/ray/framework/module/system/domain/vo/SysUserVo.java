@@ -17,63 +17,48 @@ import lombok.*;
 public class SysUserVo extends BaseVo {
 
     /**
-     * 租户编号
-     */
-    private String tenantCode;
-
-    /**
-     * 租户名称
-     */
-    private String tenantName;
-
-    /**
      * 部门编号
      */
     private String deptCode;
 
     /**
-     * 部门名称
-     */
-    private String deptName;
-
-    /**
      * 编号
      */
-    private String userCode;
+    private String code;
 
     /**
      * 姓名
      */
-    private String userName;
+    private String name;
 
     /**
      * 密码
      */
-    private String userPassword;
+    private String password;
 
     /**
      * 邮箱
      */
-    private String userEmail;
+    private String email;
 
     /**
      * 电话
      */
-    private String userPhone;
+    private String phone;
 
     /**
      * 头像
      */
-    private String userAvatar;
+    private String avatar;
 
     /**
      * 状态：0=停用；1=启用
      */
-    private SysUserStatus userStatus;
+    private SysUserStatus status;
 
     /**
      * 备注
      */
-    private String userRemark;
+    private String remark;
 
 }

@@ -20,52 +20,37 @@ import java.util.List;
 public class SysDeptVo extends BaseVo {
 
     /**
-     * 父级部门主键
+     * 父级主键
      */
-    private Long pid;
-
-    /**
-     * 名称
-     */
-    private String deptName;
-
-    /**
-     * 别名
-     */
-    private String deptAlias;
+    private String parentCode;
 
     /**
      * 编号
      */
-    private String deptCode;
+    private String code;
 
     /**
-     * 图标
+     * 名称
      */
-    private String deptIcon;
+    private String name;
 
     /**
      * 状态：0=停用；1=启用；
      */
-    private SysDeptStatus deptStatus;
+    private SysDeptStatus status;
 
     /**
      * 排序
      */
-    private Integer deptSort;
+    private Integer sort;
 
     /**
      * 备注
      */
-    private String deptRemark;
+    private String remark;
 
     /**
-     * 用户数
-     */
-    private long userCount = 0;
-
-    /**
-     * 子机构
+     * 子部门
      */
     private List<SysDeptVo> children = new ArrayList<>();
 

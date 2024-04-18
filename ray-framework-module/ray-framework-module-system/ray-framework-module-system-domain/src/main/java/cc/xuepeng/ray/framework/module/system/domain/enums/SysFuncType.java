@@ -20,7 +20,7 @@ public enum SysFuncType implements BaseEnum {
 
     DICT(0, "目录"),
 
-    MENU(1, "菜单"),
+    MENU(1, "功能"),
 
     BUTTON(2, "按钮");
 

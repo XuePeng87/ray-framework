@@ -17,48 +17,53 @@ import lombok.*;
 public class SysUserDto extends BaseDto {
 
     /**
+     * 部门编号
+     */
+    private String deptCode;
+
+    /**
      * 编号
      */
-    private String userCode;
+    private String code;
 
     /**
      * 帐号
      */
-    private String userAccount;
+    private String account;
 
     /**
      * 姓名
      */
-    private String userName;
+    private String name;
 
     /**
      * 密码
      */
-    private String userPassword;
+    private String password;
 
     /**
      * 邮箱
      */
-    private String userEmail;
+    private String email;
 
     /**
      * 电话
      */
-    private String userPhone;
+    private String phone;
 
     /**
      * 头像
      */
-    private String userAvatar;
+    private String avatar;
 
     /**
      * 状态：0=停用；1=启用
      */
-    private SysUserStatus userStatus;
+    private SysUserStatus status;
 
     /**
      * 备注
      */
-    private String userRemark;
+    private String remark;
 
 }

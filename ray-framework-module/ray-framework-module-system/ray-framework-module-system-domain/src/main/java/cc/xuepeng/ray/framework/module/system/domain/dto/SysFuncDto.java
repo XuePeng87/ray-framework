@@ -21,77 +21,72 @@ import java.util.List;
 public class SysFuncDto extends BaseDto implements Composite {
 
     /**
-     * 父功能主键
+     * 父级主键
      */
-    private Long pid;
+    private String parentCode;
 
     /**
      * 名称
      */
-    private String funcName;
+    private String name;
 
     /**
      * 编号
      */
-    private String funcCode;
+    private String code;
 
     /**
-     * 类型：0=目录，1=菜单；2=按钮
+     * 类型：0=目录，1=功能；2=按钮
      */
-    private SysFuncType funcType;
+    private SysFuncType type;
 
     /**
      * 图标
      */
-    private String funcIcon;
+    private String icon;
 
     /**
      * 路由地址
      */
-    private String funcPath;
+    private String path;
 
     /**
      * 是否外链
      */
-    private Boolean funcLinkable;
+    private Boolean linkable;
 
     /**
      * 是否缓存
      */
-    private Boolean funcCacheable;
+    private Boolean cacheable;
 
     /**
      * 是否可见
      */
-    private Boolean funcVisible;
+    private Boolean visible;
 
     /**
      * 组件名称
      */
-    private String funcComponentName;
+    private String componentName;
 
     /**
      * 组件地址
      */
-    private String funcComponentPath;
+    private String componentPath;
 
     /**
      * 排序
      */
-    private Integer funcSort;
+    private Integer sort;
 
     /**
      * 备注
      */
-    private String funcRemark;
+    private String remark;
 
     /**
-     * 是否内置
-     */
-    private Boolean fixed;
-
-    /**
-     * 子系统功能
+     * 子功能
      */
     private List<SysFuncDto> children = new ArrayList<>();
 
@@ -108,7 +103,7 @@ public class SysFuncDto extends BaseDto implements Composite {
      */
     @Override
     public String getNodeName() {
-        return this.funcName;
+        return this.name;
     }
 
     /**
@@ -116,7 +111,7 @@ public class SysFuncDto extends BaseDto implements Composite {
      */
     @Override
     public String getNodePid() {
-        return this.pid.toString();
+        return this.parentCode;
     }
 
     /**

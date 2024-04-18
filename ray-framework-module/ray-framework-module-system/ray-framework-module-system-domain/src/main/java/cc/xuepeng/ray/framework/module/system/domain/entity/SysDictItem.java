@@ -1,12 +1,11 @@
 package cc.xuepeng.ray.framework.module.system.domain.entity;
 
 import cc.xuepeng.ray.framework.core.mybatis.entity.BizEntity;
-import cc.xuepeng.ray.framework.module.system.domain.enums.SysDeptStatus;
 import lombok.*;
 
 /**
- * 系统部门的实体类
- * 数据库表：sys_dept，系统部门表
+ * 系统字典项的实体类
+ * 数据库表：sys_dict_item，系统字典项表
  *
  * @author xuepeng
  */
@@ -15,17 +14,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class SysDept extends BizEntity {
+public class SysDictItem extends BizEntity {
 
     /**
-     * 父级编号
-     * 数据库字段：parent_code，char(32)
+     * 字典编号
+     * 数据库字段：pid，char(32)
      */
-    private String parentCode;
+    private Long parentCode;
 
     /**
      * 编号
-     * 数据库字段：code，char(32)
+     * 数据库字段：code，varchar(32)
      */
     private String code;
 
@@ -39,16 +38,10 @@ public class SysDept extends BizEntity {
      * 排序
      * 数据库字段：sort，int(11)
      */
-    private Integer sort;
+    private Long sort;
 
     /**
-     * 状态：0=停用；1=启用
-     * 数据库字段：status，tinyint(2)
-     */
-    private SysDeptStatus status;
-
-    /**
-     * 备注
+     * 描述
      * 数据库字段：remark，varchar(256)
      */
     private String remark;

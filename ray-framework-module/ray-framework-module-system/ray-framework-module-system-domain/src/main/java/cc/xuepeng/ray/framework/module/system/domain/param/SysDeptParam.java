@@ -21,52 +21,41 @@ import org.hibernate.validator.constraints.Length;
 public class SysDeptParam extends BaseParam implements ParamValidateScope {
 
     /**
-     * 父主键
+     * 父级编号
      */
-    @NotNull(message = "父主键不能为空", groups = {create.class, update.class})
-    private Long pid;
+    @NotBlank(message = "父级编号不能为空", groups = {create.class, update.class})
+    @Length(max = 32, message = "父级编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
+    private String parentCode;
 
     /**
      * 编号
      */
     @Length(max = 32, message = "编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String deptCode;
+    private String code;
 
     /**
      * 名称
      */
     @NotBlank(message = "名称不能为空", groups = {create.class, update.class})
     @Length(max = 32, message = "名称长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String deptName;
-
-    /**
-     * 别名
-     */
-    @Length(max = 32, message = "别名长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String deptAlias;
-
-    /**
-     * 图标
-     */
-    @Length(max = 256, message = "图标长度不能大于256个字符", groups = {create.class, update.class, page.class})
-    private String deptIcon;
+    private String name;
 
     /**
      * 状态：0=停用；1=启用
      */
     @NotNull(message = "状态不能为空", groups = {create.class, update.class})
-    private SysDeptStatus deptStatus;
+    private SysDeptStatus status;
 
     /**
      * 排序
      */
     @NotNull(message = "排序不能为空", groups = {create.class, update.class})
-    private Integer deptSort;
+    private Integer sort;
 
     /**
      * 备注
      */
     @Length(max = 256, message = "备注长度不能大于256个字符", groups = {create.class, update.class, page.class})
-    private String deptRemark;
+    private String remark;
 
 }

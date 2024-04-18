@@ -1,11 +1,10 @@
 package cc.xuepeng.ray.framework.module.system.domain.vo;
 
 import cc.xuepeng.ray.framework.core.model.vo.BaseVo;
-import cc.xuepeng.ray.framework.module.system.domain.enums.SysDictStatus;
 import lombok.*;
 
 /**
- * 系统字典的数据响应类
+ * 系统字典项的数据响应类
  *
  * @author xuepeng
  */
@@ -14,27 +13,31 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class SysDictVo extends BaseVo {
+public class SysDictItemVo extends BaseVo {
 
     /**
-     * 名称
+     * 字典编号
      */
-    private String name;
+    private String parentCode;
 
     /**
-     * 编号
+     * 字典项编号
      */
     private String code;
 
     /**
-     * 状态：0=停用；1=启用；
+     * 字典项名称
      */
-    private SysDictStatus status;
+    private String name;
+
+    /**
+     * 排序
+     */
+    private Long sort;
 
     /**
      * 描述
      */
     private String remark;
-
-
+    
 }

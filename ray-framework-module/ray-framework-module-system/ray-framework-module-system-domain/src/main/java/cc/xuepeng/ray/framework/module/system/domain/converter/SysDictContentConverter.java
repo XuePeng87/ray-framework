@@ -1,10 +1,10 @@
 package cc.xuepeng.ray.framework.module.system.domain.converter;
 
 import cc.xuepeng.ray.framework.core.mybatis.converter.BizConverter;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictContentDto;
-import cc.xuepeng.ray.framework.module.system.domain.entity.SysDictContent;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDictContentParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictContentVo;
+import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictItemDto;
+import cc.xuepeng.ray.framework.module.system.domain.entity.SysDictItem;
+import cc.xuepeng.ray.framework.module.system.domain.param.SysDictItemParam;
+import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictItemVo;
 import org.mapstruct.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.mapstruct.Mapper;
  * @author xuepeng
  */
 @Mapper(componentModel = "spring")
-public interface SysDictContentConverter extends BizConverter<SysDictContentParam, SysDictContentDto, SysDictContent, SysDictContentVo> {
+public interface SysDictContentConverter extends BizConverter<SysDictItemParam, SysDictItemDto, SysDictItem, SysDictItemVo> {
 
 }

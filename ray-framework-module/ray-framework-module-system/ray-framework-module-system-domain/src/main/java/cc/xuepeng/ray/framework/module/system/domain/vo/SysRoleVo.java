@@ -19,26 +19,26 @@ public class SysRoleVo extends BaseVo {
     /**
      * 名称
      */
-    private String roleName;
+    private String name;
 
     /**
      * 编号
      */
-    private String roleCode;
+    private String code;
 
     /**
      * 状态：0=停用；1=启用
      */
-    private SysRoleStatus roleStatus;
+    private SysRoleStatus status;
 
     /**
      * 排序
      */
-    private Integer roleSort;
+    private Integer sort;
 
     /**
      * 备注
      */
-    private String roleRemark;
+    private String remark;
 
 }

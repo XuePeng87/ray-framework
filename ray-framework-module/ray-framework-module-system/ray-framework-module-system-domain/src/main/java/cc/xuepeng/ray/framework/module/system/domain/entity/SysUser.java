@@ -19,62 +19,62 @@ public class SysUser extends BizEntity {
 
     /**
      * 部门编号
-     * 数据库字段：dept_id，char(32)
+     * 数据库字段：dept_code，char(32)
      */
     private String deptCode;
 
     /**
      * 编号
-     * 数据库字段：user_code，char(32)
+     * 数据库字段：code，char(32)
      */
-    private String userCode;
+    private String code;
 
     /**
      * 帐号
-     * 数据库字段：user_account，varchar(32)
+     * 数据库字段：account，varchar(32)
      */
-    private String userAccount;
+    private String account;
 
     /**
      * 姓名
-     * 数据库字段：user_name，varchar(32)
+     * 数据库字段：name，varchar(32)
      */
-    private String userName;
+    private String name;
 
     /**
      * 密码
-     * 数据库字段：user_password，varchar(128)
+     * 数据库字段：password，varchar(128)
      */
-    private String userPassword;
+    private String password;
 
     /**
      * 邮箱
-     * 数据库字段：user_email，varchar(128)
+     * 数据库字段：email，varchar(128)
      */
-    private String userEmail;
+    private String email;
 
     /**
      * 电话
-     * 数据库字段：user_phone，varchar(32)
+     * 数据库字段：phone_number，varchar(32)
      */
-    private String userPhone;
+    private String phoneNumber;
 
     /**
      * 头像
-     * 数据库字段：user_avatar，varchar(256)
+     * 数据库字段：avatar，varchar(256)
      */
-    private String userAvatar;
+    private String avatar;
 
     /**
      * 状态：0=停用；1=启用
-     * 数据库字段：user_status，tinyint(2)
+     * 数据库字段：status，tinyint(2)
      */
-    private SysUserStatus userStatus;
+    private SysUserStatus status;
 
     /**
      * 备注
-     * 数据库字段：user_remark，varchar(256)
+     * 数据库字段：remark，varchar(256)
      */
-    private String userRemark;
+    private String remark;
 
 }

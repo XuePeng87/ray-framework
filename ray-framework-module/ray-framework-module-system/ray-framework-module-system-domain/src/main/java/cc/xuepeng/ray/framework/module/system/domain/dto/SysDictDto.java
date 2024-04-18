@@ -17,23 +17,23 @@ import lombok.*;
 public class SysDictDto extends BaseDto {
 
     /**
-     * 字典名称
+     * 名称
      */
-    private String dictName;
+    private String name;
 
     /**
-     * 字段编号
+     * 编号
      */
-    private String dictCode;
-
-    /**
-     * 字典描述
-     */
-    private String dictDesc;
+    private String code;
 
     /**
      * 状态：0=停用；1=启用
      */
-    private SysDictStatus dictStatus;
+    private SysDictStatus status;
+
+    /**
+     * 描述
+     */
+    private String remark;
 
 }

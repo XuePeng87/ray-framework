@@ -1,11 +1,10 @@
 package cc.xuepeng.ray.framework.module.system.domain.dto;
 
 import cc.xuepeng.ray.framework.core.model.dto.BaseDto;
-import cc.xuepeng.ray.framework.module.system.domain.enums.SysRoleStatus;
 import lombok.*;
 
 /**
- * 系统角色的数据传输类
+ * 系统字典项的数据传输类
  *
  * @author xuepeng
  */
@@ -14,7 +13,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class SysRoleDto extends BaseDto {
+public class SysDictItemDto extends BaseDto {
+
+    /**
+     * 字典编号
+     */
+    private String parentCode;
 
     /**
      * 名称
@@ -27,17 +31,12 @@ public class SysRoleDto extends BaseDto {
     private String code;
 
     /**
-     * 状态：0=停用；1=启用
-     */
-    private SysRoleStatus status;
-
-    /**
      * 排序
      */
-    private Integer sort;
+    private Long sort;
 
     /**
-     * 备注
+     * 描述
      */
     private String remark;
 

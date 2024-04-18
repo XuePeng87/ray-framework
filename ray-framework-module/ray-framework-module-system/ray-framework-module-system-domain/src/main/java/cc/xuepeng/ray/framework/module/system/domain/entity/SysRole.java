@@ -19,32 +19,32 @@ public class SysRole extends BizEntity {
 
     /**
      * 名称
-     * 数据库字段：role_name，varchar(32)
+     * 数据库字段：name，varchar(32)
      */
-    private String roleName;
+    private String name;
 
     /**
      * 编号
-     * 数据库字段：role_code，varchar(32)
+     * 数据库字段：code，varchar(32)
      */
-    private String roleCode;
+    private String code;
 
     /**
      * 状态：0=停用；1=启用
-     * 数据库字段：role_status，tinyint(2)
+     * 数据库字段：status，tinyint(2)
      */
-    private SysRoleStatus roleStatus;
+    private SysRoleStatus status;
 
     /**
      * 排序
-     * 数据库字段：role_sort，int(11)
+     * 数据库字段：sort，int(11)
      */
-    private Integer roleSort;
+    private Integer sort;
 
     /**
      * 备注
-     * 数据库字段：role_remark，varchar(256)
+     * 数据库字段：remark，varchar(256)
      */
-    private String roleRemark;
+    private String remark;
 
 }

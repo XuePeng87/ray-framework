@@ -5,7 +5,7 @@ import cc.xuepeng.ray.framework.module.system.domain.enums.SysDictStatus;
 import lombok.*;
 
 /**
- * 系统字典实体类
+ * 系统字的典实体类
  * 数据库表：sys_dict，系统字典表
  *
  * @author xuepeng
@@ -18,27 +18,27 @@ import lombok.*;
 public class SysDict extends BizEntity {
 
     /**
-     * 字典名称
-     * 数据库字段：dict_name，varchar(128)
+     * 名称
+     * 数据库字段：name，varchar(32)
      */
-    private String dictName;
+    private String name;
 
     /**
-     * 字段编号
-     * 数据库字段：dict_code，varchar(32)
+     * 编号
+     * 数据库字段：code，varchar(32)
      */
-    private String dictCode;
-
-    /**
-     * 字典描述
-     * 数据库字段：dict_desc，varchar(256)
-     */
-    private String dictDesc;
+    private String code;
 
     /**
      * 状态：0=停用；1=启用
-     * 数据库字段：dict_status，tinyint(1)
+     * 数据库字段：status，tinyint(1)
      */
-    private SysDictStatus dictStatus;
+    private SysDictStatus status;
+
+    /**
+     * 描述
+     * 数据库字段：remark，varchar(256)
+     */
+    private String remark;
 
 }

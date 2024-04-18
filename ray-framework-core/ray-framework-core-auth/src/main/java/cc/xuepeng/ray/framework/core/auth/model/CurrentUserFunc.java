@@ -43,7 +43,7 @@ public class CurrentUserFunc implements Serializable {
     private String funcCode;
 
     /**
-     * 类型：0=目录，1=菜单；2=按钮；
+     * 类型：0=目录，1=功能；2=按钮；
      */
     private Integer funcType;
 
