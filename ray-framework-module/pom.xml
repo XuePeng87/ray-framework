@@ -9,13 +9,13 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>ray-framework-sdk</artifactId>
+    <artifactId>ray-framework-module</artifactId>
+    <name>Ray Framework Module</name>
     <packaging>pom</packaging>
-    <name>Ray Framework SDK</name>
 
     <!-- 子模块 -->
     <modules>
-        <module>ray-framework-sdk-verifycode</module>
+        <module>ray-framework-module-system</module>
     </modules>
 
     <!-- 属性管理 -->

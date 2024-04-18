@@ -1,4 +1,4 @@
-package cc.xuepeng.ray.framework.core.web.log.enums;
+package cc.xuepeng.ray.framework.module.system.domain.enums;
 
 import cc.xuepeng.ray.framework.core.model.enums.BaseEnum;
 import com.baomidou.mybatisplus.annotation.EnumValue;
@@ -9,18 +9,19 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * 操作日志类型
+ * 系统角色的状态枚举
  *
  * @author xuepeng
  */
 @Getter
 @ToString
 @AllArgsConstructor
-public enum SysOperateLogType implements BaseEnum {
+public enum SysRoleStatus implements BaseEnum {
 
-    ACCESS(1, "操作日志"),
+    DISABLE(0, "禁用"),
 
-    ERROR(2, "错误日志");
+    ENABLE(1, "启用");
+
 
     /**
      * 查找枚举
@@ -30,8 +31,8 @@ public enum SysOperateLogType implements BaseEnum {
      * @return 枚举
      */
     @JsonCreator
-    public static SysOperateLogType findEnum(final Integer code) {
-        for (SysOperateLogType e : values()) {
+    public static SysRoleStatus findEnum(final Integer code) {
+        for (SysRoleStatus e : values()) {
             if (e.code.equals(code)) {
                 return e;
             }

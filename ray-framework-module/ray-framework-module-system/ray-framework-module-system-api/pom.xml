@@ -5,18 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.xuepeng</groupId>
-        <artifactId>ray-framework</artifactId>
+        <artifactId>ray-framework-module-system</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>ray-framework-sdk</artifactId>
-    <packaging>pom</packaging>
-    <name>Ray Framework SDK</name>
-
-    <!-- 子模块 -->
-    <modules>
-        <module>ray-framework-sdk-verifycode</module>
-    </modules>
+    <artifactId>ray-framework-module-system-api</artifactId>
+    <name>Ray Framework Module System API</name>
 
     <!-- 属性管理 -->
     <properties>

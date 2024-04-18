@@ -1,0 +1,112 @@
+package cc.xuepeng.ray.framework.module.system.domain.dto;
+
+import cc.xuepeng.ray.framework.core.common.strategy.composite.Composite;
+import cc.xuepeng.ray.framework.core.model.dto.BaseDto;
+import cc.xuepeng.ray.framework.module.system.domain.enums.SysDeptStatus;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 系统部门的数据传输类
+ *
+ * @author xuepeng
+ */
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class SysDeptDto extends BaseDto implements Composite {
+
+    /**
+     * 父部门主键
+     */
+    private Long pid;
+
+    /**
+     * 编号
+     */
+    private String deptCode;
+
+    /**
+     * 名称
+     */
+    private String deptName;
+
+    /**
+     * 别名
+     */
+    private String deptAlias;
+
+    /**
+     * 图标
+     */
+    private String deptIcon;
+
+    /**
+     * 状态：0=停用；1=启用
+     */
+    private SysDeptStatus deptStatus;
+
+    /**
+     * 排序
+     */
+    private Integer deptSort;
+
+    /**
+     * 备注
+     */
+    private String deptRemark;
+
+    /**
+     * 子部门
+     */
+    private List<SysDeptDto> children = new ArrayList<>();
+
+    /**
+     * @return 获取主键
+     */
+    @Override
+    public String getNodeId() {
+        return super.getId().toString();
+    }
+
+    /**
+     * @return 获取名称
+     */
+    @Override
+    public String getNodeName() {
+        return this.deptName;
+    }
+
+    /**
+     * @return 获取父级主键
+     */
+    @Override
+    public String getNodePid() {
+        return this.pid.toString();
+    }
+
+    /**
+     * 添加到子级
+     *
+     * @param composite 组合对象
+     */
+    @Override
+    public void add(final Composite composite) {
+        this.children.add((SysDeptDto) composite);
+    }
+
+    /**
+     * 移除子级
+     *
+     * @param index 组合对象索引
+     */
+    @Override
+    public void remove(int index) {
+        this.children.remove(index);
+    }
+
+}

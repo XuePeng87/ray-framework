@@ -5,20 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.xuepeng</groupId>
-        <artifactId>ray-framework</artifactId>
+        <artifactId>ray-framework-module</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>ray-framework-sdk</artifactId>
+    <artifactId>ray-framework-module-system</artifactId>
+    <name>Ray Framework Module System</name>
     <packaging>pom</packaging>
-    <name>Ray Framework SDK</name>
 
     <!-- 子模块 -->
     <modules>
-        <module>ray-framework-sdk-verifycode</module>
+        <module>ray-framework-module-system-domain</module>
+        <module>ray-framework-module-system-dao</module>
+        <module>ray-framework-module-system-service</module>
+        <module>ray-framework-module-system-api</module>
     </modules>
 
-    <!-- 属性管理 -->
+    <!-- 依赖管理 -->
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

@@ -21,6 +21,7 @@
     <modules>
         <module>ray-framework-core</module>
         <module>ray-framework-sdk</module>
+        <module>ray-framework-module</module>
     </modules>
 
     <!-- 属性管理 -->
@@ -34,6 +35,7 @@
 
         <commons-io.version>2.16.1</commons-io.version>
         <commons-lang3.version>3.14.0</commons-lang3.version>
+        <easy-captcha.version>1.6.2</easy-captcha.version>
         <guava.version>33.1.0-jre</guava.version>
         <hutool.version>5.8.27</hutool.version>
         <jackson.version>2.17.0</jackson.version>
@@ -62,6 +64,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <!-- Captcha -->
+            <dependency>
+                <groupId>com.github.whvcse</groupId>
+                <artifactId>easy-captcha</artifactId>
+                <version>${easy-captcha.version}</version>
             </dependency>
             <!-- Guava -->
             <dependency>
