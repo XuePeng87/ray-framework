@@ -3,11 +3,10 @@ package cc.xuepeng.ray.framework.module.system.service;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictItemDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
- * 系统字典项业务处理接口
+ * 系统字典项的业务处理接口
  *
  * @author xuepeng
  */
@@ -17,7 +16,7 @@ public interface SysDictItemService {
     /**
      * 创建系统字典项
      *
-     * @param sysDictItemDto 系统字典项数据传输类
+     * @param sysDictItemDto 系统字典项的数据传输对象
      * @return 是否创建成功
      */
     boolean create(final SysDictItemDto sysDictItemDto);
@@ -25,56 +24,40 @@ public interface SysDictItemService {
     /**
      * 修改系统字典项
      *
-     * @param sysDictItemDto 系统字典项数据传输类
+     * @param sysDictItemDto 系统字典项的数据传输对象
      * @return 是否修改成功
      */
     boolean update(final SysDictItemDto sysDictItemDto);
 
     /**
-     * 根据主键删除
+     * 根据编号删除系统字典项
      *
-     * @param id 主键
+     * @param code 编号
      * @return 是否删除成功
      */
-    boolean deleteById(final long id);
+    boolean deleteByCode(final String code);
 
     /**
-     * 根据系统字典主键查询系统字典项
+     * 根据编号查询系统字典项
      *
-     * @param pid 系统字典主键
-     * @return 系统字典项集合
+     * @param code 编号
+     * @return 系统字典项的数据传输对象
      */
-    List<SysDictItemDto> findByPid(final long pid);
+    SysDictItemDto findByCode(final String code);
 
     /**
-     * 根据系统字典主键查询系统字典项主键
+     * 根据系统字典编号查询系统字典项
      *
-     * @param pid 系统字典主键
-     * @return 系统字典项主键集合
+     * @param parentCode 系统字典编号
+     * @return 系统字典项的数据传输对象集合
      */
-    List<Long> findIdsByPid(final long pid);
+    List<SysDictItemDto> findByParentCode(final String parentCode);
 
     /**
-     * 根据系统字典主键集合查询系统字典项主键
+     * 分页查询系统字典项
      *
-     * @param pidList 系统字典主键集合
-     * @return 系统字典项主键集合
-     */
-    List<Long> findIdsByPids(final Collection<Long> pidList);
-
-    /**
-     * 根据ID查询
-     *
-     * @param id 主键
-     * @return 系统字典项数据传输类
-     */
-    SysDictItemDto findById(final long id);
-
-    /**
-     * 分页查询
-     *
-     * @param sysDictItemDto 系统字典项数据传输类
-     * @return 分页对象
+     * @param sysDictItemDto 系统字典项的数据传输对象
+     * @return 系统字典项的数据传输对象集合
      */
     Page<SysDictItemDto> pageByCondition(final SysDictItemDto sysDictItemDto);
 

@@ -15,9 +15,9 @@ public interface SysDeptService {
      * 创建系统部门
      *
      * @param sysDeptDto 系统部门的数据传输对象
-     * @return 部门编号
+     * @return 是否创建成功
      */
-    String create(final SysDeptDto sysDeptDto);
+    boolean create(final SysDeptDto sysDeptDto);
 
     /**
      * 修改系统部门
@@ -47,7 +47,7 @@ public interface SysDeptService {
      * 根据条件查询系统部门
      *
      * @param sysDeptDto 系统部门的数据传输对象
-     * @return 系统部门的数据传输对象集合
+     * @return 系统部门的数据传输对象集合集合
      */
     List<SysDeptDto> listByCondition(final SysDeptDto sysDeptDto);
 

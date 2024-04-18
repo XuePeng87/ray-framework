@@ -16,9 +16,9 @@ public interface SysUserService {
      * 创建系统用户
      *
      * @param sysUserDto 系统用户的数据传输对象
-     * @return 登录密码
+     * @return 是否创建成功
      */
-    String create(final SysUserDto sysUserDto);
+    boolean create(final SysUserDto sysUserDto);
 
     /**
      * 修改系统用户
@@ -31,7 +31,7 @@ public interface SysUserService {
     /**
      * 根据编号删除系统用户
      *
-     * @param code 系统用户的编号
+     * @param code 编号
      * @return 是否删除成功
      */
     boolean delete(final String code);
@@ -39,7 +39,7 @@ public interface SysUserService {
     /**
      * 根据编号查询系统用户
      *
-     * @param code 系统用户的编号
+     * @param code 编号
      * @return 系统用户的数据传输对象
      */
     SysUserDto findByCode(final String code);

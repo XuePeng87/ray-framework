@@ -28,17 +28,17 @@ public interface SysFuncService {
     boolean update(final SysFuncDto sysFuncDto);
 
     /**
-     * 根据主键删除系统功能
+     * 根据编号删除系统功能
      *
-     * @param code 系统功能的编号
+     * @param code 编号
      * @return 是否删除成功
      */
     boolean delete(final String code);
 
     /**
-     * 根据主键查询系统功能
+     * 根据编号查询系统功能
      *
-     * @param code 系统功能的编号
+     * @param code 编号
      * @return 系统功能的数据传输对象
      */
     SysFuncDto findByCode(final String code);
@@ -47,7 +47,7 @@ public interface SysFuncService {
      * 根据条件查询系统功能并转换成树
      *
      * @param sysFuncDto 系统功能的数据传输对象树
-     * @return 系统功能的数据传输对象树集合
+     * @return 系统功能的数据传输对象集合
      */
     List<SysFuncDto> treeByCondition(final SysFuncDto sysFuncDto);
 
