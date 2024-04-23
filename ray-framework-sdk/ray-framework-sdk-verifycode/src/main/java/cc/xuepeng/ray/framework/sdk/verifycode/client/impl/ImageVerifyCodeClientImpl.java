@@ -11,7 +11,7 @@ import com.wf.captcha.ArithmeticCaptcha;
 import com.wf.captcha.base.Captcha;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -36,13 +36,12 @@ public class ImageVerifyCodeClientImpl implements ImageVerifyCodeClient {
                 verifyCodeProperty.getCaptchaImgHeight(),
                 verifyCodeProperty.getCaptchaLength()
         );
-
-        final String img = captcha.toBase64();
         final String uuid = RandomUtil.get32UUID();
+        final String img = captcha.toBase64();
         final String text = captcha.text();
         // 缓存验证码
         final String key = type.getPrefix() + uuid;
-        redisTemplate.opsForValue().set(
+        stringRedisTemplate.opsForValue().set(
                 key,
                 text,
                 verifyCodeProperty.getExpiration()
@@ -60,9 +59,9 @@ public class ImageVerifyCodeClientImpl implements ImageVerifyCodeClient {
     @Override
     public void verify(final String uuid, final String code, final VerifyCodeType type) {
         final String key = type.getPrefix() + uuid;
-        final String answer = redisTemplate.opsForValue().get(key);
+        final String answer = stringRedisTemplate.opsForValue().get(key);
         // 删除验证码，验证码进行一次校验，无论对错都会删除
-        redisTemplate.delete(key);
+        stringRedisTemplate.delete(key);
         // 判断验证码是否正确
         if (StringUtils.isBlank(answer)) {
             throw new VerifyCodeExpiredException("验证码不存在或已过期");
@@ -82,6 +81,6 @@ public class ImageVerifyCodeClientImpl implements ImageVerifyCodeClient {
      * Redis工具
      */
     @Resource
-    private RedisTemplate<String, String> redisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
 }

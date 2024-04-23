@@ -8,7 +8,9 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Redis的配置类
@@ -32,13 +34,14 @@ public class RedisConfiguration {
         // 配置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         // RedisKey使用String进行序列化
-        redisTemplate.setKeySerializer(RedisSerializer.string());
-        redisTemplate.setHashKeySerializer(RedisSerializer.string());
+        redisTemplate.setKeySerializer(new StringRedisSerializer(StandardCharsets.UTF_8));
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer(StandardCharsets.UTF_8));
         // RedisValue使用Json进行序列化
         final Jackson2JsonRedisSerializer<Object> jsonRedisSerializer = RedisJsonSerializer.serializer();
         redisTemplate.setValueSerializer(jsonRedisSerializer);
         redisTemplate.setHashValueSerializer(jsonRedisSerializer);
         // 后置处理
+        redisTemplate.setDefaultSerializer(StringRedisSerializer.UTF_8);
         redisTemplate.afterPropertiesSet();
         // 启用事务
         redisTemplate.setEnableTransactionSupport(Boolean.TRUE);
