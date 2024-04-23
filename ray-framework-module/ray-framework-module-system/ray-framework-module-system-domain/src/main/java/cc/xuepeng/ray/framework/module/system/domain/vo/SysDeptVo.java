@@ -42,7 +42,7 @@ public class SysDeptVo extends BaseVo {
     /**
      * 排序
      */
-    private Integer sort;
+    private Integer sequence;
 
     /**
      * 备注

@@ -50,6 +50,8 @@ public class JacksonMapper {
         OBJECT_MAPPER.configure(SerializationFeature.WRITE_DATE_KEYS_AS_TIMESTAMPS, Boolean.FALSE);
         // 反序列化时，遇到未知属性时，不会引起结果序列化失败
         OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        // 注册Java8的时间类型序列化模块
+        OBJECT_MAPPER.registerModule(JacksonLocalDateTimeModule.getInstance());
     }
 
     /**

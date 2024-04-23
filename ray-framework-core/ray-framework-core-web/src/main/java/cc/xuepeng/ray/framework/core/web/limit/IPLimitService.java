@@ -48,7 +48,7 @@ public class IPLimitService {
     /**
      * IP限流注解的切点
      */
-    @Pointcut("@annotation(cn.cucloud.anov.core.web.limit.IPLimit)")
+    @Pointcut("@annotation(cc.xuepeng.ray.framework.core.web.limit.IPLimit)")
     public void ipLimit() {
         // IP限流
     }

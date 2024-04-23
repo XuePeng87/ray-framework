@@ -34,7 +34,7 @@ public class SysRoleDto extends BaseDto {
     /**
      * 排序
      */
-    private Integer sort;
+    private Integer sequence;
 
     /**
      * 备注

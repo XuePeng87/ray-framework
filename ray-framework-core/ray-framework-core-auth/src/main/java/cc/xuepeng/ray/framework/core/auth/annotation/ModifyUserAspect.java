@@ -36,7 +36,7 @@ public class ModifyUserAspect {
     @Before("modifyUser()")
     public void doBefore(final JoinPoint joinPoint) {
         for (final Object arg : joinPoint.getArgs()) {
-            if (arg instanceof BaseDto dto && authService.isLogin()) {
+            if (arg instanceof BaseDto dto) {
                 final CurrentUser currentUser = authService.getCurrentUser();
                 dto.setModifyUser(currentUser.getUserCode());
             }

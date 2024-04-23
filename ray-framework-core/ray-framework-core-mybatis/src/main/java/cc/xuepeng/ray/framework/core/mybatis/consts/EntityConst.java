@@ -15,4 +15,9 @@ public class EntityConst {
      */
     public static final String PK = "Id";
 
+    /**
+     * 编号字段名称
+     */
+    public static final String CODE = "Code";
+
 }

@@ -44,7 +44,7 @@ public class SysRoleParam extends BaseParam implements ParamValidateScope {
      * 排序
      */
     @NotNull(message = "排序不能为空", groups = {create.class, update.class})
-    private Integer sort;
+    private Integer sequence;
 
     /**
      * 备注

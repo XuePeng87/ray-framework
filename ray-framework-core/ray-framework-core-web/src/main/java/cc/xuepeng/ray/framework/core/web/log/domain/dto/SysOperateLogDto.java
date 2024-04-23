@@ -114,6 +114,6 @@ public class SysOperateLogDto extends BaseDto {
     /**
      * 操作日志详情
      */
-    private SysOperateLogDetailDto detail;
+    private SysOperateLogDetailDto detail = new SysOperateLogDetailDto();
 
 }

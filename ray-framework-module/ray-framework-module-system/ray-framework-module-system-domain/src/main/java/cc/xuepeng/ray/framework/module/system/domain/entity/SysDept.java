@@ -37,9 +37,9 @@ public class SysDept extends BizEntity {
 
     /**
      * 排序
-     * 数据库字段：sort，int(11)
+     * 数据库字段：sequence，int(11)
      */
-    private Integer sort;
+    private Integer sequence;
 
     /**
      * 状态：0=停用；1=启用

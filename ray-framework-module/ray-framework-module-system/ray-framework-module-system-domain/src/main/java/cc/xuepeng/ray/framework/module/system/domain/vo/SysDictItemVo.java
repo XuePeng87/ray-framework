@@ -33,7 +33,7 @@ public class SysDictItemVo extends BaseVo {
     /**
      * 排序
      */
-    private Long sort;
+    private Integer sequence;
 
     /**
      * 描述

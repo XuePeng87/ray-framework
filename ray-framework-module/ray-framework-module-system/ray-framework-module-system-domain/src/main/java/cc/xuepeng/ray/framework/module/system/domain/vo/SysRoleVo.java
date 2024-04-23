@@ -34,7 +34,7 @@ public class SysRoleVo extends BaseVo {
     /**
      * 排序
      */
-    private Integer sort;
+    private Integer sequence;
 
     /**
      * 备注

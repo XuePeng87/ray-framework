@@ -22,7 +22,7 @@ public class AuthProperty {
     /**
      * 拦截路径
      */
-    private String includePath;
+    private String includePath = "/**";
 
     /**
      * 放行路径

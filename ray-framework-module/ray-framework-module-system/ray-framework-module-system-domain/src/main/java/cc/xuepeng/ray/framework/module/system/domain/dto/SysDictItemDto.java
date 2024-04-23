@@ -33,7 +33,7 @@ public class SysDictItemDto extends BaseDto {
     /**
      * 排序
      */
-    private Long sort;
+    private Integer sequence;
 
     /**
      * 描述

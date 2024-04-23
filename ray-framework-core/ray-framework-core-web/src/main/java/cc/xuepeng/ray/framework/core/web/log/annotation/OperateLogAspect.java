@@ -14,6 +14,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -161,7 +162,9 @@ public class OperateLogAspect {
                 .append(v[0])
                 .append(PunctuationConst.SEMICOLON)
         );
-        sysOperateLogDto.getDetail().setParam(params.toString());
+        if (StringUtils.isNotBlank(params)) {
+            sysOperateLogDto.getDetail().setParam(params.toString());
+        }
         // API Args信息
         final StringBuilder args = new StringBuilder();
         for (int i = 0; i < joinPoint.getArgs().length; i++) {
@@ -172,7 +175,9 @@ public class OperateLogAspect {
                     .append(joinPoint.getArgs()[i])
                     .append(PunctuationConst.RIGHT_SQUARE_BRACKETS);
         }
-        sysOperateLogDto.getDetail().setArgs(args.toString());
+        if (StringUtils.isNotBlank(args)) {
+            sysOperateLogDto.getDetail().setArgs(args.toString());
+        }
     }
 
     /**

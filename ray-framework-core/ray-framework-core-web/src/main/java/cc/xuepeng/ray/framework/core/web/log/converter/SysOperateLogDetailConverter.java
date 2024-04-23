@@ -3,6 +3,7 @@ package cc.xuepeng.ray.framework.core.web.log.converter;
 import cc.xuepeng.ray.framework.core.mybatis.converter.BizConverter;
 import cc.xuepeng.ray.framework.core.web.log.domain.dto.SysOperateLogDetailDto;
 import cc.xuepeng.ray.framework.core.web.log.domain.entity.SysOperateLogDetail;
+import cc.xuepeng.ray.framework.core.web.log.domain.param.SysOperateLogDetailParam;
 import org.mapstruct.Mapper;
 
 /**
@@ -12,6 +13,6 @@ import org.mapstruct.Mapper;
  */
 @Mapper(componentModel = "spring")
 public interface SysOperateLogDetailConverter
-        extends BizConverter<Object, SysOperateLogDetailDto, SysOperateLogDetail, SysOperateLogDetailDto> {
+        extends BizConverter<SysOperateLogDetailParam, SysOperateLogDetailDto, SysOperateLogDetail, SysOperateLogDetailDto> {
 
 }

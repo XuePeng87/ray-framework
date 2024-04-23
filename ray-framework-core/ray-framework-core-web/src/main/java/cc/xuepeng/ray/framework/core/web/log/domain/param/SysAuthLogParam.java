@@ -7,7 +7,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * 系统登录登出日志请求类
+ * 系统登录登出日志的请求类
  *
  * @author xuepeng
  */
