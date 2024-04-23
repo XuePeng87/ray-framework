@@ -16,6 +16,7 @@
     <!-- 子模块 -->
     <modules>
         <module>ray-framework-module-system</module>
+        <module>ray-framework-module-auth</module>
     </modules>
 
     <!-- 属性管理 -->

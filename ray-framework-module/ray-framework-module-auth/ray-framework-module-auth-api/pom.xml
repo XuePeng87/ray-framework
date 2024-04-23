@@ -5,21 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.xuepeng</groupId>
-        <artifactId>ray-framework-module</artifactId>
+        <artifactId>ray-framework-module-auth</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>ray-framework-module-system</artifactId>
-    <name>Ray Framework Module System</name>
-    <packaging>pom</packaging>
-
-    <!-- 子模块 -->
-    <modules>
-        <module>ray-framework-module-system-domain</module>
-        <module>ray-framework-module-system-dao</module>
-        <module>ray-framework-module-system-service</module>
-        <module>ray-framework-module-system-api</module>
-    </modules>
+    <artifactId>ray-framework-module-auth-api</artifactId>
+    <name>Ray Framework Module Auth API</name>
 
     <!-- 属性管理 -->
     <properties>
@@ -27,5 +18,20 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- 依赖管理 -->
+    <dependencies>
+        <!-- Ray Framework -->
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-core-web</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-sdk-verifycode</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

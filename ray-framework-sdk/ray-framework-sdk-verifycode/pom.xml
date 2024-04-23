@@ -48,6 +48,11 @@
             <groupId>com.github.whvcse</groupId>
             <artifactId>easy-captcha</artifactId>
         </dependency>
+        <!-- Nashorn -->
+        <dependency>
+            <groupId>org.openjdk.nashorn</groupId>
+            <artifactId>nashorn-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

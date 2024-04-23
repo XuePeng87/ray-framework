@@ -9,16 +9,13 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>ray-framework-module-system</artifactId>
-    <name>Ray Framework Module System</name>
+    <artifactId>ray-framework-module-auth</artifactId>
+    <name>Ray Framework Module Auth</name>
     <packaging>pom</packaging>
 
     <!-- 子模块 -->
     <modules>
-        <module>ray-framework-module-system-domain</module>
-        <module>ray-framework-module-system-dao</module>
-        <module>ray-framework-module-system-service</module>
-        <module>ray-framework-module-system-api</module>
+        <module>ray-framework-module-auth-api</module>
     </modules>
 
     <!-- 属性管理 -->

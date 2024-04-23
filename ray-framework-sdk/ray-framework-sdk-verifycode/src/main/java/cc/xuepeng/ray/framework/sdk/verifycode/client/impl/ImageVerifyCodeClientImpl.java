@@ -36,8 +36,9 @@ public class ImageVerifyCodeClientImpl implements ImageVerifyCodeClient {
                 verifyCodeProperty.getCaptchaImgHeight(),
                 verifyCodeProperty.getCaptchaLength()
         );
-        final String uuid = RandomUtil.get32UUID();
+
         final String img = captcha.toBase64();
+        final String uuid = RandomUtil.get32UUID();
         final String text = captcha.text();
         // 缓存验证码
         final String key = type.getPrefix() + uuid;

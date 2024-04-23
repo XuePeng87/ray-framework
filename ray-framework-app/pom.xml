@@ -24,6 +24,11 @@
         <!-- Ray Framework -->
         <dependency>
             <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-module-auth-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-module-system-api</artifactId>
             <version>${project.version}</version>
         </dependency>

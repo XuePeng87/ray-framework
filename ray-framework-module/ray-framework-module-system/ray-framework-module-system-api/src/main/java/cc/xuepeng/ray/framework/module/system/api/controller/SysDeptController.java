@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 系统部门的API类
+ * 系统部门的API接口
  *
  * @author xuepeng
  */

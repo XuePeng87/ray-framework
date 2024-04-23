@@ -11,9 +11,9 @@ logging:
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://127.0.0.1:3308/anov-server?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/ray-framework?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
     username: root
-    password: Anov@2022
+    password: Snow103082..
     hikari:
       auto-commit: true #此属性控制从池返回的连接的默认自动提交行为，默认值：true
       pool-name: AnovConsoleRdsPool
