@@ -45,6 +45,23 @@ public interface SysUserService {
     SysUserDto findByCode(final String code);
 
     /**
+     * 根据编号查询系统用户
+     *
+     * @param codes 编号集合
+     * @return 系统用户的数据传输对象集合
+     */
+    List<SysUserDto> findByCodes(final List<String> codes);
+
+    /**
+     * 根据手机号码和密码查找系统用户
+     *
+     * @param phoneNumber 手机号码
+     * @param password    密码
+     * @return 系统用户的数据传输对象
+     */
+    SysUserDto findByPhoneNumberAndPassword(final String phoneNumber, final String password);
+
+    /**
      * 根据条件查询系统用户
      *
      * @param sysUserDto 系统用户的数据传输对象

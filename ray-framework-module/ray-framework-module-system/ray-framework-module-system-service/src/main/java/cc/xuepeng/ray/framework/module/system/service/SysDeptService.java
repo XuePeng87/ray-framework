@@ -47,7 +47,7 @@ public interface SysDeptService {
      * 根据条件查询系统部门
      *
      * @param sysDeptDto 系统部门的数据传输对象
-     * @return 系统部门的数据传输对象集合集合
+     * @return 系统部门的数据传输对象集合
      */
     List<SysDeptDto> listByCondition(final SysDeptDto sysDeptDto);
 

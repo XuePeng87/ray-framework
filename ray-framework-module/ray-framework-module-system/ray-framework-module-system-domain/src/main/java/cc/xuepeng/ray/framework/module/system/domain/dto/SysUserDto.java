@@ -27,9 +27,9 @@ public class SysUserDto extends BaseDto {
     private String code;
 
     /**
-     * 帐号
+     * 电话
      */
-    private String account;
+    private String phoneNumber;
 
     /**
      * 姓名
@@ -45,11 +45,6 @@ public class SysUserDto extends BaseDto {
      * 邮箱
      */
     private String email;
-
-    /**
-     * 电话
-     */
-    private String phone;
 
     /**
      * 头像

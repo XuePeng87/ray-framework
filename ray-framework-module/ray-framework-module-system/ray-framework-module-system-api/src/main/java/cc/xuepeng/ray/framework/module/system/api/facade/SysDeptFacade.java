@@ -6,7 +6,7 @@ import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
 import java.util.List;
 
 /**
- * 系统部门的门面接口
+ * 系统部门的业务处理门面接口
  *
  * @author xuepeng
  */

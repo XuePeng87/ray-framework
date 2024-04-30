@@ -36,16 +36,16 @@ public class SysDept extends BizEntity {
     private String name;
 
     /**
-     * 排序
-     * 数据库字段：sequence，int(11)
-     */
-    private Integer sequence;
-
-    /**
      * 状态：0=停用；1=启用
      * 数据库字段：status，tinyint(2)
      */
     private SysDeptStatus status;
+
+    /**
+     * 排序
+     * 数据库字段：sequence，int(11)
+     */
+    private Integer sequence;
 
     /**
      * 备注

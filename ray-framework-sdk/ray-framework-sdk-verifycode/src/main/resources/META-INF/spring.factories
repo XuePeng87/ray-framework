@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.cucloud.anov.sdk.verifycode.config.VerifyCodeConfiguration
+  cc.xuepeng.ray.framework.sdk.verifycode.config.VerifyCodeConfiguration

@@ -60,7 +60,7 @@ public class SysDeptDto extends BaseDto implements Composite {
      */
     @Override
     public String getNodeId() {
-        return super.getId().toString();
+        return this.getCode();
     }
 
     /**

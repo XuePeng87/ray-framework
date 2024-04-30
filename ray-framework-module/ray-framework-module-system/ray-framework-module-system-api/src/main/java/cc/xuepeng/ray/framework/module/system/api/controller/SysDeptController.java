@@ -11,9 +11,12 @@ import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogAction;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysDeptFacade;
 import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
 import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +29,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/v1/depts")
+@Slf4j
 @Validated
+@SaCheckLogin
 public class SysDeptController extends BaseController {
 
     /**
@@ -37,7 +42,7 @@ public class SysDeptController extends BaseController {
      */
     @PostMapping("/v1")
     @CreateUser
-//    @SaCheckRole("ROLE_SUPER_ADMIN")
+    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "创建部门", action = SysOperateLogAction.CREATE)
     public Result<Boolean> create(
             @Validated(ParamValidateScope.create.class) @RequestBody final SysDeptParam sysDeptParam
@@ -91,6 +96,7 @@ public class SysDeptController extends BaseController {
      */
     @GetMapping("/v1/{code}")
     @SaCheckRole("ROLE_SUPER_ADMIN")
+    @SaCheckPermission("ray:system:dept:find")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门详情",
             action = SysOperateLogAction.DETAIL, persistent = false)
     public Result<SysDeptVo> findByCode(@PathVariable(value = "code") final String code) {

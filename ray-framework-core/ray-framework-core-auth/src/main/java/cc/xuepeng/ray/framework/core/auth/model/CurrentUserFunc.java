@@ -2,13 +2,11 @@ package cc.xuepeng.ray.framework.core.auth.model;
 
 import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 当前登录人功能的实体类
+ * 当前用户部门的实体类
  *
  * @author xuepeng
  */
@@ -17,78 +15,75 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class CurrentUserFunc implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     */
-    private Long id;
+public class CurrentUserFunc {
 
     /**
      * 父级主键
      */
-    private Long pid;
+    private String parentCode;
 
     /**
      * 名称
      */
-    private String funcName;
+    private String name;
 
     /**
      * 编号
      */
-    private String funcCode;
+    private String code;
 
     /**
-     * 类型：0=目录，1=功能；2=按钮；
+     * 类型：0=目录，1=功能；2=按钮
      */
-    private Integer funcType;
+    private Integer type;
 
     /**
      * 图标
      */
-    private String funcIcon;
+    private String icon;
 
     /**
      * 路由地址
      */
-    private String funcPath;
+    private String path;
 
     /**
      * 是否外链
      */
-    private Boolean funcLinkable;
+    private Boolean linkable;
 
     /**
      * 是否缓存
      */
-    private Boolean funcCacheable;
+    private Boolean cacheable;
 
     /**
      * 是否可见
      */
-    private Boolean funcVisible;
+    private Boolean visible;
 
     /**
      * 组件名称
      */
-    private String funcComponentName;
+    private String componentName;
 
     /**
      * 组件地址
      */
-    private String funcComponentPath;
+    private String componentPath;
 
     /**
      * 排序
      */
-    private Integer funcSort;
-    
+    private Integer sequence;
+
     /**
-     * 子系统功能
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 子功能
      */
     private List<CurrentUserFunc> children = new ArrayList<>();
 

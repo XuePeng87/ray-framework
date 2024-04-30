@@ -6,7 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * 当前登录人角色的实体类
+ * 当前登录用户角色的实体类
  *
  * @author xuepeng
  */
@@ -21,18 +21,13 @@ public class CurrentUserRole implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 编号
      */
-    private Long id;
-
-    /**
-     * 唯一标识
-     */
-    private String roleCode;
+    private String code;
 
     /**
      * 名称
      */
-    private String roleName;
+    private String name;
 
 }

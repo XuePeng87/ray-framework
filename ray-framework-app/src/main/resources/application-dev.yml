@@ -40,4 +40,5 @@ ray:
     sdk:
       auth:
         exclude-paths:
-          - /v1/depts/v1
+          - /v1/auth/v1/login-vc
+          - /v1/auth/v1/login

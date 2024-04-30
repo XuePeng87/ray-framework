@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.core.web.log.annotation;
 
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.core.auth.service.AuthService;
+import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.common.consts.PunctuationConst;
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
 import cc.xuepeng.ray.framework.core.web.log.domain.dto.SysOperateLogDto;
@@ -9,7 +9,6 @@ import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogType;
 import cc.xuepeng.ray.framework.core.web.log.service.SysOperateLogService;
 import cc.xuepeng.ray.framework.core.web.log.util.UserAgentInfoUtil;
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
-import cn.hutool.core.date.LocalDateTimeUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +20,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 /**
@@ -130,9 +129,9 @@ public class OperateLogAspect {
      */
     private void setAuthInfo(final SysOperateLogDto sysOperateLogDto) {
         // 设置用户信息
-        if (authService.isLogin()) {
-            final CurrentUser currentUser = authService.getCurrentUser();
-            sysOperateLogDto.setCreateUser(currentUser.getUserAccount());
+        if (identificationService.isLogin()) {
+            final CurrentUser currentUser = identificationService.getCurrentUser();
+            sysOperateLogDto.setCreateUser(currentUser.getCode());
         }
     }
 
@@ -208,14 +207,15 @@ public class OperateLogAspect {
      * @return 计算请求执行时间
      */
     public long exeTime(final LocalDateTime startTime) {
-        return LocalDateTimeUtil.between(startTime, LocalDateTime.now(), ChronoUnit.MILLIS);
+        final Duration exeTime = Duration.between(startTime, LocalDateTime.now());
+        return exeTime.toMillis();
     }
 
     /**
      * 认证的业务处理接口
      */
     @Resource
-    private AuthService authService;
+    private IdentificationService identificationService;
 
     /**
      * 系统操作日志持久化接口

@@ -6,14 +6,14 @@ import cc.xuepeng.ray.framework.module.system.domain.dto.SysDeptDto;
 import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
 import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
 import cc.xuepeng.ray.framework.module.system.service.SysDeptService;
-import cc.xuepeng.ray.framework.module.system.service.decorator.SysDeptFormat;
+import cc.xuepeng.ray.framework.module.system.service.decorator.dept.SysDeptFormat;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * 系统部门的门面实现类
+ * 系统部门的业务处理门面实现类
  *
  * @author xuepeng
  */

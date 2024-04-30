@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.core.auth.annotation;
 
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.core.auth.service.AuthService;
+import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.model.dto.BaseDto;
 import jakarta.annotation.Resource;
 import org.aspectj.lang.JoinPoint;
@@ -36,10 +36,10 @@ public class CreateUserAspect {
     @Before("createUser()")
     public void doBefore(final JoinPoint joinPoint) {
         for (final Object arg : joinPoint.getArgs()) {
-            if (arg instanceof BaseDto dto && authService.isLogin()) {
-                final CurrentUser currentUser = authService.getCurrentUser();
-                dto.setCreateUser(currentUser.getUserCode());
-                dto.setModifyUser(currentUser.getUserCode());
+            if (arg instanceof BaseDto dto && identificationService.isLogin()) {
+                final CurrentUser currentUser = identificationService.getCurrentUser();
+                dto.setCreateUser(currentUser.getCode());
+                dto.setModifyUser(currentUser.getCode());
             }
         }
     }
@@ -48,6 +48,6 @@ public class CreateUserAspect {
      * 身份认证业务处理接口
      */
     @Resource
-    private AuthService authService;
+    private IdentificationService identificationService;
 
 }

@@ -4,11 +4,10 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 当前登录人的实体类
+ * 当前登录用户的实体类
  *
  * @author xuepeng
  */
@@ -23,77 +22,41 @@ public class CurrentUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
-     */
-    private Long id;
-
-    /**
      * 编号
      */
-    private String userCode;
+    private String code;
 
     /**
-     * 帐号
+     * 电话
      */
-    private String userAccount;
-
+    private String phoneNumber;
     /**
      * 姓名
      */
-    private String userName;
+    private String name;
 
     /**
      * 邮箱
      */
-    private String userEmail;
-
-    /**
-     * 电话号码
-     */
-    private String userPhone;
+    private String email;
 
     /**
      * 头像
      */
-    private String userAvatar;
+    private String avatar;
 
     /**
-     * 注册IP
-     */
-    private String regeditIp;
-
-    /**
-     * 登录IP
-     */
-    private String loginIp;
-
-    /**
-     * 登录IP归属地
-     */
-    private String loginIpInfo;
-
-    /**
-     * 最后登录时间
-     */
-    private LocalDateTime loginLastTime;
-
-    /**
-     * 是否是管理员（超级管理员和系统管理员）
-     */
-    private Boolean admin;
-
-    /**
-     * 部门
+     * 系统部门
      */
     private CurrentUserDept dept;
 
     /**
-     * 角色
+     * 系统角色
      */
-    private transient List<CurrentUserRole> roles;
+    private List<CurrentUserRole> roles;
 
     /**
-     * 控制台功能
+     * 系统功能
      */
     private List<CurrentUserFunc> funcs;
 

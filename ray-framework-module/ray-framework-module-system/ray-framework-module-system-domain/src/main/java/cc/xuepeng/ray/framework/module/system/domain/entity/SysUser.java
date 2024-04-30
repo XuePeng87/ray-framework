@@ -12,9 +12,9 @@ import lombok.*;
  */
 @Data
 @ToString
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class SysUser extends BizEntity {
 
     /**
@@ -30,11 +30,10 @@ public class SysUser extends BizEntity {
     private String code;
 
     /**
-     * 帐号
-     * 数据库字段：account，varchar(32)
+     * 电话
+     * 数据库字段：phone_number，varchar(32)
      */
-    private String account;
-
+    private String phoneNumber;
     /**
      * 姓名
      * 数据库字段：name，varchar(32)
@@ -43,7 +42,7 @@ public class SysUser extends BizEntity {
 
     /**
      * 密码
-     * 数据库字段：password，varchar(128)
+     * 数据库字段：password，char(32)
      */
     private String password;
 
@@ -52,12 +51,6 @@ public class SysUser extends BizEntity {
      * 数据库字段：email，varchar(128)
      */
     private String email;
-
-    /**
-     * 电话
-     * 数据库字段：phone_number，varchar(32)
-     */
-    private String phoneNumber;
 
     /**
      * 头像

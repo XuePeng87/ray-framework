@@ -3,7 +3,7 @@ package cc.xuepeng.ray.framework.module.system.service.exception.dept;
 import cc.xuepeng.ray.framework.core.common.exception.BaseException;
 
 /**
- * 系统部门重复的异常类
+ * 系统部门已存在的异常类
  *
  * @author xuepeng
  */

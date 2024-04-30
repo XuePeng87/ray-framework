@@ -3,6 +3,8 @@ package cc.xuepeng.ray.framework.module.system.service;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysRoleDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.util.List;
+
 /**
  * 系统角色的业务处理接口
  *
@@ -38,9 +40,17 @@ public interface SysRoleService {
      * 根据主键查询系统角色
      *
      * @param code 系统角色的编号
-     * @return 系统角色的数据传输对象Ø
+     * @return 系统角色的数据传输对象
      */
     SysRoleDto findByCode(final String code);
+
+    /**
+     * 根据主键查询系统角色
+     *
+     * @param codes 系统角色的编号集合
+     * @return 系统角色的数据传输对象集合
+     */
+    List<SysRoleDto> findByCodes(final List<String> codes);
 
     /**
      * 根据条件分页查询系统角色

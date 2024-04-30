@@ -1,14 +1,13 @@
 package cc.xuepeng.ray.framework.core.web.log.annotation;
 
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.core.auth.service.AuthService;
+import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
 import cc.xuepeng.ray.framework.core.web.log.domain.dto.SysAuthLogDto;
 import cc.xuepeng.ray.framework.core.web.log.enums.SysAuthLogType;
 import cc.xuepeng.ray.framework.core.web.log.service.SysAuthLogService;
 import cc.xuepeng.ray.framework.core.web.log.util.UserAgentInfoUtil;
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
-import cn.hutool.core.date.LocalDateTimeUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +15,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * 登录日志的切面类
@@ -53,6 +52,8 @@ public class LoginLogAspect {
         final HttpServletRequest request = WebUtil.getHttpServletRequest();
         final SysAuthLogDto sysAuthLogDto = new SysAuthLogDto();
         UserAgentInfoUtil.setUserAgentInfo(sysAuthLogDto, request);
+        sysAuthLogDto.setCreateTime(LocalDateTime.now());
+        sysAuthLogDto.setLoginIp(WebUtil.getIPAddress(request));
         // 保存封装信息到ThreadLocal中
         ThreadLocalUtil.put(THREAD_LOCAL_KEY, sysAuthLogDto);
     }
@@ -66,14 +67,12 @@ public class LoginLogAspect {
     @AfterReturning(value = "operation()", returning = "result")
     public void doAfterReturning(JoinPoint joinPoint, Object result) {
         try {
-            if (authService.isLogin()) {
+            if (identificationService.isLogin()) {
                 final SysAuthLogDto sysAuthLogDto = (SysAuthLogDto) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
-                final CurrentUser currentUser = authService.getCurrentUser();
-                sysAuthLogDto.setCreateUser(currentUser.getUserCode());
-                final long exeTime = LocalDateTimeUtil.between(
-                        sysAuthLogDto.getCreateTime(), LocalDateTime.now(), ChronoUnit.MILLIS
-                );
-                sysAuthLogDto.setExeTime(exeTime);
+                final CurrentUser currentUser = identificationService.getCurrentUser();
+                sysAuthLogDto.setCreateUser(currentUser.getCode());
+                final Duration exeTime = Duration.between(sysAuthLogDto.getCreateTime(), LocalDateTime.now());
+                sysAuthLogDto.setExeTime(exeTime.toMillis());
                 sysAuthLogDto.setType(SysAuthLogType.LOGIN);
                 sysAuthLogService.create(sysAuthLogDto);
             }
@@ -99,7 +98,7 @@ public class LoginLogAspect {
      * 认证的业务处理接口
      */
     @Resource
-    private AuthService authService;
+    private IdentificationService identificationService;
 
     /**
      * 登录日志持久化接口

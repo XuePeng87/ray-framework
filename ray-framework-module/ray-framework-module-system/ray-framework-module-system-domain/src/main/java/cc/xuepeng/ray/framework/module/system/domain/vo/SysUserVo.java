@@ -27,6 +27,11 @@ public class SysUserVo extends BaseVo {
     private String code;
 
     /**
+     * 电话
+     */
+    private String phoneNumber;
+
+    /**
      * 姓名
      */
     private String name;
@@ -40,11 +45,6 @@ public class SysUserVo extends BaseVo {
      * 邮箱
      */
     private String email;
-
-    /**
-     * 电话
-     */
-    private String phone;
 
     /**
      * 头像

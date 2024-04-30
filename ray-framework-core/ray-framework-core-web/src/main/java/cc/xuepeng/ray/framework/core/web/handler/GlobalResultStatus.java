@@ -1,4 +1,4 @@
-package cc.xuepeng.ray.framework.core.web.hendler;
+package cc.xuepeng.ray.framework.core.web.handler;
 
 import cc.xuepeng.ray.framework.core.model.result.ResultStatus;
 import lombok.Getter;
@@ -14,6 +14,7 @@ public enum GlobalResultStatus implements ResultStatus {
     REQUEST_BAD(40000, "请求参数非法"),
 
     REQUEST_LIMIT(40200, "请求过于频繁");
+
 
     /**
      * 构造函数

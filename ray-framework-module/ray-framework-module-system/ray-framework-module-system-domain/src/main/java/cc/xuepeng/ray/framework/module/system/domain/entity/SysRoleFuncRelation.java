@@ -11,21 +11,21 @@ import lombok.*;
  */
 @Data
 @ToString
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class SysRoleFuncRelation extends BaseEntity {
 
     /**
-     * 角色主键
-     * 数据库字段：role_id，bigint(20)
+     * 角色编号
+     * 数据库字段：role_code，char(32)
      */
-    private Long roleId;
+    private String roleCode;
 
     /**
-     * 功能主键
-     * 数据库字段：func_id，bigint(20)
+     * 功能编号
+     * 数据库字段：func_code，char(32)
      */
-    private Long funcId;
+    private String funcCode;
 
 }

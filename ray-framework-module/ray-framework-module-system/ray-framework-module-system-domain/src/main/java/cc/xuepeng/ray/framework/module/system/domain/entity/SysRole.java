@@ -18,16 +18,16 @@ import lombok.*;
 public class SysRole extends BizEntity {
 
     /**
-     * 名称
-     * 数据库字段：name，varchar(32)
-     */
-    private String name;
-
-    /**
      * 编号
      * 数据库字段：code，varchar(32)
      */
     private String code;
+
+    /**
+     * 名称
+     * 数据库字段：name，varchar(32)
+     */
+    private String name;
 
     /**
      * 状态：0=停用；1=启用

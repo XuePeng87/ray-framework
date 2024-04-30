@@ -1,4 +1,4 @@
-package cc.xuepeng.ray.framework.module.system.service.decorator;
+package cc.xuepeng.ray.framework.module.system.service.decorator.dept;
 
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysDeptDto;
 

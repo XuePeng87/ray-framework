@@ -1,4 +1,4 @@
-package cc.xuepeng.ray.framework.core.web.hendler;
+package cc.xuepeng.ray.framework.core.web.handler;
 
 import cc.xuepeng.ray.framework.core.common.exception.CodecException;
 import cc.xuepeng.ray.framework.core.common.exception.FileUtilException;
@@ -7,6 +7,8 @@ import cc.xuepeng.ray.framework.core.model.result.Result;
 import cc.xuepeng.ray.framework.core.web.limit.IPLimitException;
 import cc.xuepeng.ray.framework.core.web.security.file.FileValidatorException;
 import cn.dev33.satoken.exception.NotLoginException;
+import cn.dev33.satoken.exception.NotPermissionException;
+import cn.dev33.satoken.exception.NotRoleException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -33,7 +35,7 @@ public class GlobalExceptionHandler {
     /**
      * API参数验证失败的异常处理
      * 处理RequestParam的参数错误
-     * 错误码：40000
+     * 错误码：400
      *
      * @param e API参数验证失败的异常对象
      * @return 错误信息
@@ -51,7 +53,7 @@ public class GlobalExceptionHandler {
     /**
      * API参数验证失败的异常处理
      * 处理RequestBody的参数错误
-     * 错误码：40000
+     * 错误码：400
      *
      * @param e API参数验证失败的异常对象
      * @return 错误信息
@@ -69,7 +71,7 @@ public class GlobalExceptionHandler {
     /**
      * API参数验证失败的异常处理
      * 处理RequestParam中的参数错误
-     * 错误码：40000
+     * 错误码：400
      *
      * @param e API参数验证失败的异常对象
      * @return 错误信息
@@ -86,7 +88,7 @@ public class GlobalExceptionHandler {
 
     /**
      * 文件校验失败的异常处理
-     * 错误码：40000
+     * 错误码：400
      *
      * @param e 文件校验失败的异常对象
      * @return 错误信息
@@ -103,7 +105,7 @@ public class GlobalExceptionHandler {
 
     /**
      * 系统认证失败的异常处理
-     * 错误码：40100
+     * 错误码：401
      *
      * @param e 未登录的异常对象
      * @return 错误信息
@@ -127,7 +129,7 @@ public class GlobalExceptionHandler {
 
     /**
      * 触发IP限流时的异常处理
-     * 错误码：40200
+     * 错误码：402
      *
      * @param e IP限流异常信息对象
      * @return 错误信息
@@ -143,8 +145,36 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * 系统鉴权失败的异常处理
+     * 错误码：403
+     *
+     * @param e 无操作角色的异常对象
+     * @return 错误信息
+     */
+    @ExceptionHandler(value = NotRoleException.class)
+    @ResponseBody
+    public ResponseEntity<String> notRoleException(NotRoleException e) {
+        log.error(e.getMessage());
+        return new ResponseEntity<>("无此角色", HttpStatus.FORBIDDEN);
+    }
+
+    /**
+     * 系统鉴权失败的异常处理
+     * 错误码：403
+     *
+     * @param e 无操作权限的异常对象
+     * @return 错误信息
+     */
+    @ExceptionHandler(value = NotPermissionException.class)
+    @ResponseBody
+    public ResponseEntity<String> notPermissionException(NotPermissionException e) {
+        log.error(e.getMessage());
+        return new ResponseEntity<>("无此权限", HttpStatus.FORBIDDEN);
+    }
+
+    /**
      * Aes、Des、Rsa等算法执行过程中发生异常
-     * 错误码：90000
+     * 错误码：500
      *
      * @param e IP限流异常信息对象
      * @return 错误信息
@@ -158,7 +188,7 @@ public class GlobalExceptionHandler {
 
     /**
      * 未匹配到指定策略
-     * 错误码：90000
+     * 错误码：500
      *
      * @param e 未匹配到指定策略异常信息对象
      * @return 错误信息
@@ -172,7 +202,7 @@ public class GlobalExceptionHandler {
 
     /**
      * 文件处理异常
-     * 错误号：90000
+     * 错误号：500
      *
      * @param e 文件处理异常信息对象
      * @return 错误信息

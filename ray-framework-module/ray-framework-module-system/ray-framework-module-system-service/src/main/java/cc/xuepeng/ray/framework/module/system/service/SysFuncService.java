@@ -44,11 +44,19 @@ public interface SysFuncService {
     SysFuncDto findByCode(final String code);
 
     /**
+     * 根据编号查询系统功能
+     *
+     * @param codes 编号集合
+     * @return 系统功能的数据传输对象集合
+     */
+    List<SysFuncDto> findByCodes(final List<String> codes);
+
+    /**
      * 根据条件查询系统功能并转换成树
      *
      * @param sysFuncDto 系统功能的数据传输对象树
      * @return 系统功能的数据传输对象集合
      */
-    List<SysFuncDto> treeByCondition(final SysFuncDto sysFuncDto);
+    List<SysFuncDto> listByCondition(final SysFuncDto sysFuncDto);
 
 }

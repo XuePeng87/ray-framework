@@ -100,12 +100,12 @@ public class SysDeptServiceImpl
      * 根据条件查询系统部门
      *
      * @param sysDeptDto 系统部门的数据传输对象
-     * @return 系统部门的数据传输对象集合集合
+     * @return 系统部门的数据传输对象集合
      */
     @Override
     public List<SysDeptDto> listByCondition(final SysDeptDto sysDeptDto) {
-        final QueryWrapper<SysDept> queryWrapper = createQueryWrapper(sysDeptDto);
-        final List<SysDept> sysDepts = super.list(queryWrapper);
+        final QueryWrapper<SysDept> wrapper = this.createQueryWrapper(sysDeptDto);
+        final List<SysDept> sysDepts = super.list(wrapper);
         return sysDeptConverter.entityListToDtoList(sysDepts);
     }
 
@@ -117,7 +117,7 @@ public class SysDeptServiceImpl
      * @return 系统部门名称是否已存在
      */
     private boolean checkNameExisted(final String code, final String name) {
-        final QueryWrapper<SysDept> wrapper = createQueryWrapper();
+        final QueryWrapper<SysDept> wrapper = this.createQueryWrapper();
         final List<SysDept> sysDepts = super.list(wrapper.lambda().eq(SysDept::getName, name));
         return ExistsUtil.exists(
                 sysDepts,
@@ -133,7 +133,10 @@ public class SysDeptServiceImpl
     }
 
     /**
-     * @return 创建QueryWrapper
+     * 创建带编号的QueryWrapper
+     *
+     * @param code 编号
+     * @return 带编号的QueryWrapper
      */
     private QueryWrapper<SysDept> createQueryWrapper(final String code) {
         final QueryWrapper<SysDept> wrapper = this.createQueryWrapper();
@@ -149,12 +152,12 @@ public class SysDeptServiceImpl
      * @return 带条件的QueryWrapper
      */
     private QueryWrapper<SysDept> createQueryWrapper(final SysDeptDto sysDeptDto) {
-        final SysDept sysDept = sysDeptConverter.dtoToEntity(sysDeptDto);
         final QueryWrapper<SysDept> wrapper = QueryWrapperUtil.createQueryWrapper(sysDeptDto);
+        final SysDept sysDept = sysDeptConverter.dtoToEntity(sysDeptDto);
         final LambdaQueryWrapper<SysDept> lambda = wrapper.lambda();
-        lambda.eq(StringUtils.isNotBlank(sysDeptDto.getCode()), SysDept::getCode, sysDept.getCode());
-        lambda.eq(ObjectUtils.isNotEmpty(sysDeptDto.getStatus()), SysDept::getStatus, sysDept.getStatus());
-        lambda.like(StringUtils.isNotBlank(sysDeptDto.getName()), SysDept::getName, sysDept.getName());
+        lambda.eq(StringUtils.isNotBlank(sysDept.getCode()), SysDept::getCode, sysDept.getCode());
+        lambda.eq(ObjectUtils.isNotEmpty(sysDept.getStatus()), SysDept::getStatus, sysDept.getStatus());
+        lambda.like(StringUtils.isNotBlank(sysDept.getName()), SysDept::getName, sysDept.getName());
         lambda.orderByAsc(SysDept::getSequence);
         return wrapper;
     }

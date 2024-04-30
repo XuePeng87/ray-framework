@@ -22,6 +22,13 @@ import org.hibernate.validator.constraints.Length;
 public class SysUserParam extends BaseParam implements ParamValidateScope {
 
     /**
+     * 电话
+     */
+    @NotBlank(message = "手机号不能为空", groups = {create.class, update.class})
+    @Length(max = 32, message = "手机号长度不能大于32个字符", groups = {create.class, update.class, page.class})
+    private String phoneNumber;
+
+    /**
      * 姓名
      */
     @NotBlank(message = "姓名不能为空", groups = {create.class, update.class})
@@ -35,13 +42,6 @@ public class SysUserParam extends BaseParam implements ParamValidateScope {
     @Length(max = 128, message = "邮箱长度不能大于128个字符", groups = {create.class, update.class, page.class})
     @Email(message = "邮箱格式不正确", groups = {create.class, update.class, page.class})
     private String email;
-
-    /**
-     * 电话
-     */
-    @NotBlank(message = "手机号不能为空", groups = {create.class, update.class})
-    @Length(max = 32, message = "手机号长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String phone;
 
     /**
      * 状态：0=停用；1=启用

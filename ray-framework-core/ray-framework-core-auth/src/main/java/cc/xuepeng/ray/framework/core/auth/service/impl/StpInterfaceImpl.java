@@ -2,11 +2,13 @@ package cc.xuepeng.ray.framework.core.auth.service.impl;
 
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUserFunc;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUserRole;
-import cc.xuepeng.ray.framework.core.auth.service.AuthService;
+import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cn.dev33.satoken.stp.StpInterface;
 import jakarta.annotation.Resource;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,11 +28,19 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getPermissionList(Object o, String s) {
-        return authService.getCurrentUser()
-                .getFuncs()
-                .stream()
-                .map(CurrentUserFunc::getFuncCode)
-                .toList();
+        final List<CurrentUserFunc> funcs = identificationService.getCurrentUser().getFuncs();
+        return this.getComponentName(funcs, "0");
+    }
+
+    private List<String> getComponentName(final List<CurrentUserFunc> funcs, final String parentCode) {
+        final List<String> componentNames = new ArrayList<>();
+        for (CurrentUserFunc func : funcs) {
+            if (StringUtils.equals(func.getParentCode(), parentCode)) {
+                componentNames.add(func.getComponentName());
+                componentNames.addAll(getComponentName(funcs, func.getCode()));
+            }
+        }
+        return componentNames;
     }
 
     /**
@@ -42,17 +52,14 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getRoleList(Object o, String s) {
-        return authService.getCurrentUser()
-                .getRoles()
-                .stream()
-                .map(CurrentUserRole::getRoleCode)
-                .toList();
+        final List<CurrentUserRole> roles = identificationService.getCurrentUser().getRoles();
+        return roles.stream().map(CurrentUserRole::getName).toList();
     }
 
     /**
-     * 鉴权服务
+     * 认证的业务处理接口
      */
     @Resource
-    private AuthService authService;
+    private IdentificationService identificationService;
 
 }
