@@ -54,6 +54,12 @@ public class SysFunc extends BizEntity {
     private String path;
 
     /**
+     * 重定向地址
+     * 数据库字段：redirect，varchar(128)
+     */
+    private String redirect;
+
+    /**
      * 是否外链
      * 数据库字段：linkable，tinyint(1)
      */
@@ -72,16 +78,22 @@ public class SysFunc extends BizEntity {
     private Boolean visible;
 
     /**
-     * 组件名称
-     * 数据库字段：component_name，varchar(32)
+     * 始终显示根菜单
+     * 数据库字段：always_show，tinyint(1)
      */
-    private String componentName;
+    private Boolean alwaysShow;
+
+    /**
+     * 组件权限
+     * 数据库字段：permission，varchar(64)
+     */
+    private String permission;
 
     /**
      * 组件地址
      * 数据库字段：component_path，varchar(256)
      */
-    private String componentPath;
+    private String component;
 
     /**
      * 排序

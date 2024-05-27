@@ -18,16 +18,22 @@ import lombok.*;
 public class SysDict extends BizEntity {
 
     /**
+     * 编号
+     * 数据库字段：code，char(32)
+     */
+    private String code;
+
+    /**
      * 名称
-     * 数据库字段：name，varchar(32)
+     * 数据库字段：name，varchar(16)
      */
     private String name;
 
     /**
-     * 编号
-     * 数据库字段：code，varchar(32)
+     * 字典值
+     * 数据库字段：value，varchar(16)
      */
-    private String code;
+    private String value;
 
     /**
      * 状态：0=停用；1=启用

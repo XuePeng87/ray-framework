@@ -26,6 +26,11 @@
             <artifactId>ray-framework-core-web</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-module-system-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

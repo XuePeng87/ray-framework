@@ -1,5 +1,6 @@
 package cc.xuepeng.ray.framework.app.config;
 
+import cc.xuepeng.ray.framework.core.web.log.interceptor.LogTrackInterceptor;
 import cc.xuepeng.ray.framework.core.web.security.cors.CorsProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Collections;
@@ -39,6 +41,17 @@ public class WebConfiguration implements WebMvcConfigurer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration(corsProperty.getMapping(), corsConfig);
         return new CorsFilter(source);
+    }
+
+    /**
+     * 注册日志拦截器
+     * 对所有API(/**)生效
+     *
+     * @param registry 拦截器注册表
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogTrackInterceptor()).addPathPatterns("/**");
     }
 
 }

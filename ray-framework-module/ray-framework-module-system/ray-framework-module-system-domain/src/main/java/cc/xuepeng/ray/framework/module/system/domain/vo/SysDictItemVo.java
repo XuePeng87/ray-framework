@@ -1,6 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.domain.vo;
 
 import cc.xuepeng.ray.framework.core.model.vo.BaseVo;
+import cc.xuepeng.ray.framework.module.system.domain.enums.SysDictStatus;
 import lombok.*;
 
 /**
@@ -16,19 +17,29 @@ import lombok.*;
 public class SysDictItemVo extends BaseVo {
 
     /**
-     * 字典编号
+     * 所属字典
      */
-    private String parentCode;
+    private String dictCode;
 
     /**
-     * 字典项编号
+     * 编号
      */
     private String code;
 
     /**
-     * 字典项名称
+     * 名称
      */
     private String name;
+
+    /**
+     * 字典值
+     */
+    private String value;
+
+    /**
+     * 状态：0=停用；1=启用
+     */
+    private SysDictStatus status;
 
     /**
      * 排序

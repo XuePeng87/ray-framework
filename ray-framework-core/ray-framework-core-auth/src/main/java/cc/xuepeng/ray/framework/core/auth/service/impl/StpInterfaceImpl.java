@@ -5,7 +5,7 @@ import cc.xuepeng.ray.framework.core.auth.model.CurrentUserRole;
 import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cn.dev33.satoken.stp.StpInterface;
 import jakarta.annotation.Resource;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -29,18 +29,18 @@ public class StpInterfaceImpl implements StpInterface {
     @Override
     public List<String> getPermissionList(Object o, String s) {
         final List<CurrentUserFunc> funcs = identificationService.getCurrentUser().getFuncs();
-        return this.getComponentName(funcs, "0");
+        return this.getPermissions(funcs);
     }
 
-    private List<String> getComponentName(final List<CurrentUserFunc> funcs, final String parentCode) {
-        final List<String> componentNames = new ArrayList<>();
+    private List<String> getPermissions(final List<CurrentUserFunc> funcs) {
+        final List<String> permissions = new ArrayList<>();
         for (CurrentUserFunc func : funcs) {
-            if (StringUtils.equals(func.getParentCode(), parentCode)) {
-                componentNames.add(func.getComponentName());
-                componentNames.addAll(getComponentName(funcs, func.getCode()));
+            permissions.add(func.getComponent());
+            if (CollectionUtils.isNotEmpty(func.getChildren())) {
+                permissions.addAll(getPermissions(func.getChildren()));
             }
         }
-        return componentNames;
+        return permissions;
     }
 
     /**

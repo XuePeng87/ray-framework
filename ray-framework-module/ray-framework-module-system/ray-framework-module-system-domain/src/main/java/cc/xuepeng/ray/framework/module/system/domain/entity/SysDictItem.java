@@ -1,6 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.domain.entity;
 
 import cc.xuepeng.ray.framework.core.mybatis.entity.BizEntity;
+import cc.xuepeng.ray.framework.module.system.domain.enums.SysDictStatus;
 import lombok.*;
 
 /**
@@ -17,22 +18,34 @@ import lombok.*;
 public class SysDictItem extends BizEntity {
 
     /**
-     * 字典编号
-     * 数据库字段：pid，char(32)
+     * 所属字典
+     * 数据库字段：dict_code，char(32)
      */
-    private Long parentCode;
+    private String dictCode;
 
     /**
      * 编号
-     * 数据库字段：code，varchar(32)
+     * 数据库字段：code，varchar(16)
      */
     private String code;
 
     /**
      * 名称
-     * 数据库字段：name，varchar(32)
+     * 数据库字段：name，varchar(16)
      */
     private String name;
+
+    /**
+     * 字典值
+     * 数据库字段：value，varchar(16)
+     */
+    private String value;
+
+    /**
+     * 状态：0=停用；1=启用
+     * 数据库字段：status，tinyint(1)
+     */
+    private SysDictStatus status;
 
     /**
      * 排序

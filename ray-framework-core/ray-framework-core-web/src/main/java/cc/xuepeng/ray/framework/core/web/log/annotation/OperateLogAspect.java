@@ -88,6 +88,7 @@ public class OperateLogAspect {
             if (isPersistent(joinPoint)) {
                 sysOperateLogService.create(sysOperateLogDto);
             }
+            log.info(sysOperateLogDto.toString());
         } catch (Exception e) {
             log.error("保存系统操作日志失败：{}", e.getMessage());
         } finally {

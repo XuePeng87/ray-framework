@@ -48,10 +48,10 @@ public interface SysDictItemService {
     /**
      * 根据系统字典编号查询系统字典项
      *
-     * @param parentCode 系统字典编号
+     * @param dictCode 系统字典编号
      * @return 系统字典项的数据传输对象集合
      */
-    List<SysDictItemDto> findByParentCode(final String parentCode);
+    List<SysDictItemDto> findByDictCode(final String dictCode);
 
     /**
      * 分页查询系统字典项

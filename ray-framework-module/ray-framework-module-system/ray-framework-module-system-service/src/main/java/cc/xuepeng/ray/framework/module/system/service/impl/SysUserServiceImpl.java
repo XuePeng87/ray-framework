@@ -231,7 +231,7 @@ public class SysUserServiceImpl
      * @return 带条件的QueryWrapper
      */
     private QueryWrapper<SysUser> createQueryWrapper(final SysUserDto sysUserDto) {
-        final QueryWrapper<SysUser> wrapper = this.createQueryWrapper();
+        final QueryWrapper<SysUser> wrapper = QueryWrapperUtil.createQueryWrapper(sysUserDto);
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
         final LambdaQueryWrapper<SysUser> lambda = wrapper.lambda();
         lambda.eq(StringUtils.isNotBlank(sysUser.getCode()), SysUser::getCode, sysUser.getCode());

@@ -17,14 +17,19 @@ import lombok.*;
 public class SysDictDto extends BaseDto {
 
     /**
+     * 编号
+     */
+    private String code;
+
+    /**
      * 名称
      */
     private String name;
 
     /**
-     * 编号
+     * 字典值
      */
-    private String code;
+    private String value;
 
     /**
      * 状态：0=停用；1=启用

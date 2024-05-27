@@ -51,6 +51,11 @@ public class SysFuncDto extends BaseDto implements Composite {
     private String path;
 
     /**
+     * 重定向地址
+     */
+    private String redirect;
+
+    /**
      * 是否外链
      */
     private Boolean linkable;
@@ -66,14 +71,19 @@ public class SysFuncDto extends BaseDto implements Composite {
     private Boolean visible;
 
     /**
-     * 组件名称
+     * 始终显示根菜单
      */
-    private String componentName;
+    private Boolean alwaysShow;
+
+    /**
+     * 组件权限
+     */
+    private String permission;
 
     /**
      * 组件地址
      */
-    private String componentPath;
+    private String component;
 
     /**
      * 排序

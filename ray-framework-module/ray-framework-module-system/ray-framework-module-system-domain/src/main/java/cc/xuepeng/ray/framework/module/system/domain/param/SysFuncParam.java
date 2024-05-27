@@ -59,6 +59,12 @@ public class SysFuncParam extends BaseParam implements ParamValidateScope {
     private String path;
 
     /**
+     * 重定向地址
+     */
+    @Length(max = 128, message = "重定向地址长度不能大于128个字符", groups = {create.class, update.class, page.class})
+    private String redirect;
+
+    /**
      * 是否外链
      */
     @NotNull(message = "是否外链不能为空", groups = {create.class, update.class})
@@ -77,16 +83,22 @@ public class SysFuncParam extends BaseParam implements ParamValidateScope {
     private Boolean visible;
 
     /**
-     * 组件名称
+     * 始终显示根菜单
      */
-    @Length(max = 32, message = "组件名称长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String componentName;
+    @NotNull(message = "始终显示根菜单不能为空", groups = {create.class, update.class})
+    private Boolean alwaysShow;
+
+    /**
+     * 组件权限
+     */
+    @Length(max = 64, message = "组件名称长度不能大于64个字符", groups = {create.class, update.class, page.class})
+    private String permission;
 
     /**
      * 组件地址
      */
-    @Length(max = 128, message = "组件地址长度不能大于128个字符")
-    private String componentPath;
+    @Length(max = 256, message = "组件地址长度不能大于256个字符")
+    private String component;
 
     /**
      * 排序

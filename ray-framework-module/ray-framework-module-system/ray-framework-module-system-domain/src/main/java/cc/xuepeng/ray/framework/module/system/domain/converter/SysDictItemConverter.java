@@ -8,11 +8,11 @@ import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictItemVo;
 import org.mapstruct.Mapper;
 
 /**
- * 系统字典项项对象转换接口
+ * 系统字典项对象转换接口
  *
  * @author xuepeng
  */
 @Mapper(componentModel = "spring")
-public interface SysDictContentConverter extends BizConverter<SysDictItemParam, SysDictItemDto, SysDictItem, SysDictItemVo> {
+public interface SysDictItemConverter extends BizConverter<SysDictItemParam, SysDictItemDto, SysDictItem, SysDictItemVo> {
 
 }

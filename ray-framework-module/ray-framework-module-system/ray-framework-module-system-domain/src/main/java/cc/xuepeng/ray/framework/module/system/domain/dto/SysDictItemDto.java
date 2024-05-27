@@ -1,6 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.domain.dto;
 
 import cc.xuepeng.ray.framework.core.model.dto.BaseDto;
+import cc.xuepeng.ray.framework.module.system.domain.enums.SysDictStatus;
 import lombok.*;
 
 /**
@@ -16,9 +17,14 @@ import lombok.*;
 public class SysDictItemDto extends BaseDto {
 
     /**
-     * 字典编号
+     * 所属字典
      */
-    private String parentCode;
+    private String dictCode;
+
+    /**
+     * 编号
+     */
+    private String code;
 
     /**
      * 名称
@@ -26,9 +32,14 @@ public class SysDictItemDto extends BaseDto {
     private String name;
 
     /**
-     * 编号
+     * 字典值
      */
-    private String code;
+    private String value;
+
+    /**
+     * 状态：0=停用；1=启用
+     */
+    private SysDictStatus status;
 
     /**
      * 排序

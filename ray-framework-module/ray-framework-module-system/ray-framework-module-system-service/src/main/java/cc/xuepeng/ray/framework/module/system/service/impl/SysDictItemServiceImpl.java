@@ -1,0 +1,205 @@
+package cc.xuepeng.ray.framework.module.system.service.impl;
+
+import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
+import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
+import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
+import cc.xuepeng.ray.framework.core.mybatis.consts.QueryConst;
+import cc.xuepeng.ray.framework.core.mybatis.util.PageUtil;
+import cc.xuepeng.ray.framework.core.mybatis.util.QueryWrapperUtil;
+import cc.xuepeng.ray.framework.module.system.dao.SysDictItemDao;
+import cc.xuepeng.ray.framework.module.system.domain.converter.SysDictItemConverter;
+import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictItemDto;
+import cc.xuepeng.ray.framework.module.system.domain.entity.SysDictItem;
+import cc.xuepeng.ray.framework.module.system.service.SysDictItemService;
+import cc.xuepeng.ray.framework.module.system.service.exception.dict.SysDictItemDuplicateException;
+import cc.xuepeng.ray.framework.module.system.service.exception.dict.SysDictItemNotFoundException;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
+
+import java.util.List;
+
+@Component
+public class SysDictItemServiceImpl
+        extends ServiceImpl<SysDictItemDao, SysDictItem>
+        implements SysDictItemService {
+
+    /**
+     * 创建系统字典项
+     *
+     * @param sysDictItemDto 系统字典项的数据传输对象
+     * @return 是否创建成功
+     */
+    @Override
+    public boolean create(final SysDictItemDto sysDictItemDto) {
+        final String name = sysDictItemDto.getName();
+        final String value = sysDictItemDto.getValue();
+        if (this.checkNameExisted(StringUtils.EMPTY, name)) {
+            throw new SysDictItemDuplicateException("系统字典项名称[" + name + "]已存在");
+        }
+        if (this.checkValueExisted(StringUtils.EMPTY, value)) {
+            throw new SysDictItemDuplicateException("系统字典项值[" + value + "]已存在");
+        }
+        sysDictItemDto.setCode(RandomUtil.get32UUID());
+        final SysDictItem sysDictItem = sysDictItemConverter.dtoToEntity(sysDictItemDto);
+        return super.save(sysDictItem);
+    }
+
+    /**
+     * 修改系统字典项
+     *
+     * @param sysDictItemDto 系统字典项的数据传输对象
+     * @return 是否修改成功
+     */
+    @Override
+    public boolean update(final SysDictItemDto sysDictItemDto) {
+        final String code = sysDictItemDto.getCode();
+        final String name = sysDictItemDto.getName();
+        final String value = sysDictItemDto.getValue();
+        if (this.checkNameExisted(code, name)) {
+            throw new SysDictItemDuplicateException("系统字典项名称[" + name + "]已存在");
+        }
+        if (this.checkValueExisted(code, value)) {
+            throw new SysDictItemDuplicateException("系统字典项值[" + value + "]已存在");
+        }
+        final SysDictItem sysDictItem = sysDictItemConverter.dtoToEntity(sysDictItemDto);
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper(code);
+        return super.update(sysDictItem, wrapper);
+    }
+
+    /**
+     * 根据编号删除系统字典项
+     *
+     * @param code 编号
+     * @return 是否删除成功
+     */
+    @Override
+    public boolean deleteByCode(final String code) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper(code);
+        return super.remove(wrapper);
+    }
+
+    /**
+     * 根据编号查询系统字典项
+     *
+     * @param code 编号
+     * @return 系统字典项的数据传输对象
+     */
+    @Override
+    public SysDictItemDto findByCode(final String code) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper(code);
+        final SysDictItem sysDictItem = super.getOne(wrapper, QueryConst.QUERY_NULL_THROW_EX);
+        if (ObjectUtils.isEmpty(sysDictItem)) {
+            throw new SysDictItemNotFoundException("无法根据编号[" + code + "]查询到系统字典项");
+        }
+        return sysDictItemConverter.entityToDto(sysDictItem);
+    }
+
+    /**
+     * 根据系统字典编号查询系统字典项
+     *
+     * @param dictCode 系统字典编号
+     * @return 系统字典项的数据传输对象集合
+     */
+    @Override
+    public List<SysDictItemDto> findByDictCode(final String dictCode) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper();
+        final LambdaQueryWrapper<SysDictItem> lambda = wrapper.lambda();
+        lambda.eq(SysDictItem::getDictCode, dictCode);
+        final List<SysDictItem> sysDictItems = super.list(wrapper);
+        return sysDictItemConverter.entityListToDtoList(sysDictItems);
+    }
+
+    /**
+     * 分页查询系统字典项
+     *
+     * @param sysDictItemDto 系统字典项的数据传输对象
+     * @return 系统字典项的数据传输对象集合
+     */
+    @Override
+    public Page<SysDictItemDto> pageByCondition(final SysDictItemDto sysDictItemDto) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper(sysDictItemDto);
+        final Page<SysDictItem> page = PageUtil.createPage(sysDictItemDto);
+        final Page<SysDictItem> sysDictItems = super.page(page, wrapper);
+        return sysDictItemConverter.entityPageToDtoPage(sysDictItems);
+    }
+
+    /**
+     * 检测系统字典项名称是否已存在
+     *
+     * @param code 编号
+     * @param name 名称
+     * @return 系统字典项名称是否已存在
+     */
+    private boolean checkNameExisted(final String code, final String name) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper();
+        final List<SysDictItem> sysDicts = super.list(wrapper.lambda().eq(SysDictItem::getName, name));
+        return ExistsUtil.exists(
+                sysDicts,
+                StringUtils.isBlank(code) ? StringUtils.EMPTY : code, EntityConst.CODE
+        );
+    }
+
+    /**
+     * 检测系统字典项值是否已存在
+     *
+     * @param code  编号
+     * @param value 字典值
+     * @return 系统字典项值是否已存在
+     */
+    private boolean checkValueExisted(final String code, final String value) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper();
+        final List<SysDictItem> sysDicts = super.list(wrapper.lambda().eq(SysDictItem::getValue, value));
+        return ExistsUtil.exists(
+                sysDicts,
+                StringUtils.isBlank(code) ? StringUtils.EMPTY : code, EntityConst.CODE
+        );
+    }
+
+    /**
+     * @return 创建QueryWrapper
+     */
+    private QueryWrapper<SysDictItem> createQueryWrapper() {
+        return QueryWrapperUtil.createQueryWrapper();
+    }
+
+    /**
+     * 创建带编号的QueryWrapper
+     *
+     * @param code 编号
+     * @return 带编号的QueryWrapper
+     */
+    private QueryWrapper<SysDictItem> createQueryWrapper(final String code) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper();
+        final LambdaQueryWrapper<SysDictItem> lambda = wrapper.lambda();
+        lambda.eq(StringUtils.isNotBlank(code), SysDictItem::getCode, code);
+        return QueryWrapperUtil.createQueryWrapper();
+    }
+
+    /**
+     * 创建带条件的QueryWrapper
+     *
+     * @param sysDictItemDto 系统字典项的数据传输对象
+     * @return 带条件的QueryWrapper
+     */
+    private QueryWrapper<SysDictItem> createQueryWrapper(final SysDictItemDto sysDictItemDto) {
+        final QueryWrapper<SysDictItem> wrapper = this.createQueryWrapper();
+        final SysDictItem sysDict = sysDictItemConverter.dtoToEntity(sysDictItemDto);
+        final LambdaQueryWrapper<SysDictItem> lambda = wrapper.lambda();
+        lambda.like(StringUtils.isNotBlank(sysDict.getCode()), SysDictItem::getCode, sysDict.getCode());
+        lambda.like(StringUtils.isNotBlank(sysDict.getName()), SysDictItem::getName, sysDict.getName());
+        return QueryWrapperUtil.createQueryWrapper();
+    }
+
+    /**
+     * 系统字典项对象转换接口
+     */
+    @Resource
+    private SysDictItemConverter sysDictItemConverter;
+
+}

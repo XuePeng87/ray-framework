@@ -1,8 +1,10 @@
 package cc.xuepeng.ray.framework.core.auth.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
-import java.util.ArrayList;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,32 +17,10 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class CurrentUserFunc {
+public class CurrentUserFunc implements Serializable {
 
-    /**
-     * 父级主键
-     */
-    private String parentCode;
-
-    /**
-     * 名称
-     */
-    private String name;
-
-    /**
-     * 编号
-     */
-    private String code;
-
-    /**
-     * 类型：0=目录，1=功能；2=按钮
-     */
-    private Integer type;
-
-    /**
-     * 图标
-     */
-    private String icon;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /**
      * 路由地址
@@ -48,43 +28,66 @@ public class CurrentUserFunc {
     private String path;
 
     /**
-     * 是否外链
-     */
-    private Boolean linkable;
-
-    /**
-     * 是否缓存
-     */
-    private Boolean cacheable;
-
-    /**
-     * 是否可见
-     */
-    private Boolean visible;
-
-    /**
-     * 组件名称
-     */
-    private String componentName;
-
-    /**
      * 组件地址
      */
-    private String componentPath;
+    private String component;
 
     /**
-     * 排序
+     * 路由跳转地址
      */
-    private Integer sequence;
+    private String redirect;
 
     /**
-     * 备注
+     * 路由名称
      */
-    private String remark;
+    private String name;
+
+    /**
+     * 路由元数据
+     */
+    private CurrentUserFuncMeta meta;
 
     /**
      * 子功能
      */
-    private List<CurrentUserFunc> children = new ArrayList<>();
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<CurrentUserFunc> children;
+
+    @Data
+    @ToString
+    @EqualsAndHashCode
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CurrentUserFuncMeta implements Serializable {
+
+        @Serial
+        private static final long serialVersionUID = 1L;
+
+        /**
+         * 路由标题
+         */
+        private String title;
+
+        /**
+         * 路由图标
+         */
+        private String icon;
+
+        /**
+         * 路由是否隐藏
+         */
+        private Boolean hidden;
+
+        /**
+         * 路由是否缓存
+         */
+        private Boolean keepAlive;
+
+        /**
+         * 路由始终显示根
+         */
+        private Boolean alwaysShow;
+
+    }
 
 }

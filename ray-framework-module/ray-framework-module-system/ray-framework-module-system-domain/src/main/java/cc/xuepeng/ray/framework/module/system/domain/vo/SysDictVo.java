@@ -17,17 +17,22 @@ import lombok.*;
 public class SysDictVo extends BaseVo {
 
     /**
-     * 名称
-     */
-    private String name;
-
-    /**
      * 编号
      */
     private String code;
 
     /**
-     * 状态：0=停用；1=启用；
+     * 名称
+     */
+    private String name;
+
+    /**
+     * 字典值
+     */
+    private String value;
+
+    /**
+     * 状态：0=停用；1=启用
      */
     private SysDictStatus status;
 
@@ -35,6 +40,5 @@ public class SysDictVo extends BaseVo {
      * 描述
      */
     private String remark;
-
 
 }

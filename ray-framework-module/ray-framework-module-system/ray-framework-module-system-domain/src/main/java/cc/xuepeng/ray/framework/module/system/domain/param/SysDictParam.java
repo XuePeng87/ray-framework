@@ -24,15 +24,15 @@ public class SysDictParam extends BaseParam implements ParamValidateScope {
      * 名称
      */
     @NotBlank(message = "名称不能为空", groups = {create.class, update.class})
-    @Length(max = 32, message = "名称大于32个字符", groups = {create.class, update.class})
+    @Length(max = 16, message = "名称大于16个字符", groups = {create.class, update.class})
     private String name;
 
     /**
-     * 编号
+     * 字典值
      */
-    @NotBlank(message = "编号不能为空", groups = {create.class, update.class})
-    @Length(max = 32, message = "编号大于32个字符", groups = {create.class, update.class})
-    private String code;
+    @NotBlank(message = "字典值不能为空", groups = {create.class, update.class})
+    @Length(max = 16, message = "字典值大于16个字符", groups = {create.class, update.class})
+    private String value;
 
     /**
      * 状态：0=停用；1=启用

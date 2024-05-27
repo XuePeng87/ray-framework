@@ -43,12 +43,8 @@ public class SysFuncServiceImpl
     @Override
     public boolean create(final SysFuncDto sysFuncDto) {
         final String name = sysFuncDto.getName();
-        final String componentName = sysFuncDto.getComponentName();
         if (this.checkNameExisted(StringUtils.EMPTY, name)) {
             throw new SysFuncDuplicateException("系统功能名称[" + name + "]已存在");
-        }
-        if (this.checkComponentExisted(StringUtils.EMPTY, componentName)) {
-            throw new SysFuncDuplicateException("系统功能组件名称[" + name + "]已存在");
         }
         sysFuncDto.setCode(RandomUtil.get32UUID());
         final SysFunc sysFunc = sysFuncConverter.dtoToEntity(sysFuncDto);
@@ -65,12 +61,8 @@ public class SysFuncServiceImpl
     public boolean update(final SysFuncDto sysFuncDto) {
         final String code = sysFuncDto.getCode();
         final String name = sysFuncDto.getName();
-        final String componentName = sysFuncDto.getComponentName();
         if (this.checkNameExisted(code, name)) {
             throw new SysFuncDuplicateException("系统功能名称[" + name + "]已存在");
-        }
-        if (this.checkComponentExisted(code, componentName)) {
-            throw new SysFuncDuplicateException("系统功能组件名称[" + name + "]已存在");
         }
         final SysFunc sysFunc = sysFuncConverter.dtoToEntity(sysFuncDto);
         final QueryWrapper<SysFunc> wrapper = this.createQueryWrapper(code);
@@ -145,22 +137,6 @@ public class SysFuncServiceImpl
     private boolean checkNameExisted(final String code, final String name) {
         final QueryWrapper<SysFunc> wrapper = this.createQueryWrapper();
         final List<SysFunc> sysFuncs = super.list(wrapper.lambda().eq(SysFunc::getName, name));
-        return ExistsUtil.exists(
-                sysFuncs,
-                StringUtils.isBlank(code) ? StringUtils.EMPTY : code, EntityConst.CODE
-        );
-    }
-
-    /**
-     * 检测系统功能组件名称是否已存在
-     *
-     * @param code          编号
-     * @param componentName 组件名称
-     * @return 系统功能组件名称是否已存在
-     */
-    private boolean checkComponentExisted(final String code, final String componentName) {
-        final QueryWrapper<SysFunc> wrapper = this.createQueryWrapper();
-        final List<SysFunc> sysFuncs = super.list(wrapper.lambda().eq(SysFunc::getComponentName, componentName));
         return ExistsUtil.exists(
                 sysFuncs,
                 StringUtils.isBlank(code) ? StringUtils.EMPTY : code, EntityConst.CODE
