@@ -24,7 +24,7 @@ public class SysDictItemParam extends BaseParam implements ParamValidateScope {
      * 字典表主键
      */
     @NotBlank(message = "字典编号不能为空", groups = {update.class, create.class})
-    private String dictCode;
+    private String dictValue;
 
     /**
      * 字典项名称

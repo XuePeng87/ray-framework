@@ -19,7 +19,7 @@ public class SysDictItemDto extends BaseDto {
     /**
      * 所属字典
      */
-    private String dictCode;
+    private String dictValue;
 
     /**
      * 编号

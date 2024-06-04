@@ -1,7 +1,5 @@
 package cc.xuepeng.ray.framework.module.system.api.controller;
 
-import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
-import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.model.param.ParamValidateScope;
 import cc.xuepeng.ray.framework.core.model.result.DefaultResultFactory;
 import cc.xuepeng.ray.framework.core.model.result.Result;
@@ -12,9 +10,7 @@ import cc.xuepeng.ray.framework.module.system.api.facade.SysDeptFacade;
 import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
 import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
 import cn.dev33.satoken.annotation.SaCheckLogin;
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaCheckRole;
-import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -41,7 +37,6 @@ public class SysDeptController extends BaseController {
      * @return 系统部门的编号
      */
     @PostMapping("/v1")
-    @CreateUser
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "创建部门", action = SysOperateLogAction.CREATE)
     public Result<Boolean> create(
@@ -60,7 +55,6 @@ public class SysDeptController extends BaseController {
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
-    @ModifyUser
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "修改部门", action = SysOperateLogAction.UPDATE)
     public Result<Boolean> update(
@@ -79,7 +73,6 @@ public class SysDeptController extends BaseController {
      * @return 是否删除成功
      */
     @DeleteMapping("/v1/{code}")
-    @ModifyUser
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "删除部门", action = SysOperateLogAction.DELETE)
     public Result<Boolean> delete(@PathVariable(value = "code") final String code) {
@@ -96,8 +89,7 @@ public class SysDeptController extends BaseController {
      */
     @GetMapping("/v1/{code}")
     @SaCheckRole("ROLE_SUPER_ADMIN")
-    @SaCheckPermission("ray:system:dept:find")
-    @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门详情",
+    @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门",
             action = SysOperateLogAction.DETAIL, persistent = false)
     public Result<SysDeptVo> findByCode(@PathVariable(value = "code") final String code) {
         final SysDeptVo result = sysDeptFacade.findByCode(code);
@@ -113,7 +105,7 @@ public class SysDeptController extends BaseController {
     @GetMapping("/v1")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门树",
             action = SysOperateLogAction.QUERY, persistent = false)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole("ROLE_SUPER_ADMIN")
     public Result<List<SysDeptVo>> treeByCondition(
             @Validated(ParamValidateScope.page.class) final SysDeptParam sysDeptParam
     ) {

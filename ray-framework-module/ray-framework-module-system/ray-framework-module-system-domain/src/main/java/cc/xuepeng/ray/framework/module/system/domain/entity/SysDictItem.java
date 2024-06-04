@@ -19,13 +19,13 @@ public class SysDictItem extends BizEntity {
 
     /**
      * 所属字典
-     * 数据库字段：dict_code，char(32)
+     * 数据库字段：dict_value，varchar(16)
      */
-    private String dictCode;
+    private String dictValue;
 
     /**
      * 编号
-     * 数据库字段：code，varchar(16)
+     * 数据库字段：code，char(32)
      */
     private String code;
 

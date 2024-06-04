@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -20,6 +22,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
@@ -41,6 +44,7 @@ public class SysDictServiceImpl
      * @return 是否创建成功
      */
     @Override
+    @CreateUser
     public boolean create(final SysDictDto sysDictDto) {
         final String name = sysDictDto.getName();
         final String value = sysDictDto.getValue();
@@ -62,6 +66,7 @@ public class SysDictServiceImpl
      * @return 是否修改成功
      */
     @Override
+    @ModifyUser
     public boolean update(final SysDictDto sysDictDto) {
         final String code = sysDictDto.getCode();
         final String name = sysDictDto.getName();
@@ -80,19 +85,23 @@ public class SysDictServiceImpl
     /**
      * 根据编号删除系统字典
      *
-     * @param code 编号
+     * @param codes 系统字典的编号集合
      * @return 是否删除成功
      */
     @Override
-    public boolean deleteByCode(final String code) {
-        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper(code);
+    public boolean deleteByCodes(final List<String> codes) {
+        if (CollectionUtils.isEmpty(codes)) {
+            return Boolean.TRUE;
+        }
+        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
+        wrapper.lambda().in(SysDict::getCode, codes);
         return super.remove(wrapper);
     }
 
     /**
      * 根据编号查询系统字典
      *
-     * @param code 编号
+     * @param code 系统字典的编号
      * @return 系统字典的数据传输对象
      */
     @Override
@@ -161,14 +170,14 @@ public class SysDictServiceImpl
     /**
      * 创建带编号的QueryWrapper
      *
-     * @param code 编号
+     * @param code 系统字典的编号
      * @return 带编号的QueryWrapper
      */
     private QueryWrapper<SysDict> createQueryWrapper(final String code) {
         final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
         final LambdaQueryWrapper<SysDict> lambda = wrapper.lambda();
         lambda.eq(StringUtils.isNotBlank(code), SysDict::getCode, code);
-        return QueryWrapperUtil.createQueryWrapper();
+        return wrapper;
     }
 
     /**
@@ -178,12 +187,11 @@ public class SysDictServiceImpl
      * @return 带条件的QueryWrapper
      */
     private QueryWrapper<SysDict> createQueryWrapper(final SysDictDto sysDictDto) {
-        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
+        final QueryWrapper<SysDict> wrapper = QueryWrapperUtil.createQueryWrapper(sysDictDto);
         final SysDict sysDict = sysDictConverter.dtoToEntity(sysDictDto);
         final LambdaQueryWrapper<SysDict> lambda = wrapper.lambda();
-        lambda.like(StringUtils.isNotBlank(sysDict.getCode()), SysDict::getCode, sysDict.getCode());
         lambda.like(StringUtils.isNotBlank(sysDict.getName()), SysDict::getName, sysDict.getName());
-        return QueryWrapperUtil.createQueryWrapper();
+        return wrapper;
     }
 
     /**

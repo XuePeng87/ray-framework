@@ -3,6 +3,8 @@ package cc.xuepeng.ray.framework.module.system.service;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.util.List;
+
 /**
  * 系统字典的业务处理接口
  *
@@ -29,15 +31,15 @@ public interface SysDictService {
     /**
      * 根据编号删除系统字典
      *
-     * @param code 编号
+     * @param codes 系统字典的编号集合
      * @return 是否删除成功
      */
-    boolean deleteByCode(final String code);
+    boolean deleteByCodes(final List<String> codes);
 
     /**
      * 根据编号查询系统字典
      *
-     * @param code 编号
+     * @param code 系统字典的编号
      * @return 系统字典的数据传输对象
      */
     SysDictDto findByCode(final String code);

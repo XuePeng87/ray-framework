@@ -9,7 +9,7 @@ package cc.xuepeng.ray.framework.core.model.result;
 public interface ResultStatus {
 
     /**
-     * @return 获得状态编码
+     * @return 获得状态编号
      */
     int getCode();
 

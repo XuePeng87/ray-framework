@@ -19,7 +19,7 @@ public class SysDictItemVo extends BaseVo {
     /**
      * 所属字典
      */
-    private String dictCode;
+    private String dictValue;
 
     /**
      * 编号

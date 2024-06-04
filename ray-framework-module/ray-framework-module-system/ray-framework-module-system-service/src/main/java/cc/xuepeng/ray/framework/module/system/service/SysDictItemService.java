@@ -32,15 +32,15 @@ public interface SysDictItemService {
     /**
      * 根据编号删除系统字典项
      *
-     * @param code 编号
+     * @param codes 系统字典项的编号集合
      * @return 是否删除成功
      */
-    boolean deleteByCode(final String code);
+    boolean deleteByCodes(final List<String> codes);
 
     /**
      * 根据编号查询系统字典项
      *
-     * @param code 编号
+     * @param code 系统字典项的编号
      * @return 系统字典项的数据传输对象
      */
     SysDictItemDto findByCode(final String code);
@@ -48,10 +48,10 @@ public interface SysDictItemService {
     /**
      * 根据系统字典编号查询系统字典项
      *
-     * @param dictCode 系统字典编号
+     * @param dictValue 所属字典
      * @return 系统字典项的数据传输对象集合
      */
-    List<SysDictItemDto> findByDictCode(final String dictCode);
+    List<SysDictItemDto> findByDictValue(final String dictValue);
 
     /**
      * 分页查询系统字典项

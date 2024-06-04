@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -39,6 +41,7 @@ public class SysDeptServiceImpl
      * @return 是否创建成功
      */
     @Override
+    @CreateUser
     public boolean create(final SysDeptDto sysDeptDto) {
         final String name = sysDeptDto.getName();
         if (checkNameExisted(StringUtils.EMPTY, name)) {
@@ -56,6 +59,7 @@ public class SysDeptServiceImpl
      * @return 是否修改成功
      */
     @Override
+    @ModifyUser
     public boolean update(final SysDeptDto sysDeptDto) {
         final String code = sysDeptDto.getCode();
         final String name = sysDeptDto.getName();

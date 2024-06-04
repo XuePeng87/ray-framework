@@ -18,7 +18,7 @@ public enum SysAuthResultStatus implements ResultStatus {
     /**
      * 构造函数
      *
-     * @param code 状态编码
+     * @param code 状态编号
      * @param desc 状态描述
      */
     SysAuthResultStatus(
@@ -28,7 +28,7 @@ public enum SysAuthResultStatus implements ResultStatus {
     }
 
     /**
-     * 状态编码
+     * 状态编号
      */
     private final int code;
 
