@@ -38,7 +38,7 @@ CREATE TABLE `sys_auth_log`
     `engine_version`  varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL DEFAULT '' COMMENT '引擎版本',
     `exe_time`        bigint                                                        NOT NULL DEFAULT '0' COMMENT '执行时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统认证日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统认证日志表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +276,11 @@ VALUES (1, 1, '2024-04-28 07:23:27', '2bd631f674af40f19c73c0d8962a4d28', '127.0.
        (113, 2, '2024-05-27 02:43:16', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '125.0.0.0', 'Mac',
         'OSX', '10_15_7', 'Webkit', '537.36', 10),
        (114, 1, '2024-05-27 02:43:22', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '125.0.0.0', 'Mac',
-        'OSX', '10_15_7', 'Webkit', '537.36', 30);
+        'OSX', '10_15_7', 'Webkit', '537.36', 30),
+       (115, 1, '2024-05-28 03:19:13', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Unknown', '', 'Unknown',
+        'Unknown', '', 'Unknown', '', 370),
+       (116, 1, '2024-05-29 09:42:10', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '125.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 217);
 /*!40000 ALTER TABLE `sys_auth_log` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -342,7 +346,7 @@ CREATE TABLE `sys_dict`
     `modify_user` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci     NOT NULL DEFAULT '' COMMENT '修改人',
     `modify_time` timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,6 +356,31 @@ CREATE TABLE `sys_dict`
 LOCK
 TABLES `sys_dict` WRITE;
 /*!40000 ALTER TABLE `sys_dict` DISABLE KEYS */;
+INSERT INTO `sys_dict`
+VALUES (1, '3606a726056c4f72903493a43a62b193', '性别', 'GENDER', 1, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-28 06:22:59', '2bd631f674af40f19c73c0d8962a4d28', '2024-05-28 06:23:17'),
+       (2, 'a812a48ce14a48f38c8ddc9f5ab984af', '方向', 'DIRECTION', 1, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 06:39:27', '2bd631f674af40f19c73c0d8962a4d28', '2024-05-30 10:51:58'),
+       (3, 'bc14496899be4d61a4314ff0025c672e', '测试1', 'TEST1', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 10:11:41', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (4, '223e8c29d02e43b78be25a93f99f593e', '测试2', 'TEST2', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 10:54:14', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (5, '77b64a60db80486f8238d1e492e02daf', '测试3', 'TEST3', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 10:55:50', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (6, '5bd0023525cd4b03b7ba6290be3d4a36', '测试4', 'TEST4', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 10:55:59', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (7, '2f1a03b292b9402287454c9a12c18d09', '测试5', 'TEST5', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 10:56:04', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (8, 'ec500a22f9ce46d3a18b9e87a782fdfe', '测试6', 'TEST6', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 11:05:49', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (9, 'c9d2372540464bd9999d1603da6008ae', '测试7', 'TEST7', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 11:05:55', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (10, '06a80c6ba3614cb6803a7f7837272aa1', '测试8', 'TEST8', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 11:06:01', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (11, '6bc10de58ba148c9af40f9e972b8fba3', '测试9', 'TEST9', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 11:06:06', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11'),
+       (12, '17419b93799a42d8b23e3183eb270d2f', '测试10', 'TEST10', 1, '', 1, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-05-30 11:06:13', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:53:11');
 /*!40000 ALTER TABLE `sys_dict` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -366,8 +395,8 @@ DROP TABLE IF EXISTS `sys_dict_item`;
 CREATE TABLE `sys_dict_item`
 (
     `id`          bigint                                                        NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `dict_code`   char(32) COLLATE utf8mb4_general_ci                           NOT NULL COMMENT '所属字典',
-    `code`        varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '编号',
+    `dict_value`  varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '所属字典',
+    `code`        char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci     NOT NULL COMMENT '编号',
     `name`        varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '内容名称',
     `value`       varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '字典值',
     `status`      tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：0=停用；1=启用',
@@ -379,7 +408,7 @@ CREATE TABLE `sys_dict_item`
     `modify_user` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci     NOT NULL DEFAULT '' COMMENT '修改人',
     `modify_time` timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,6 +418,24 @@ CREATE TABLE `sys_dict_item`
 LOCK
 TABLES `sys_dict_item` WRITE;
 /*!40000 ALTER TABLE `sys_dict_item` DISABLE KEYS */;
+INSERT INTO `sys_dict_item`
+VALUES (2, 'GENDER', '50d32e1e15cf498e87dfccdefe7d9bc9', '男', 'MALE', 1, 1, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-06-04 03:58:13', '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:48:26'),
+       (3, 'GENDER', '8c583631b761435bb6ff4c03022f4367', '女', 'FEMALE', 1, 2, '', 0,
+        '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:39:54', '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-06-04 06:49:20'),
+       (5, 'DIRECTION', 'fc60415f377b4ef183675f7a964aed34', '东', 'EAST', 1, 1, '', 0,
+        '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:49:36', '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-06-04 06:49:36'),
+       (6, 'DIRECTION', 'c9ce6f8cf7e34e32a9022e24e0d402da', '西', 'WEST', 1, 2, '', 0,
+        '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:50:44', '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-06-04 06:51:22'),
+       (7, 'DIRECTION', '229eb399e9ec43b4a25b4206a94018bb', '南', 'SOUTH', 1, 3, '', 0,
+        '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:51:18', '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-06-04 06:51:18'),
+       (8, 'DIRECTION', '16505e5563fe4965846662f78e2cc6e1', '北', 'NORTH', 1, 4, '', 0,
+        '2bd631f674af40f19c73c0d8962a4d28', '2024-06-04 06:51:51', '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-06-04 06:51:51');
 /*!40000 ALTER TABLE `sys_dict_item` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -618,4 +665,4 @@ TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-27 17:09:44
+-- Dump completed on 2024-06-14 14:41:51
