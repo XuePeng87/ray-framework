@@ -33,3 +33,11 @@ sa-token:
   is-log: true
   # 是否写入到Header中
   is-write-header: true
+# 系统配置
+ray:
+  framework:
+    sdk:
+      auth:
+        exclude-paths:
+          - /v1/auth/v1/login-vc
+          - /v1/auth/v1/login

@@ -9,6 +9,7 @@ logging:
   config: classpath:log4j-dev.xml
 # spring配置
 spring:
+  # mysql配置
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/ray-framework?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
@@ -23,6 +24,7 @@ spring:
       max-lifetime: 1800000 #控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000，即30分钟
       connection-timeout: 10000 #数据库连接超时时间,默认30秒，即30000
   data:
+    # redis配置
     redis:
       host: 127.0.0.1
       port: 6379
@@ -35,10 +37,3 @@ spring:
           max-idle: 10
       timeout: 5000
       database: 0
-ray:
-  framework:
-    sdk:
-      auth:
-        exclude-paths:
-          - /v1/auth/v1/login-vc
-          - /v1/auth/v1/login
