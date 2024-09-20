@@ -69,19 +69,19 @@ public class SysOperateLog extends BaseEntity {
 
     /**
      * 请求Url
-     * 数据库字段：url,varchar(128)
+     * 数据库字段：url,varchar(512)
      */
     private String url;
 
     /**
      * 请求Uri
-     * 数据库字段：uri,varchar(128)
+     * 数据库字段：uri,varchar(512)
      */
     private String uri;
 
     /**
      * 请求Method
-     * 数据库字段：method,varchar(16)
+     * 数据库字段：method,varchar(32)
      */
     private String method;
 

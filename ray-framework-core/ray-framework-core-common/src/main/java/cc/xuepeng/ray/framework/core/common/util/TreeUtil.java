@@ -1,6 +1,7 @@
 package cc.xuepeng.ray.framework.core.common.util;
 
 import cc.xuepeng.ray.framework.core.common.strategy.composite.Composite;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -47,6 +48,8 @@ public class TreeUtil {
         final List<T> roots = list.stream()
                 .filter(item -> StringUtils.equals(item.getNodePid(), rootVal))
                 .toList();
+        if (CollectionUtils.isEmpty(roots))
+            return list;
         // 递归生成树结构
         roots.forEach(root -> tree(root, list));
         return roots;

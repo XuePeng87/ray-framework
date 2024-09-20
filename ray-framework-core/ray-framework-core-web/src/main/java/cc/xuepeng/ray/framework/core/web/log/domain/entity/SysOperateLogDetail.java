@@ -38,7 +38,7 @@ public class SysOperateLogDetail extends BaseEntity {
      * 返回值
      * 数据库字段：results,text
      */
-    private String result;
+    private String results;
 
     /**
      * 错误信息
