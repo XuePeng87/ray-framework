@@ -36,7 +36,7 @@ public class SysFunc extends BizEntity {
     private String name;
 
     /**
-     * 类型：0=目录，1=功能；2=按钮
+     * 类型：0=目录，1=功能；2=按钮；3=外链
      * 数据库字段：type，tinyint(2)
      */
     private SysFuncType type;

@@ -1,7 +1,5 @@
 package cc.xuepeng.ray.framework.module.system.api.controller;
 
-import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
-import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.model.param.ParamValidateScope;
 import cc.xuepeng.ray.framework.core.model.result.DefaultResultFactory;
 import cc.xuepeng.ray.framework.core.model.result.Result;
@@ -40,7 +38,6 @@ public class SysDictItemController extends BaseController {
      * @return 是否创建成功
      */
     @PostMapping("/v1")
-    @CreateUser
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "创建字典项", action = SysOperateLogAction.CREATE)
     public Result<Boolean> create(
@@ -58,7 +55,6 @@ public class SysDictItemController extends BaseController {
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
-    @ModifyUser
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "修改字典项", action = SysOperateLogAction.UPDATE)
     public Result<Boolean> update(

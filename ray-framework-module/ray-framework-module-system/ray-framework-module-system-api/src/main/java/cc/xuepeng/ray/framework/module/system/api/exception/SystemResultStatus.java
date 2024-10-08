@@ -27,7 +27,32 @@ public enum SystemResultStatus implements ResultStatus {
     /**
      * SysDictItemNotFoundException的状态
      */
-    DICT_ITEM_NOT_FOUND(50013, "字典项不存在");
+    DICT_ITEM_NOT_FOUND(50013, "字典项不存在"),
+
+    /**
+     * SysDeptDuplicateException的状态
+     */
+    DEPT_DUPLICATE(50020, "部门已存在"),
+
+    /**
+     * SysDeptNotFoundException的状态
+     */
+    DEPT_NOT_FOUND(50021, "部门不存在"),
+
+    /**
+     * SysFuncDuplicationException的状态
+     */
+    FUNC_DUPLICATE(50030, "功能已存在"),
+
+    /**
+     * SysFuncNotFoundException的状态
+     */
+    FUNC_NOT_FOUND(50031, "功能不存在"),
+
+    /**
+     * SysFuncCannotDeleteException的状态
+     */
+    FUNC_CANNOT_DELETE(50032, "功能不能删除");
 
 
     /**

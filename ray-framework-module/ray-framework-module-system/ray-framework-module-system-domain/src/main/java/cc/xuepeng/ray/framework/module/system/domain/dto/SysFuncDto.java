@@ -21,7 +21,7 @@ import java.util.List;
 public class SysFuncDto extends BaseDto implements Composite {
 
     /**
-     * 父级主键
+     * 父级编号
      */
     private String parentCode;
 
@@ -36,7 +36,7 @@ public class SysFuncDto extends BaseDto implements Composite {
     private String code;
 
     /**
-     * 类型：0=目录，1=功能；2=按钮
+     * 类型：0=目录，1=功能；2=按钮；3=外链
      */
     private SysFuncType type;
 

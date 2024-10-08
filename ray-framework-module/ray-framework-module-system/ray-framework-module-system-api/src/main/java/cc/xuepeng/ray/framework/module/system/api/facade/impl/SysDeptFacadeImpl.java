@@ -83,7 +83,7 @@ public class SysDeptFacadeImpl implements SysDeptFacade {
     }
 
     /**
-     * 系统部门对象转换接口
+     * 系统部门的对象转换接口
      */
     @Resource
     private SysDeptConverter sysDeptConverter;
@@ -95,7 +95,7 @@ public class SysDeptFacadeImpl implements SysDeptFacade {
     private SysDeptService sysDeptService;
 
     /**
-     * 系统部门格式化接口
+     * 系统部门的格式化接口
      */
     @Resource
     private SysDeptFormat sysDeptFormat;

@@ -22,7 +22,9 @@ public enum SysFuncType implements BaseEnum {
 
     MENU(1, "功能"),
 
-    BUTTON(2, "按钮");
+    BUTTON(2, "按钮"),
+
+    LINK(3, "外链");
 
     /**
      * 查找枚举

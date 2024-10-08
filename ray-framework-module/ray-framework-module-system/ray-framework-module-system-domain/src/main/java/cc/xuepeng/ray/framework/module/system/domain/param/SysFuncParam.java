@@ -34,14 +34,7 @@ public class SysFuncParam extends BaseParam implements ParamValidateScope {
     private String name;
 
     /**
-     * 编号
-     */
-    @NotBlank(message = "编号不能为空", groups = {create.class, update.class})
-    @Length(max = 32, message = "编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String code;
-
-    /**
-     * 类型：0=目录，1=功能；2=按钮
+     * 类型：0=目录，1=功能；2=按钮；3=外链
      */
     @NotNull(message = "类型不能为空", groups = {create.class, update.class})
     private SysFuncType type;
@@ -67,7 +60,6 @@ public class SysFuncParam extends BaseParam implements ParamValidateScope {
     /**
      * 是否外链
      */
-    @NotNull(message = "是否外链不能为空", groups = {create.class, update.class})
     private Boolean linkable;
 
     /**

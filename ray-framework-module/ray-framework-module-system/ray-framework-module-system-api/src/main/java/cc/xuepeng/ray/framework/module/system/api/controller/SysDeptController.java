@@ -34,7 +34,7 @@ public class SysDeptController extends BaseController {
      * 创建系统部门
      *
      * @param sysDeptParam 系统部门的请求对象
-     * @return 系统部门的编号
+     * @return 是否创建成功
      */
     @PostMapping("/v1")
     @SaCheckRole("ROLE_SUPER_ADMIN")

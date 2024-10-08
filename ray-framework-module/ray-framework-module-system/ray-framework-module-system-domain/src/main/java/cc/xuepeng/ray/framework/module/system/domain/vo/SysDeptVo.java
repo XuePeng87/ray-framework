@@ -20,7 +20,7 @@ import java.util.List;
 public class SysDeptVo extends BaseVo {
 
     /**
-     * 父级主键
+     * 父级编号
      */
     private String parentCode;
 

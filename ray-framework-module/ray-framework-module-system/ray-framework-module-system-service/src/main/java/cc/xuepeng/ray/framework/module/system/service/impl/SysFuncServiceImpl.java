@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -10,6 +12,7 @@ import cc.xuepeng.ray.framework.module.system.domain.converter.SysFuncConverter;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysFuncDto;
 import cc.xuepeng.ray.framework.module.system.domain.entity.SysFunc;
 import cc.xuepeng.ray.framework.module.system.service.SysFuncService;
+import cc.xuepeng.ray.framework.module.system.service.exception.func.SysFuncCannotDeleteException;
 import cc.xuepeng.ray.framework.module.system.service.exception.func.SysFuncDuplicateException;
 import cc.xuepeng.ray.framework.module.system.service.exception.func.SysFuncNotFoundException;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -41,6 +44,7 @@ public class SysFuncServiceImpl
      * @return 是否创建成功
      */
     @Override
+    @CreateUser
     public boolean create(final SysFuncDto sysFuncDto) {
         final String name = sysFuncDto.getName();
         if (this.checkNameExisted(StringUtils.EMPTY, name)) {
@@ -58,6 +62,7 @@ public class SysFuncServiceImpl
      * @return 是否修改成功
      */
     @Override
+    @ModifyUser
     public boolean update(final SysFuncDto sysFuncDto) {
         final String code = sysFuncDto.getCode();
         final String name = sysFuncDto.getName();
@@ -77,7 +82,9 @@ public class SysFuncServiceImpl
      */
     @Override
     public boolean delete(final String code) {
-        // TODO 判断下面是否有其他功能
+        if (this.hasChildren(code)) {
+            throw new SysFuncCannotDeleteException("系统功能[" + code + "]下存在子功能，无法直接删除");
+        }
         final QueryWrapper<SysFunc> wrapper = this.createQueryWrapper(code);
         return super.remove(wrapper);
     }
@@ -125,6 +132,18 @@ public class SysFuncServiceImpl
         final QueryWrapper<SysFunc> wrapper = this.createQueryWrapper(sysFuncDto);
         final List<SysFunc> sysFuncs = super.list(wrapper);
         return sysFuncConverter.entityListToDtoList(sysFuncs);
+    }
+
+    /**
+     * 判断是否有子功能
+     *
+     * @param code 编号
+     * @return 是否有子功能
+     */
+    private boolean hasChildren(final String code) {
+        final QueryWrapper<SysFunc> wrapper = this.createQueryWrapper();
+        final List<SysFunc> sysFuncs = super.list(wrapper.lambda().eq(SysFunc::getParentCode, code));
+        return CollectionUtils.isNotEmpty(sysFuncs);
     }
 
     /**

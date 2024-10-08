@@ -84,7 +84,7 @@ public class SysDictFacadeImpl implements SysDictFacade {
     }
 
     /**
-     * 系统字典对象转换接口
+     * 系统字典的对象转换接口
      */
     @Resource
     private SysDictConverter sysDictConverter;

@@ -22,7 +22,7 @@ public class SysFuncVo extends BaseVo {
     /**
      * 父级编号
      */
-    private Long pid;
+    private String parentCode;
 
     /**
      * 名称
@@ -35,7 +35,7 @@ public class SysFuncVo extends BaseVo {
     private String code;
 
     /**
-     * 类型：0=目录，1=功能；2=按钮
+     * 类型：0=目录，1=功能；2=按钮；3=外链
      */
     private SysFuncType type;
 
