@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -42,6 +44,7 @@ public class SysRoleServiceImpl
      * @param sysRoleDto 系统角色的数据传输对象
      * @return 是否创建成功
      */
+    @CreateUser
     @Override
     public boolean create(final SysRoleDto sysRoleDto) {
         final String name = sysRoleDto.getName();
@@ -59,6 +62,7 @@ public class SysRoleServiceImpl
      * @param sysRoleDto 系统角色的数据传输对象
      * @return 是否修改成功
      */
+    @ModifyUser
     @Override
     public boolean update(final SysRoleDto sysRoleDto) {
         final String code = sysRoleDto.getCode();
@@ -178,7 +182,7 @@ public class SysRoleServiceImpl
         final LambdaQueryWrapper<SysRole> lambda = wrapper.lambda();
         lambda.eq(StringUtils.isNotBlank(sysRole.getCode()), SysRole::getCode, sysRole.getCode());
         lambda.eq(ObjectUtils.isNotEmpty(sysRole.getStatus()), SysRole::getStatus, sysRole.getStatus());
-        lambda.like(StringUtils.isNotBlank(sysRole.getName()), SysRole::getName, sysRole.getName());
+        lambda.like(StringUtils.isNotBlank(sysRole.getRemark()), SysRole::getRemark, sysRole.getRemark());
         lambda.orderByAsc(SysRole::getSequence);
         return wrapper;
     }

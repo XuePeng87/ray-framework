@@ -1,5 +1,6 @@
 package cc.xuepeng.ray.framework.module.system.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -10,6 +11,7 @@ import cc.xuepeng.ray.framework.module.system.dao.SysUserDao;
 import cc.xuepeng.ray.framework.module.system.domain.converter.SysUserConverter;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysUserDto;
 import cc.xuepeng.ray.framework.module.system.domain.entity.SysUser;
+import cc.xuepeng.ray.framework.module.system.service.SysRoleUserGrantService;
 import cc.xuepeng.ray.framework.module.system.service.SysUserService;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserDuplicateException;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserNotFoundException;
@@ -23,6 +25,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,8 @@ public class SysUserServiceImpl
      * @return 是否创建成功
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    @CreateUser
     public boolean create(final SysUserDto sysUserDto) {
         final String phoneNumber = sysUserDto.getPhoneNumber();
         final String email = sysUserDto.getEmail();
@@ -55,6 +60,7 @@ public class SysUserServiceImpl
         }
         sysUserDto.setCode(RandomUtil.get32UUID());
         sysUserDto.setPassword(DigestUtil.md5Hex("123456"));
+        sysRoleUserGrantService.saveRoleToUser(sysUserDto.getCode(), sysUserDto.getRoleCodes());
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
         return super.save(sysUser);
     }
@@ -76,6 +82,7 @@ public class SysUserServiceImpl
         if (this.checkEmailExisted(code, email)) {
             throw new SysUserDuplicateException("系统用户邮箱[" + email + "]已存在");
         }
+        sysRoleUserGrantService.saveRoleToUser(code, sysUserDto.getRoleCodes());
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
         final QueryWrapper<SysUser> wrapper = this.createQueryWrapper(code);
         return super.update(sysUser, wrapper);
@@ -246,5 +253,11 @@ public class SysUserServiceImpl
      */
     @Resource
     private SysUserConverter sysUserConverter;
+
+    /**
+     * 系统角色与用户关系的业务处理接口
+     */
+    @Resource
+    private SysRoleUserGrantService sysRoleUserGrantService;
 
 }

@@ -24,7 +24,7 @@ public class SysDictFacadeImpl implements SysDictFacade {
     /**
      * 创建系统字典
      *
-     * @param sysDictParam 系统字典的数据请求类
+     * @param sysDictParam 系统字典的请求对象
      * @return 是否创建成功
      */
     @Override
@@ -37,7 +37,7 @@ public class SysDictFacadeImpl implements SysDictFacade {
      * 修改系统字典
      *
      * @param code         系统字典的编号
-     * @param sysDictParam 系统字典的数据请求类
+     * @param sysDictParam 系统字典的请求对象
      * @return 是否修改成功
      */
     @Override
@@ -62,7 +62,7 @@ public class SysDictFacadeImpl implements SysDictFacade {
      * 根据编号查询系统字典
      *
      * @param code 系统字典的编号
-     * @return 系统字典的数据响应对象
+     * @return 系统字典的响应对象
      */
     @Override
     public SysDictVo findByCode(final String code) {

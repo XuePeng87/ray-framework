@@ -15,7 +15,15 @@ public interface SysRoleUserGrantService {
      * @param roleCode  角色编号
      * @param userCodes 用户编号集合
      */
-    void save(final String roleCode, final List<String> userCodes);
+    void saveUserToROle(final String roleCode, final List<String> userCodes);
+
+    /**
+     * 保存系统角色与用户的关系
+     *
+     * @param userCode  用户编号
+     * @param roleCodes 角色编号集合
+     */
+    void saveRoleToUser(final String userCode, final List<String> roleCodes);
 
     /**
      * 根据角色编号查询用户编号集合

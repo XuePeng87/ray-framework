@@ -16,7 +16,7 @@ public interface SysDictItemFacade {
     /**
      * 创建系统字典项
      *
-     * @param sysDictItemParam 系统字典项的数据请求类
+     * @param sysDictItemParam 系统字典项的请求对象
      * @return 是否创建成功
      */
     boolean create(final SysDictItemParam sysDictItemParam);
@@ -25,7 +25,7 @@ public interface SysDictItemFacade {
      * 修改系统字典项
      *
      * @param code             系统字典项的编号
-     * @param sysDictItemParam 系统字典项的数据请求类
+     * @param sysDictItemParam 系统字典项的请求对象
      * @return 是否修改成功
      */
     boolean update(final String code, final SysDictItemParam sysDictItemParam);
@@ -42,7 +42,7 @@ public interface SysDictItemFacade {
      * 根据编号查询系统字典项
      *
      * @param code 系统字典项的编号
-     * @return 系统字典项的数据响应对象
+     * @return 系统字典项的响应对象
      */
     SysDictItemVo findByCode(final String code);
 
@@ -50,7 +50,7 @@ public interface SysDictItemFacade {
      * 根据条件分页查询系统字典项
      *
      * @param sysDictItemParam 系统字典项的数据请求对象
-     * @return 系统字典项的数据响应对象集合
+     * @return 系统字典项的响应对象集合
      */
     PageVo<SysDictItemVo> pageByCondition(final SysDictItemParam sysDictItemParam);
 

@@ -10,6 +10,11 @@ import cc.xuepeng.ray.framework.module.system.service.exception.dict.SysDictNotF
 import cc.xuepeng.ray.framework.module.system.service.exception.func.SysFuncCannotDeleteException;
 import cc.xuepeng.ray.framework.module.system.service.exception.func.SysFuncDuplicateException;
 import cc.xuepeng.ray.framework.module.system.service.exception.func.SysFuncNotFoundException;
+import cc.xuepeng.ray.framework.module.system.service.exception.role.SysRoleCannotDeleteException;
+import cc.xuepeng.ray.framework.module.system.service.exception.role.SysRoleDuplicateException;
+import cc.xuepeng.ray.framework.module.system.service.exception.role.SysRoleNotFoundException;
+import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserDuplicateException;
+import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 数据字典错误编码：50010 - 50019
  * 部门错误编码：50020 - 50029
  * 菜单错误编码：50030 - 50039
+ * 角色错误编码：50040 - 50049
  *
  * @author xuepeng
  */
@@ -151,6 +157,76 @@ public class SystemExceptionHandler {
     public Result<String> sysFuncCannotDeleteExceptionHandler(SysFuncCannotDeleteException e) {
         log.error("菜单不能删除 -> {}", e.getMessage());
         return new Result.Builder<String>(SystemResultStatus.FUNC_CANNOT_DELETE).msg(e.getMessage()).build();
+    }
+
+    /**
+     * SysRoleDuplicateException异常处理，返回错误信息和错误代码
+     * 代码为50040，错误信息为"角色已存在"
+     *
+     * @param e SysRoleDuplicateException异常
+     * @return 错误信息和错误代码
+     */
+    @ExceptionHandler(value = SysRoleDuplicateException.class)
+    @ResponseBody
+    public Result<String> sysRoleDuplicateExceptionHandler(SysRoleDuplicateException e) {
+        log.error("角色已存在 -> {}", e.getMessage());
+        return new Result.Builder<String>(SystemResultStatus.ROLE_DUPLICATE).msg(e.getMessage()).build();
+    }
+
+    /**
+     * SysRoleNotFoundException异常处理，返回错误信息和错误代码
+     * 代码为50041，错误信息为"角色不存在"
+     *
+     * @param e SysRoleNotFoundException异常
+     * @return 错误信息和错误代码
+     */
+    @ExceptionHandler(value = SysRoleNotFoundException.class)
+    @ResponseBody
+    public Result<String> sysRoleNotFoundExceptionHandler(SysRoleNotFoundException e) {
+        log.error("角色不存在 -> {}", e.getMessage());
+        return new Result.Builder<String>(SystemResultStatus.ROLE_NOT_FOUND).msg(e.getMessage()).build();
+    }
+
+    /**
+     * SysRoleCannotDeleteException异常处理，返回错误信息和错误代码
+     * 代码为50042，错误信息为"角色不能删除"
+     *
+     * @param e SysRoleCannotDeleteException异常
+     * @return 错误信息和错误代码
+     */
+    @ExceptionHandler(value = SysRoleCannotDeleteException.class)
+    @ResponseBody
+    public Result<String> sysRoleCannotDeleteExceptionHandler(SysRoleCannotDeleteException e) {
+        log.error("角色不能删除 -> {}", e.getMessage());
+        return new Result.Builder<String>(SystemResultStatus.ROLE_CANNOT_DELETE).msg(e.getMessage()).build();
+    }
+
+    /**
+     * SysUserDuplicateException异常处理，返回错误信息和错误代码
+     * 代码为50050，错误信息为"用户已存在"
+     *
+     * @param e SysUserDuplicateException异常
+     * @return 错误信息和错误代码
+     */
+    @ExceptionHandler(value = SysUserDuplicateException.class)
+    @ResponseBody
+    public Result<String> sysUserDuplicateExceptionHandler(SysUserDuplicateException e) {
+        log.error("用户已存在 -> {}", e.getMessage());
+        return new Result.Builder<String>(SystemResultStatus.USER_DUPLICATE).msg(e.getMessage()).build();
+    }
+
+    /**
+     * SysUserNotFoundException异常处理，返回错误信息和错误代码
+     * 代码为50051，错误信息为"用户不存在"
+     *
+     * @param e SysUserNotFoundException异常
+     * @return 错误信息和错误代码
+     */
+    @ExceptionHandler(value = SysUserNotFoundException.class)
+    @ResponseBody
+    public Result<String> sysUserNotFoundExceptionHandler(SysUserNotFoundException e) {
+        log.error("用户不存在 -> {}", e.getMessage());
+        return new Result.Builder<String>(SystemResultStatus.USER_NOT_FOUND).msg(e.getMessage()).build();
     }
 
 }

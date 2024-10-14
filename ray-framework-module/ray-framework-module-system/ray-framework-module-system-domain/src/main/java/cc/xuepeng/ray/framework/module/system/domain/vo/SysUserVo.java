@@ -4,6 +4,8 @@ import cc.xuepeng.ray.framework.core.model.vo.BaseVo;
 import cc.xuepeng.ray.framework.module.system.domain.enums.SysUserStatus;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * 系统用户的响应类
  *
@@ -20,6 +22,11 @@ public class SysUserVo extends BaseVo {
      * 部门编号
      */
     private String deptCode;
+
+    /**
+     * 角色编号集合
+     */
+    private List<String> roleCodes;
 
     /**
      * 编号

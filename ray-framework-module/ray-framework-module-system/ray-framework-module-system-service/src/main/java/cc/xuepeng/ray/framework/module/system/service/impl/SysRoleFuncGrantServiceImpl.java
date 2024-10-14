@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class SysRoleFuncGrantServiceImpl
      * @param funcCodes 功能编号集合
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void save(final String roleCode, final List<String> funcCodes) {
         QueryWrapper<SysRoleFuncRelation> wrapper = this.createQueryWrapper();
         wrapper.lambda().eq(SysRoleFuncRelation::getRoleCode, roleCode);

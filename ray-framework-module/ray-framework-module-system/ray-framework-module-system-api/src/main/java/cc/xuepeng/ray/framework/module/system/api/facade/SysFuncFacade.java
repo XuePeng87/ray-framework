@@ -41,7 +41,7 @@ public interface SysFuncFacade {
      * 根据编号查询系统功能
      *
      * @param code 系统功能的编号
-     * @return 是否删除成功
+     * @return 系统功能的响应对象
      */
     SysFuncVo findByCode(final String code);
 

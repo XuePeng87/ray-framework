@@ -34,7 +34,7 @@ public class SysDictController extends BaseController {
     /**
      * 创建系统字典
      *
-     * @param sysDictParam 系统字典的数据请求类
+     * @param sysDictParam 系统字典的请求对象
      * @return 是否创建成功
      */
     @PostMapping("/v1")
@@ -51,7 +51,7 @@ public class SysDictController extends BaseController {
      * 修改系统字典
      *
      * @param code         系统字典的编号
-     * @param sysDictParam 系统字典的数据请求类
+     * @param sysDictParam 系统字典的请求对象
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
@@ -85,7 +85,7 @@ public class SysDictController extends BaseController {
      * 根据编号查询系统字典
      *
      * @param code 系统字典的编号
-     * @return 系统字典的数据响应对象
+     * @return 系统字典的响应对象
      */
     @GetMapping("/v1/{code}")
     @SaCheckRole("ROLE_SUPER_ADMIN")
@@ -103,9 +103,9 @@ public class SysDictController extends BaseController {
      * @return 系统字典的响应对象集合
      */
     @GetMapping("/v1/page")
+    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "分页查询字典",
             action = SysOperateLogAction.QUERY, persistent = false)
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     public Result<PageVo<SysDictVo>> pageByCondition(final SysDictParam sysDictParam) {
         final PageVo<SysDictVo> result = sysDictFacade.pageByCondition(sysDictParam);
         return DefaultResultFactory.success("分页查询字典列表", result);

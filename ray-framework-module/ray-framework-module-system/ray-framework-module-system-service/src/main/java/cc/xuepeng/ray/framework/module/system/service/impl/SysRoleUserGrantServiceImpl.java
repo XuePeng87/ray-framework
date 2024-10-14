@@ -30,12 +30,34 @@ public class SysRoleUserGrantServiceImpl
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(final String roleCode, final List<String> userCodes) {
-        QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
+    public void saveUserToROle(final String roleCode, final List<String> userCodes) {
+        final QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
         wrapper.lambda().eq(SysRoleUserRelation::getRoleCode, roleCode);
         super.remove(wrapper);
         final List<SysRoleUserRelation> relations = new ArrayList<>();
         userCodes.forEach(userCode -> {
+            SysRoleUserRelation relation = new SysRoleUserRelation();
+            relation.setRoleCode(roleCode);
+            relation.setUserCode(userCode);
+            relations.add(relation);
+        });
+        super.saveBatch(relations);
+    }
+
+    /**
+     * 保存系统角色与用户的关系
+     *
+     * @param userCode  用户编号
+     * @param roleCodes 角色编号集合
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveRoleToUser(final String userCode, final List<String> roleCodes) {
+        final QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
+        wrapper.lambda().eq(SysRoleUserRelation::getUserCode, userCode);
+        super.remove(wrapper);
+        final List<SysRoleUserRelation> relations = new ArrayList<>();
+        roleCodes.forEach(roleCode -> {
             SysRoleUserRelation relation = new SysRoleUserRelation();
             relation.setRoleCode(roleCode);
             relation.setUserCode(userCode);
@@ -52,10 +74,10 @@ public class SysRoleUserGrantServiceImpl
      */
     @Override
     public List<String> findUsersByRoleCode(final String roleCode) {
-        QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
+        final QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
         wrapper.lambda().eq(SysRoleUserRelation::getRoleCode, roleCode);
-        List<SysRoleUserRelation> relations = super.list(wrapper);
-        List<String> userCodes = new ArrayList<>();
+        final List<SysRoleUserRelation> relations = super.list(wrapper);
+        final List<String> userCodes = new ArrayList<>();
         relations.forEach(relation -> userCodes.add(relation.getUserCode()));
         return userCodes;
     }
@@ -68,10 +90,10 @@ public class SysRoleUserGrantServiceImpl
      */
     @Override
     public List<String> findRolesByUserCode(final String userCode) {
-        QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
+        final QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
         wrapper.lambda().eq(SysRoleUserRelation::getUserCode, userCode);
-        List<SysRoleUserRelation> relations = super.list(wrapper);
-        List<String> roleCodes = new ArrayList<>();
+        final List<SysRoleUserRelation> relations = super.list(wrapper);
+        final List<String> roleCodes = new ArrayList<>();
         relations.forEach(relation -> roleCodes.add(relation.getRoleCode()));
         return roleCodes;
     }

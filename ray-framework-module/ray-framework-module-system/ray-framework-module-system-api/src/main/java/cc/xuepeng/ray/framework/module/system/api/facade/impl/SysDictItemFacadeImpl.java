@@ -24,7 +24,7 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
     /**
      * 创建系统字典项
      *
-     * @param sysDictItemParam 系统字典项的数据请求类
+     * @param sysDictItemParam 系统字典项的请求对象
      * @return 是否创建成功
      */
     @Override
@@ -37,7 +37,7 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
      * 修改系统字典项
      *
      * @param code             系统字典项的编号
-     * @param sysDictItemParam 系统字典项的数据请求类
+     * @param sysDictItemParam 系统字典项的请求对象
      * @return 是否修改成功
      */
     @Override
@@ -62,7 +62,7 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
      * 根据编号查询系统字典项
      *
      * @param code 系统字典项的编号
-     * @return 系统字典项的数据响应对象
+     * @return 系统字典项的响应对象
      */
     @Override
     public SysDictItemVo findByCode(final String code) {
@@ -74,7 +74,7 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
      * 根据条件分页查询系统字典项
      *
      * @param sysDictItemParam 系统字典项的数据请求对象
-     * @return 系统字典项的数据响应对象集合
+     * @return 系统字典项的响应对象集合
      */
     @Override
     public PageVo<SysDictItemVo> pageByCondition(final SysDictItemParam sysDictItemParam) {

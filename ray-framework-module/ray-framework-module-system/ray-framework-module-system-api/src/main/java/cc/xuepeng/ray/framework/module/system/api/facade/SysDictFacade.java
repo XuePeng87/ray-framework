@@ -16,7 +16,7 @@ public interface SysDictFacade {
     /**
      * 创建系统字典
      *
-     * @param sysDictParam 系统字典的数据请求类
+     * @param sysDictParam 系统字典的请求对象
      * @return 是否创建成功
      */
     boolean create(final SysDictParam sysDictParam);
@@ -25,7 +25,7 @@ public interface SysDictFacade {
      * 修改系统字典
      *
      * @param code         系统字典的编号
-     * @param sysDictParam 系统字典的数据请求类
+     * @param sysDictParam 系统字典的请求对象
      * @return 是否修改成功
      */
     boolean update(final String code, final SysDictParam sysDictParam);
@@ -42,7 +42,7 @@ public interface SysDictFacade {
      * 根据编号查询系统字典
      *
      * @param code 系统字典的编号
-     * @return 系统字典的数据响应对象
+     * @return 系统字典的响应对象
      */
     SysDictVo findByCode(final String code);
 
@@ -50,7 +50,7 @@ public interface SysDictFacade {
      * 根据条件分页查询系统字典
      *
      * @param sysDictParam 系统字典的数据请求对象
-     * @return 系统字典的数据响应对象集合
+     * @return 系统字典的响应对象集合
      */
     PageVo<SysDictVo> pageByCondition(final SysDictParam sysDictParam);
 

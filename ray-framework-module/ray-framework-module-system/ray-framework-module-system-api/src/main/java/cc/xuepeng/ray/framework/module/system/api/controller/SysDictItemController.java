@@ -34,7 +34,7 @@ public class SysDictItemController extends BaseController {
     /**
      * 创建系统字典项
      *
-     * @param sysDictItemParam 系统字典项的数据请求类
+     * @param sysDictItemParam 系统字典项的请求对象
      * @return 是否创建成功
      */
     @PostMapping("/v1")
@@ -51,7 +51,7 @@ public class SysDictItemController extends BaseController {
      * 修改系统字典项
      *
      * @param code             系统字典项的编号
-     * @param sysDictItemParam 系统字典项的数据请求类
+     * @param sysDictItemParam 系统字典项的请求对象
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
@@ -85,7 +85,7 @@ public class SysDictItemController extends BaseController {
      * 根据编号查询系统字典项
      *
      * @param code 系统字典项的编号
-     * @return 系统字典项的数据响应对象
+     * @return 系统字典项的响应对象
      */
     @GetMapping("/v1/{code}")
     @SaCheckRole("ROLE_SUPER_ADMIN")

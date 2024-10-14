@@ -21,18 +21,18 @@ import org.hibernate.validator.constraints.Length;
 public class SysRoleParam extends BaseParam implements ParamValidateScope {
 
     /**
+     * 编号
+     */
+    @NotBlank(message = "编号不能为空", groups = {update.class})
+    @Length(max = 32, message = "编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
+    private String code;
+
+    /**
      * 名称
      */
     @NotBlank(message = "名称不能为空", groups = {create.class, update.class})
     @Length(max = 32, message = "名称长度不能大于32个字符", groups = {create.class, update.class, page.class})
     private String name;
-
-    /**
-     * 编号
-     */
-    @NotBlank(message = "编号不能为空", groups = {create.class, update.class})
-    @Length(max = 32, message = "编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String code;
 
     /**
      * 状态：0=停用；1=启用

@@ -52,8 +52,32 @@ public enum SystemResultStatus implements ResultStatus {
     /**
      * SysFuncCannotDeleteException的状态
      */
-    FUNC_CANNOT_DELETE(50032, "功能不能删除");
+    FUNC_CANNOT_DELETE(50032, "功能不能删除"),
 
+    /**
+     * SysRoleDuplicateException的状态
+     */
+    ROLE_DUPLICATE(50040, "角色已存在"),
+
+    /**
+     * SysRoleNotFoundException的状态
+     */
+    ROLE_NOT_FOUND(50041, "角色不存在"),
+
+    /**
+     * SysRoleCannotDeleteException的状态
+     */
+    ROLE_CANNOT_DELETE(50042, "角色不能删除"),
+
+    /**
+     * SysUserDuplicateException的状态
+     */
+    USER_DUPLICATE(50050, "用户已存在"),
+
+    /**
+     * SysUserNotFoundException的状态
+     */
+    USER_NOT_FOUND(50051, "用户不存在");
 
     /**
      * 构造函数
