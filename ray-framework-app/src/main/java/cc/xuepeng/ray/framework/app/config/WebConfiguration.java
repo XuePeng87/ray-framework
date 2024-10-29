@@ -1,10 +1,15 @@
 package cc.xuepeng.ray.framework.app.config;
 
+import cc.xuepeng.ray.framework.core.web.converter.EnumConverterFactory;
+import cc.xuepeng.ray.framework.core.web.converter.Jackson2HttpMessageConverter;
+import cc.xuepeng.ray.framework.core.web.converter.LocalDateTimeConverter;
 import cc.xuepeng.ray.framework.core.web.log.interceptor.LogTrackInterceptor;
 import cc.xuepeng.ray.framework.core.web.security.cors.CorsProperty;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -52,6 +57,25 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogTrackInterceptor()).addPathPatterns("/**");
+    }
+
+    /**
+     * 注册Spring MVC的自定义转换器
+     *
+     * @param registry 转换器注册器
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new LocalDateTimeConverter());
+        registry.addConverterFactory(new EnumConverterFactory());
+    }
+
+    /**
+     * @return 配置Jackson序列化，处理ajax请求中的LocalDateTime类型
+     */
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer customizer() {
+        return new Jackson2HttpMessageConverter().customizer();
     }
 
 }

@@ -121,6 +121,19 @@ public class SysRoleServiceImpl
     }
 
     /**
+     * 根据条件查询系统角色
+     *
+     * @param sysRoleDto 系统角色的数据传输对象
+     * @return 系统角色的数据传输对象集合
+     */
+    @Override
+    public List<SysRoleDto> listByCondition(final SysRoleDto sysRoleDto) {
+        final QueryWrapper<SysRole> wrapper = this.createQueryWrapper(sysRoleDto);
+        final List<SysRole> sysRoles = super.list(wrapper);
+        return sysRoleConverter.entityListToDtoList(sysRoles);
+    }
+
+    /**
      * 根据条件分页查询系统角色
      *
      * @param sysRoleDto 系统角色的数据传输对象

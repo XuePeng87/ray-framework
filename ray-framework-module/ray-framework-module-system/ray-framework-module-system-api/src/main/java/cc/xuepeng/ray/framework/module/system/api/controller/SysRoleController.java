@@ -98,6 +98,21 @@ public class SysRoleController extends BaseController {
     }
 
     /**
+     * 查询系统角色
+     *
+     * @param sysRoleParam 系统角色的请求对象
+     * @return 系统角色的响应对象集合
+     */
+    @GetMapping("/v1/list")
+    @SaCheckRole("ROLE_SUPER_ADMIN")
+    @OperateLog(module = "系统管理", func = "角色管理", remark = "查询角色列表",
+            action = SysOperateLogAction.QUERY, persistent = false)
+    public Result<List<SysRoleVo>> listByCondition(final SysRoleParam sysRoleParam) {
+        final List<SysRoleVo> result = sysRoleFacade.listByCondition(sysRoleParam);
+        return DefaultResultFactory.success("查询系统角色列表", result);
+    }
+
+    /**
      * 分页查询系统角色
      *
      * @param sysRoleParam 系统角色的请求对象

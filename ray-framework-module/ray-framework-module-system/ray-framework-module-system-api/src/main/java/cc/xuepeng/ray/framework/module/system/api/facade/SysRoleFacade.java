@@ -55,6 +55,14 @@ public interface SysRoleFacade {
     List<SysRoleVo> findByCodes(final List<String> codes);
 
     /**
+     * 根据条件查询系统角色
+     *
+     * @param sysRoleParam 系统角色的请求对象
+     * @return 系统角色的响应对象集合
+     */
+    List<SysRoleVo> listByCondition(final SysRoleParam sysRoleParam);
+
+    /**
      * 根据条件分页查询系统角色
      *
      * @param sysRoleParam 系统角色的请求对象

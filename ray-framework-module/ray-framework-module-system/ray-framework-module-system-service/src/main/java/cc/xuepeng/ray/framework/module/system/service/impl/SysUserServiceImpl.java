@@ -11,7 +11,6 @@ import cc.xuepeng.ray.framework.module.system.dao.SysUserDao;
 import cc.xuepeng.ray.framework.module.system.domain.converter.SysUserConverter;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysUserDto;
 import cc.xuepeng.ray.framework.module.system.domain.entity.SysUser;
-import cc.xuepeng.ray.framework.module.system.service.SysRoleUserGrantService;
 import cc.xuepeng.ray.framework.module.system.service.SysUserService;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserDuplicateException;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserNotFoundException;
@@ -60,7 +59,6 @@ public class SysUserServiceImpl
         }
         sysUserDto.setCode(RandomUtil.get32UUID());
         sysUserDto.setPassword(DigestUtil.md5Hex("123456"));
-        sysRoleUserGrantService.saveRoleToUser(sysUserDto.getCode(), sysUserDto.getRoleCodes());
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
         return super.save(sysUser);
     }
@@ -82,7 +80,6 @@ public class SysUserServiceImpl
         if (this.checkEmailExisted(code, email)) {
             throw new SysUserDuplicateException("系统用户邮箱[" + email + "]已存在");
         }
-        sysRoleUserGrantService.saveRoleToUser(code, sysUserDto.getRoleCodes());
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
         final QueryWrapper<SysUser> wrapper = this.createQueryWrapper(code);
         return super.update(sysUser, wrapper);
@@ -253,11 +250,5 @@ public class SysUserServiceImpl
      */
     @Resource
     private SysUserConverter sysUserConverter;
-
-    /**
-     * 系统角色与用户关系的业务处理接口
-     */
-    @Resource
-    private SysRoleUserGrantService sysRoleUserGrantService;
 
 }

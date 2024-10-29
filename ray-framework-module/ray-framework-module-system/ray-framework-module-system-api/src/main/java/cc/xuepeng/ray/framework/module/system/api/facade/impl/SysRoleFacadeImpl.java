@@ -84,6 +84,19 @@ public class SysRoleFacadeImpl implements SysRoleFacade {
     }
 
     /**
+     * 根据条件查询系统角色
+     *
+     * @param sysRoleParam 系统角色的请求对象
+     * @return 系统角色的响应对象集合
+     */
+    @Override
+    public List<SysRoleVo> listByCondition(final SysRoleParam sysRoleParam) {
+        final SysRoleDto sysRoleDto = sysRoleConverter.paramToDto(sysRoleParam);
+        final List<SysRoleDto> sysRoleDtos = sysRoleService.listByCondition(sysRoleDto);
+        return sysRoleConverter.dtoListToVoList(sysRoleDtos);
+    }
+
+    /**
      * 根据条件分页查询系统角色
      *
      * @param sysRoleParam 系统角色的请求对象
