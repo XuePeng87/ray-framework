@@ -11,6 +11,7 @@ import cc.xuepeng.ray.framework.module.system.dao.SysUserDao;
 import cc.xuepeng.ray.framework.module.system.domain.converter.SysUserConverter;
 import cc.xuepeng.ray.framework.module.system.domain.dto.SysUserDto;
 import cc.xuepeng.ray.framework.module.system.domain.entity.SysUser;
+import cc.xuepeng.ray.framework.module.system.service.SysRoleUserGrantService;
 import cc.xuepeng.ray.framework.module.system.service.SysUserService;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserDuplicateException;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserNotFoundException;
@@ -58,8 +59,10 @@ public class SysUserServiceImpl
             throw new SysUserDuplicateException("系统用户邮箱[" + email + "]已存在");
         }
         sysUserDto.setCode(RandomUtil.get32UUID());
-        sysUserDto.setPassword(DigestUtil.md5Hex("123456"));
+        sysUserDto.setPassword(DigestUtil.md5Hex("000000"));
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
+        // 设置用户的角色
+        sysRoleUserGrantService.saveRoleToUser(sysUserDto.getCode(), sysUserDto.getRoleCodes());
         return super.save(sysUser);
     }
 
@@ -82,6 +85,8 @@ public class SysUserServiceImpl
         }
         final SysUser sysUser = sysUserConverter.dtoToEntity(sysUserDto);
         final QueryWrapper<SysUser> wrapper = this.createQueryWrapper(code);
+        // 设置用户的角色
+        sysRoleUserGrantService.saveRoleToUser(code, sysUserDto.getRoleCodes());
         return super.update(sysUser, wrapper);
     }
 
@@ -110,7 +115,10 @@ public class SysUserServiceImpl
         if (ObjectUtils.isEmpty(sysUser)) {
             throw new SysUserNotFoundException("无法根据编号[" + code + "]查询到系统用户");
         }
-        return sysUserConverter.entityToDto(sysUser);
+        final SysUserDto sysUserDto = sysUserConverter.entityToDto(sysUser);
+        final List<String> roleCodes = sysRoleUserGrantService.findRolesByUserCode(code);
+        sysUserDto.setRoleCodes(roleCodes);
+        return sysUserDto;
     }
 
     /**
@@ -174,6 +182,20 @@ public class SysUserServiceImpl
         final Page<SysUser> page = PageUtil.createPage(sysUserDto);
         final Page<SysUser> sysUsers = super.page(page, wrapper);
         return sysUserConverter.entityPageToDtoPage(sysUsers);
+    }
+
+    /**
+     * 根据编号重置密码
+     *
+     * @param code 编号
+     * @return 是否重置成功
+     */
+    @Override
+    public boolean resetPassword(final String code) {
+        final QueryWrapper<SysUser> wrapper = this.createQueryWrapper(code);
+        final SysUser sysUser = new SysUser();
+        sysUser.setPassword(DigestUtil.md5Hex("000000"));
+        return super.update(sysUser, wrapper);
     }
 
     /**
@@ -250,5 +272,11 @@ public class SysUserServiceImpl
      */
     @Resource
     private SysUserConverter sysUserConverter;
+
+    /**
+     * 系统角色与用户关系的业务处理接口
+     */
+    @Resource
+    private SysRoleUserGrantService sysRoleUserGrantService;
 
 }

@@ -77,6 +77,17 @@ public class SysUserFacadeImpl implements SysUserFacade {
     }
 
     /**
+     * 根据编号重置密码
+     *
+     * @param code 编号
+     * @return 是否重置成功
+     */
+    @Override
+    public boolean resetPassword(final String code) {
+        return sysUserService.resetPassword(code);
+    }
+
+    /**
      * 系统用户对象转换接口
      */
     @Resource

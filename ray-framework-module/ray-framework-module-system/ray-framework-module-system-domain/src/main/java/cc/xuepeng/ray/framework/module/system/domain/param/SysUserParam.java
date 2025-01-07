@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 /**
  * 系统用户的请求类
  *
@@ -27,6 +29,12 @@ public class SysUserParam extends BaseParam implements ParamValidateScope {
     @NotBlank(message = "部门编号不能为空", groups = {create.class, update.class})
     @Length(max = 32, message = "部门编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
     private String deptCode;
+
+    /**
+     * 角色编号
+     */
+    @NotNull(message = "角色编号不能为空", groups = {create.class, update.class})
+    private List<String> roleCodes;
 
     /**
      * 电话

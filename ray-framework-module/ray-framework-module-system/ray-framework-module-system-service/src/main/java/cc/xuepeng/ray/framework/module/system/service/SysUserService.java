@@ -77,4 +77,12 @@ public interface SysUserService {
      */
     Page<SysUserDto> pageByCondition(final SysUserDto sysUserDto);
 
+    /**
+     * 根据编号重置密码
+     *
+     * @param code 编号
+     * @return 是否重置成功
+     */
+    boolean resetPassword(final String code);
+
 }

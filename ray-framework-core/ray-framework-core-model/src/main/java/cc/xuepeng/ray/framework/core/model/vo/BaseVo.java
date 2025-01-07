@@ -22,11 +22,6 @@ public class BaseVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 创建人编号
-     */
-    private String userCode;
-
-    /**
      * 创建人
      */
     private String createUser;

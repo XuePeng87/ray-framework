@@ -30,7 +30,7 @@ public class SysRoleUserGrantServiceImpl
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void saveUserToROle(final String roleCode, final List<String> userCodes) {
+    public void saveUserToRole(final String roleCode, final List<String> userCodes) {
         final QueryWrapper<SysRoleUserRelation> wrapper = this.createQueryWrapper();
         wrapper.lambda().eq(SysRoleUserRelation::getRoleCode, roleCode);
         super.remove(wrapper);

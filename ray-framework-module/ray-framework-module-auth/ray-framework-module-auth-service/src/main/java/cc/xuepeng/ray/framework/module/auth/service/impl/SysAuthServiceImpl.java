@@ -20,6 +20,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 系统认证的业务处理类
@@ -59,6 +60,9 @@ public class SysAuthServiceImpl implements SysAuthService {
             final List<SysFuncDto> funcTree = sysFuncFormat.tree(sysFuncDtos);
             final List<CurrentUserFunc> currentUserFunc = currentUserConverter.sysFuncListToCurrentUserFuncList(funcTree);
             currentUser.setFuncs(currentUserFunc);
+            // 设置权限
+            final List<String> permissions = sysFuncDtos.stream().map(SysFuncDto::getPermission).collect(Collectors.toList());
+            currentUser.setPermissions(permissions);
             // 登录系统
             return identificationService.login(currentUser);
         } catch (SysUserNotFoundException e) {

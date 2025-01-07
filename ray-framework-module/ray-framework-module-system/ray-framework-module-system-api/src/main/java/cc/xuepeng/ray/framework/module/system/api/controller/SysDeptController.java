@@ -11,6 +11,7 @@ import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
 import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -37,8 +38,8 @@ public class SysDeptController extends BaseController {
      * @return 是否创建成功
      */
     @PostMapping("/v1")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "创建部门", action = SysOperateLogAction.CREATE)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> create(
             @Validated(ParamValidateScope.create.class) @RequestBody final SysDeptParam sysDeptParam
     ) {
@@ -55,8 +56,8 @@ public class SysDeptController extends BaseController {
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "修改部门", action = SysOperateLogAction.UPDATE)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
             @Validated(ParamValidateScope.update.class) @RequestBody final SysDeptParam sysDeptParam
@@ -73,8 +74,8 @@ public class SysDeptController extends BaseController {
      * @return 是否删除成功
      */
     @DeleteMapping("/v1/{code}")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "删除部门", action = SysOperateLogAction.DELETE)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> delete(@PathVariable(value = "code") final String code) {
         return sysDeptFacade.delete(code) ?
                 DefaultResultFactory.success("删除系统部门成功", Boolean.TRUE) :
@@ -88,9 +89,9 @@ public class SysDeptController extends BaseController {
      * @return 系统部门的响应对象
      */
     @GetMapping("/v1/{code}")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门",
             action = SysOperateLogAction.DETAIL, persistent = false)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<SysDeptVo> findByCode(@PathVariable(value = "code") final String code) {
         final SysDeptVo result = sysDeptFacade.findByCode(code);
         return DefaultResultFactory.success("根据编号查询部门", result);
@@ -105,7 +106,7 @@ public class SysDeptController extends BaseController {
     @GetMapping("/v1")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门树",
             action = SysOperateLogAction.QUERY, persistent = false)
-    @SaCheckRole("ROLE_SUPER_ADMIN")
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<List<SysDeptVo>> treeByCondition(
             @Validated(ParamValidateScope.page.class) final SysDeptParam sysDeptParam
     ) {

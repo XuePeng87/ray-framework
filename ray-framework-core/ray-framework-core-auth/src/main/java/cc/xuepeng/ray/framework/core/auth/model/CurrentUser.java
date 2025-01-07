@@ -56,6 +56,11 @@ public class CurrentUser implements Serializable {
     private List<CurrentUserRole> roles;
 
     /**
+     * 系统授权
+     */
+    private List<String> permissions;
+
+    /**
      * 系统功能
      */
     private List<CurrentUserFunc> funcs;

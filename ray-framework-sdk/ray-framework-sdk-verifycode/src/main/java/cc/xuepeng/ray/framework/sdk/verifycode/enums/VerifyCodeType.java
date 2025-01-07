@@ -15,6 +15,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public enum VerifyCodeType implements BaseEnum {
 
+    /**
+     * 图片验证码前缀
+     */
     IMAGE_LOGIN(1, "RAY:VC:LOGIN:");
 
     /**

@@ -12,6 +12,7 @@ import cc.xuepeng.ray.framework.module.system.domain.param.SysRoleParam;
 import cc.xuepeng.ray.framework.module.system.domain.vo.SysRoleVo;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -104,7 +105,7 @@ public class SysRoleController extends BaseController {
      * @return 系统角色的响应对象集合
      */
     @GetMapping("/v1/list")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "角色管理", remark = "查询角色列表",
             action = SysOperateLogAction.QUERY, persistent = false)
     public Result<List<SysRoleVo>> listByCondition(final SysRoleParam sysRoleParam) {

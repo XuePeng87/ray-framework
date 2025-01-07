@@ -52,4 +52,12 @@ public interface SysUserFacade {
      */
     PageVo<SysUserVo> pageByCondition(final SysUserParam sysUserParam);
 
+    /**
+     * 根据编号重置密码
+     *
+     * @param code 编号
+     * @return 是否重置成功
+     */
+    boolean resetPassword(final String code);
+
 }

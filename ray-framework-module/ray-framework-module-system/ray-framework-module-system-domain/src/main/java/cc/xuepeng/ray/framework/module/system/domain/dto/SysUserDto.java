@@ -4,6 +4,8 @@ import cc.xuepeng.ray.framework.core.model.dto.BaseDto;
 import cc.xuepeng.ray.framework.module.system.domain.enums.SysUserStatus;
 import lombok.*;
 
+import java.util.List;
+
 /**
  * 系统用户的数据传输类
  *
@@ -20,6 +22,11 @@ public class SysUserDto extends BaseDto {
      * 部门编号
      */
     private String deptCode;
+
+    /**
+     * 角色编号
+     */
+    private List<String> roleCodes;
 
     /**
      * 编号

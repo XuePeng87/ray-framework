@@ -12,6 +12,7 @@ import cc.xuepeng.ray.framework.module.system.domain.param.SysDictItemParam;
 import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictItemVo;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -38,8 +39,8 @@ public class SysDictItemController extends BaseController {
      * @return 是否创建成功
      */
     @PostMapping("/v1")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "创建字典项", action = SysOperateLogAction.CREATE)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> create(
             @Validated(ParamValidateScope.create.class) @RequestBody final SysDictItemParam sysDictItemParam) {
         return sysDictItemFacade.create(sysDictItemParam) ?
@@ -55,8 +56,8 @@ public class SysDictItemController extends BaseController {
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "修改字典项", action = SysOperateLogAction.UPDATE)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
             @Validated(ParamValidateScope.create.class) @RequestBody final SysDictItemParam sysDictItemParam
@@ -73,8 +74,8 @@ public class SysDictItemController extends BaseController {
      * @return 是否删除成功
      */
     @DeleteMapping("/v1")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "删除字典项", action = SysOperateLogAction.DELETE)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> delete(@RequestBody final List<String> codes) {
         return sysDictItemFacade.delete(codes) ?
                 DefaultResultFactory.success("删除系统字典项成功", Boolean.TRUE) :
@@ -88,9 +89,9 @@ public class SysDictItemController extends BaseController {
      * @return 系统字典项的响应对象
      */
     @GetMapping("/v1/{code}")
-    @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "查询字典项",
             action = SysOperateLogAction.DETAIL, persistent = false)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<SysDictItemVo> findByCode(@PathVariable(value = "code") final String code) {
         final SysDictItemVo result = sysDictItemFacade.findByCode(code);
         return DefaultResultFactory.success("查询系统字典项", result);
@@ -105,7 +106,7 @@ public class SysDictItemController extends BaseController {
     @GetMapping("/v1/page")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "分页查询字典项",
             action = SysOperateLogAction.QUERY, persistent = false)
-    @SaCheckRole("ROLE_SUPER_ADMIN")
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<PageVo<SysDictItemVo>> pageByCondition(final SysDictItemParam sysDictItemParam) {
         final PageVo<SysDictItemVo> result = sysDictItemFacade.pageByCondition(sysDictItemParam);
         return DefaultResultFactory.success("分页查询字典列表", result);
