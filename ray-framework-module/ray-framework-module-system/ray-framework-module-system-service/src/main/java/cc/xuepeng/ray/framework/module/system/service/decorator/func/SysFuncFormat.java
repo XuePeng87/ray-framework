@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.module.system.service.decorator.func;
 
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysFuncDto;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysFuncDto;
 
 import java.util.List;
 

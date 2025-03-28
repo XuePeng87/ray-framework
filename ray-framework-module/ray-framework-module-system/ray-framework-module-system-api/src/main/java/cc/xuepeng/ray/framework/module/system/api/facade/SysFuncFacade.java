@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.api.facade;
 
-import cc.xuepeng.ray.framework.module.system.domain.param.SysFuncParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysFuncVo;
+import cc.xuepeng.ray.framework.module.system.api.request.SysFuncRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysFuncResponse;
 
 import java.util.List;
 
@@ -15,19 +15,19 @@ public interface SysFuncFacade {
     /**
      * 创建系统功能
      *
-     * @param sysFuncParam 系统功能的请求对象
+     * @param sysFuncRequest 系统功能的请求对象
      * @return 是否创建成功
      */
-    boolean create(final SysFuncParam sysFuncParam);
+    boolean create(final SysFuncRequest sysFuncRequest);
 
     /**
      * 修改系统功能
      *
      * @param code         系统功能的编号
-     * @param sysFuncParam 系统功能的请求对象
+     * @param sysFuncRequest 系统功能的请求对象
      * @return 是否修改成功
      */
-    boolean update(final String code, final SysFuncParam sysFuncParam);
+    boolean update(final String code, final SysFuncRequest sysFuncRequest);
 
     /**
      * 删除系统功能
@@ -43,14 +43,14 @@ public interface SysFuncFacade {
      * @param code 系统功能的编号
      * @return 系统功能的响应对象
      */
-    SysFuncVo findByCode(final String code);
+    SysFuncResponse findByCode(final String code);
 
     /**
      * 根据条件查询系统功能
      *
-     * @param sysFuncParam 系统功能的请求对象
+     * @param sysFuncRequest 系统功能的请求对象
      * @return 系统功能的响应对象集合
      */
-    List<SysFuncVo> treeByCondition(final SysFuncParam sysFuncParam);
+    List<SysFuncResponse> treeByCondition(final SysFuncRequest sysFuncRequest);
 
 }

@@ -15,6 +15,7 @@
 
     <!-- 子模块 -->
     <modules>
+        <module>ray-framework-sdk-auth</module>
         <module>ray-framework-sdk-verifycode</module>
     </modules>
 

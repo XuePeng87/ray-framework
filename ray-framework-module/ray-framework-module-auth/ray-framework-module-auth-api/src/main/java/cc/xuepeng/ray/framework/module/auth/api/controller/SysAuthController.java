@@ -1,16 +1,15 @@
 package cc.xuepeng.ray.framework.module.auth.api.controller;
 
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.core.model.result.DefaultResultFactory;
-import cc.xuepeng.ray.framework.core.model.result.Result;
+import cc.xuepeng.ray.framework.core.common.domain.result.DefaultResultFactory;
+import cc.xuepeng.ray.framework.core.common.domain.result.Result;
 import cc.xuepeng.ray.framework.core.web.controller.BaseController;
-import cc.xuepeng.ray.framework.core.web.limit.IPLimit;
-import cc.xuepeng.ray.framework.core.web.log.annotation.LoginLog;
-import cc.xuepeng.ray.framework.core.web.log.annotation.LogoutLog;
-import cc.xuepeng.ray.framework.core.web.log.annotation.OperateLog;
-import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogAction;
 import cc.xuepeng.ray.framework.module.auth.api.facade.SysAuthFacade;
-import cc.xuepeng.ray.framework.module.auth.domain.param.SysLoginParam;
+import cc.xuepeng.ray.framework.module.auth.api.request.SysLoginRequest;
+import cc.xuepeng.ray.framework.module.common.log.annotation.LoginLog;
+import cc.xuepeng.ray.framework.module.common.log.annotation.LogoutLog;
+import cc.xuepeng.ray.framework.module.common.log.annotation.OperateLog;
+import cc.xuepeng.ray.framework.module.common.log.enums.SysOperateLogAction;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.sdk.verifycode.model.ImageVerifyCode;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import jakarta.annotation.Resource;
@@ -37,7 +36,6 @@ public class SysAuthController extends BaseController {
     @GetMapping("/v1/login-vc")
     @OperateLog(module = "系统管理", func = "身份认证", remark = "生成登录图片验证码",
             action = SysOperateLogAction.CREATE, persistent = false)
-    @IPLimit
     public Result<ImageVerifyCode> createLoginImageVerifyCode() {
         return DefaultResultFactory.success("创建登录图片验证码", sysAuthFacade.createLoginImageVerifyCode());
     }
@@ -45,14 +43,13 @@ public class SysAuthController extends BaseController {
     /**
      * 系统登录
      *
-     * @param sysLoginParam 系统登录的请求对象
+     * @param sysLoginRequest 系统登录的请求对象
      * @return 访问令牌
      */
     @PostMapping("/v1/login")
     @LoginLog
-    @IPLimit
-    public Result<String> login(@Validated @RequestBody final SysLoginParam sysLoginParam) {
-        final String accessToken = sysAuthFacade.login(sysLoginParam);
+    public Result<String> login(@Validated @RequestBody final SysLoginRequest sysLoginRequest) {
+        final String accessToken = sysAuthFacade.login(sysLoginRequest);
         return DefaultResultFactory.success("登录成功", accessToken);
     }
 

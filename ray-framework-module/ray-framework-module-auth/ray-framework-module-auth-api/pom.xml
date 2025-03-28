@@ -24,12 +24,17 @@
         <!-- Ray Framework -->
         <dependency>
             <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-sdk-verifycode</artifactId>
+            <artifactId>ray-framework-module-common-log</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-module-auth-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-sdk-verifycode</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -68,7 +68,7 @@ public class JsonUtil {
         }
         // 判断要转换的对象是否是字符串
         // 如果是，则直接返回一个新的字符串
-        // 如果不是，则通过Jsckson转换成json字符串
+        // 如果不是，则通过Jackson转换成json字符串
         if (obj instanceof String) {
             result = String.valueOf(obj);
         } else {
@@ -138,7 +138,7 @@ public class JsonUtil {
      */
     public static Map<String, Object> jsonNodeToMap(final JsonNode node) {
         try {
-            return MAPPER.convertValue(node, new TypeReference<Map<String, Object>>() {
+            return MAPPER.convertValue(node, new TypeReference<>() {
             });
         } catch (Exception e) {
             throw new IllegalArgumentException("JsonNode转Map失败", e);

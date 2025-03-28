@@ -23,7 +23,12 @@
     <dependencies>
         <dependency>
             <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-module-system-dao</artifactId>
+            <artifactId>ray-framework-module-system-repository</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-sdk-auth</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

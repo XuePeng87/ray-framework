@@ -1,12 +1,12 @@
 package cc.xuepeng.ray.framework.module.system.api.facade.impl;
 
+import cc.xuepeng.ray.framework.module.system.api.converter.SysDeptDtoConverter;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysDeptFacade;
-import cc.xuepeng.ray.framework.module.system.domain.converter.SysDeptConverter;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysDeptDto;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
-import cc.xuepeng.ray.framework.module.system.service.SysDeptService;
+import cc.xuepeng.ray.framework.module.system.api.request.SysDeptRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysDeptResponse;
 import cc.xuepeng.ray.framework.module.system.service.decorator.dept.SysDeptFormat;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysDeptDto;
+import cc.xuepeng.ray.framework.module.system.service.service.SysDeptService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -23,12 +23,12 @@ public class SysDeptFacadeImpl implements SysDeptFacade {
     /**
      * 创建系统部门
      *
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 是否创建成功
      */
     @Override
-    public boolean create(final SysDeptParam sysDeptParam) {
-        final SysDeptDto sysDeptDto = sysDeptConverter.paramToDto(sysDeptParam);
+    public boolean create(final SysDeptRequest sysDeptRequest) {
+        final SysDeptDto sysDeptDto = sysDeptDtoConverter.requestToDto(sysDeptRequest);
         return sysDeptService.create(sysDeptDto);
     }
 
@@ -36,12 +36,12 @@ public class SysDeptFacadeImpl implements SysDeptFacade {
      * 修改系统部门
      *
      * @param code         系统部门的编号
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 是否修改成功
      */
     @Override
-    public boolean update(final String code, final SysDeptParam sysDeptParam) {
-        final SysDeptDto sysDeptDto = sysDeptConverter.paramToDto(sysDeptParam);
+    public boolean update(final String code, final SysDeptRequest sysDeptRequest) {
+        final SysDeptDto sysDeptDto = sysDeptDtoConverter.requestToDto(sysDeptRequest);
         sysDeptDto.setCode(code);
         return sysDeptService.update(sysDeptDto);
     }
@@ -64,29 +64,29 @@ public class SysDeptFacadeImpl implements SysDeptFacade {
      * @return 系统部门的响应对象
      */
     @Override
-    public SysDeptVo findByCode(final String code) {
+    public SysDeptResponse findByCode(final String code) {
         final SysDeptDto sysDeptDto = sysDeptService.findByCode(code);
-        return sysDeptConverter.dtoToVo(sysDeptDto);
+        return sysDeptDtoConverter.dtoToResponse(sysDeptDto);
     }
 
     /**
      * 根据条件查询系统部门
      *
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 系统部门的响应对象集合
      */
     @Override
-    public List<SysDeptVo> treeByCondition(final SysDeptParam sysDeptParam) {
-        final SysDeptDto sysDeptDto = sysDeptConverter.paramToDto(sysDeptParam);
+    public List<SysDeptResponse> treeByCondition(final SysDeptRequest sysDeptRequest) {
+        final SysDeptDto sysDeptDto = sysDeptDtoConverter.requestToDto(sysDeptRequest);
         final List<SysDeptDto> sysDeptDtos = sysDeptService.listByCondition(sysDeptDto);
-        return sysDeptConverter.dtoListToVoList(sysDeptFormat.tree(sysDeptDtos));
+        return sysDeptDtoConverter.dtoListToResponseList(sysDeptFormat.tree(sysDeptDtos));
     }
 
     /**
-     * 系统部门的对象转换接口
+     * 系统部门数据传输类转换接口
      */
     @Resource
-    private SysDeptConverter sysDeptConverter;
+    private SysDeptDtoConverter sysDeptDtoConverter;
 
     /**
      * 系统部门的业务处理接口

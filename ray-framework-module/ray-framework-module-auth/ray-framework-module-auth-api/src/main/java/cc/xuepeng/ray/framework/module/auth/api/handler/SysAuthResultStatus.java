@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.module.auth.api.handler;
 
-import cc.xuepeng.ray.framework.core.model.result.ResultStatus;
+import cc.xuepeng.ray.framework.core.common.domain.result.ResultStatus;
 import lombok.Getter;
 
 /**

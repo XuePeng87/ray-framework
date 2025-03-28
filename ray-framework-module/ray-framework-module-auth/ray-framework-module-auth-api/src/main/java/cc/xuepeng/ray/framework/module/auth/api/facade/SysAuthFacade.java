@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.module.auth.api.facade;
 
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.module.auth.domain.param.SysLoginParam;
+import cc.xuepeng.ray.framework.module.auth.api.request.SysLoginRequest;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.sdk.verifycode.model.ImageVerifyCode;
 
 /**
@@ -17,10 +17,10 @@ public interface SysAuthFacade {
     /**
      * 系统登录
      *
-     * @param sysLoginParam 系统登录的请求对象
+     * @param sysLoginRequest 系统登录的请求对象
      * @return 访问令牌
      */
-    String login(final SysLoginParam sysLoginParam);
+    String login(final SysLoginRequest sysLoginRequest);
 
     /**
      * @return 获取当前登录用户

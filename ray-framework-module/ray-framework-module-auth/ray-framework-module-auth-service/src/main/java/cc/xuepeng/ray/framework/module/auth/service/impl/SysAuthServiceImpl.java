@@ -1,21 +1,21 @@
 package cc.xuepeng.ray.framework.module.auth.service.impl;
 
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUserDept;
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUserFunc;
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUserRole;
-import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
-import cc.xuepeng.ray.framework.module.auth.domain.converter.CurrentUserConverter;
-import cc.xuepeng.ray.framework.module.auth.domain.dto.SysLoginDto;
 import cc.xuepeng.ray.framework.module.auth.service.SysAuthService;
+import cc.xuepeng.ray.framework.module.auth.service.converter.CurrentUserConverter;
+import cc.xuepeng.ray.framework.module.auth.service.dto.SysLoginDto;
 import cc.xuepeng.ray.framework.module.auth.service.exception.SysLoginFailedException;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysDeptDto;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysFuncDto;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysRoleDto;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysUserDto;
-import cc.xuepeng.ray.framework.module.system.service.*;
 import cc.xuepeng.ray.framework.module.system.service.decorator.func.SysFuncFormat;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysDeptDto;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysFuncDto;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysRoleDto;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysUserDto;
 import cc.xuepeng.ray.framework.module.system.service.exception.user.SysUserNotFoundException;
+import cc.xuepeng.ray.framework.module.system.service.service.*;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUser;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUserDept;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUserFunc;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUserRole;
+import cc.xuepeng.ray.framework.sdk.auth.service.IdentificationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 

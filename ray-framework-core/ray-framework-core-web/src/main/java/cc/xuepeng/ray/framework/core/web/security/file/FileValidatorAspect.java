@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.core.web.security.file;
 
 import cc.xuepeng.ray.framework.core.common.consts.FileConst;
-import cc.xuepeng.ray.framework.core.common.consts.FileType;
+import cc.xuepeng.ray.framework.core.common.enums.FileType;
 import cc.xuepeng.ray.framework.core.web.util.MultipartFileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;

@@ -1,9 +1,12 @@
 package cc.xuepeng.ray.framework.core.redis.config;
 
+import cc.xuepeng.ray.framework.core.redis.property.RedisProperty;
 import cc.xuepeng.ray.framework.core.redis.serializer.RedisJsonSerializer;
 import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -20,6 +23,8 @@ import java.nio.charset.StandardCharsets;
  *
  * @author xuepeng
  */
+@Configuration
+@EnableConfigurationProperties(RedisProperty.class)
 public class RedisConfiguration {
 
     /**
@@ -29,7 +34,7 @@ public class RedisConfiguration {
      */
     @Bean(name = "redisTemplate")
     @ConditionalOnMissingBean(name = "redisTemplate")
-    public RedisTemplate<String, Object> redisTemplate() {
+    public RedisTemplate<String, Object> redisTemplate(final RedisProperty redisProperty) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         // 配置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
@@ -44,7 +49,7 @@ public class RedisConfiguration {
         redisTemplate.setDefaultSerializer(StringRedisSerializer.UTF_8);
         redisTemplate.afterPropertiesSet();
         // 启用事务
-        redisTemplate.setEnableTransactionSupport(Boolean.TRUE);
+        redisTemplate.setEnableTransactionSupport(redisProperty.getTransaction());
         return redisTemplate;
     }
 
@@ -55,11 +60,11 @@ public class RedisConfiguration {
      */
     @Bean(name = "stringRedisTemplate")
     @ConditionalOnMissingBean(name = "stringRedisTemplate")
-    public StringRedisTemplate stringRedisTemplate() {
+    public StringRedisTemplate stringRedisTemplate(final RedisProperty redisProperty) {
         // 配置redisTemplate
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(redisConnectionFactory);
-        stringRedisTemplate.setEnableTransactionSupport(Boolean.TRUE);
+        stringRedisTemplate.setEnableTransactionSupport(redisProperty.getTransaction());
         return stringRedisTemplate;
     }
 

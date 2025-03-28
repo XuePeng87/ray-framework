@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.module.auth.service;
 
-import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
-import cc.xuepeng.ray.framework.module.auth.domain.dto.SysLoginDto;
+import cc.xuepeng.ray.framework.module.auth.service.dto.SysLoginDto;
+import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUser;
 
 /**
  * 系统认证的业务处理接口

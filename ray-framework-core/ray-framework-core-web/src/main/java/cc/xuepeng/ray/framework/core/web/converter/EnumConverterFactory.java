@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.core.web.converter;
 
-import cc.xuepeng.ray.framework.core.model.enums.BaseEnum;
+import cc.xuepeng.ray.framework.core.common.domain.enums.BaseEnum;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 

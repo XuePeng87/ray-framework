@@ -1,12 +1,12 @@
 package cc.xuepeng.ray.framework.module.system.api.facade.impl;
 
-import cc.xuepeng.ray.framework.core.model.vo.PageVo;
+import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
+import cc.xuepeng.ray.framework.module.system.api.converter.SysDictDtoConverter;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysDictFacade;
-import cc.xuepeng.ray.framework.module.system.domain.converter.SysDictConverter;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictDto;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDictParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictVo;
-import cc.xuepeng.ray.framework.module.system.service.SysDictService;
+import cc.xuepeng.ray.framework.module.system.api.request.SysDictRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysDictResponse;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysDictDto;
+import cc.xuepeng.ray.framework.module.system.service.service.SysDictService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -24,12 +24,12 @@ public class SysDictFacadeImpl implements SysDictFacade {
     /**
      * 创建系统字典
      *
-     * @param sysDictParam 系统字典的请求对象
+     * @param sysDictRequest 系统字典的请求对象
      * @return 是否创建成功
      */
     @Override
-    public boolean create(final SysDictParam sysDictParam) {
-        final SysDictDto sysDictDto = sysDictConverter.paramToDto(sysDictParam);
+    public boolean create(final SysDictRequest sysDictRequest) {
+        final SysDictDto sysDictDto = sysDictDtoConverter.requestToDto(sysDictRequest);
         return sysDictService.create(sysDictDto);
     }
 
@@ -37,12 +37,12 @@ public class SysDictFacadeImpl implements SysDictFacade {
      * 修改系统字典
      *
      * @param code         系统字典的编号
-     * @param sysDictParam 系统字典的请求对象
+     * @param sysDictRequest 系统字典的请求对象
      * @return 是否修改成功
      */
     @Override
-    public boolean update(final String code, final SysDictParam sysDictParam) {
-        final SysDictDto sysDictDto = sysDictConverter.paramToDto(sysDictParam);
+    public boolean update(final String code, final SysDictRequest sysDictRequest) {
+        final SysDictDto sysDictDto = sysDictDtoConverter.requestToDto(sysDictRequest);
         sysDictDto.setCode(code);
         return sysDictService.update(sysDictDto);
     }
@@ -65,29 +65,29 @@ public class SysDictFacadeImpl implements SysDictFacade {
      * @return 系统字典的响应对象
      */
     @Override
-    public SysDictVo findByCode(final String code) {
+    public SysDictResponse findByCode(final String code) {
         final SysDictDto sysDictDto = sysDictService.findByCode(code);
-        return sysDictConverter.dtoToVo(sysDictDto);
+        return sysDictDtoConverter.dtoToResponse(sysDictDto);
     }
 
     /**
      * 根据条件分页查询系统字典
      *
-     * @param sysDictParam 系统字典的数据请求对象
+     * @param sysDictRequest 系统字典的数据请求对象
      * @return 系统字典的数据传输对象集合
      */
     @Override
-    public PageVo<SysDictVo> pageByCondition(final SysDictParam sysDictParam) {
-        final SysDictDto sysDictDto = sysDictConverter.paramToDto(sysDictParam);
+    public PageResponse<SysDictResponse> pageByCondition(final SysDictRequest sysDictRequest) {
+        final SysDictDto sysDictDto = sysDictDtoConverter.requestToDto(sysDictRequest);
         final Page<SysDictDto> sysDictDtos = sysDictService.pageByCondition(sysDictDto);
-        return sysDictConverter.dtoPageToVoPage(sysDictDtos);
+        return sysDictDtoConverter.dtoPageToResponsePage(sysDictDtos);
     }
 
     /**
-     * 系统字典的对象转换接口
+     * 系统字典数据传输类转换接口
      */
     @Resource
-    private SysDictConverter sysDictConverter;
+    private SysDictDtoConverter sysDictDtoConverter;
 
     /**
      * 系统字典的业务处理接口

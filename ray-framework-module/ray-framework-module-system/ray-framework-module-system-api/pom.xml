@@ -23,6 +23,11 @@
     <dependencies>
         <dependency>
             <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-module-common-log</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-module-system-service</artifactId>
             <version>${project.version}</version>
         </dependency>

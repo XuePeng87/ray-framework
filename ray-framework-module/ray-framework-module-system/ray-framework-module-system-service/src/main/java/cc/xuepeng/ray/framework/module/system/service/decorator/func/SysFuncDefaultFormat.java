@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.service.decorator.func;
 
 import cc.xuepeng.ray.framework.core.common.util.TreeUtil;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysFuncDto;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysFuncDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

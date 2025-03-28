@@ -1,12 +1,12 @@
 package cc.xuepeng.ray.framework.module.system.api.facade.impl;
 
-import cc.xuepeng.ray.framework.core.model.vo.PageVo;
+import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
+import cc.xuepeng.ray.framework.module.system.api.converter.SysDictItemDtoConverter;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysDictItemFacade;
-import cc.xuepeng.ray.framework.module.system.domain.converter.SysDictItemConverter;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysDictItemDto;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDictItemParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictItemVo;
-import cc.xuepeng.ray.framework.module.system.service.SysDictItemService;
+import cc.xuepeng.ray.framework.module.system.api.request.SysDictItemRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysDictItemResponse;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysDictItemDto;
+import cc.xuepeng.ray.framework.module.system.service.service.SysDictItemService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -24,12 +24,12 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
     /**
      * 创建系统字典项
      *
-     * @param sysDictItemParam 系统字典项的请求对象
+     * @param sysDictItemRequest 系统字典项的请求对象
      * @return 是否创建成功
      */
     @Override
-    public boolean create(final SysDictItemParam sysDictItemParam) {
-        final SysDictItemDto sysDictItemDto = sysDictItemConverter.paramToDto(sysDictItemParam);
+    public boolean create(final SysDictItemRequest sysDictItemRequest) {
+        final SysDictItemDto sysDictItemDto = sysDictItemDtoConverter.requestToDto(sysDictItemRequest);
         return sysDictItemService.create(sysDictItemDto);
     }
 
@@ -37,12 +37,12 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
      * 修改系统字典项
      *
      * @param code             系统字典项的编号
-     * @param sysDictItemParam 系统字典项的请求对象
+     * @param sysDictItemRequest 系统字典项的请求对象
      * @return 是否修改成功
      */
     @Override
-    public boolean update(final String code, final SysDictItemParam sysDictItemParam) {
-        final SysDictItemDto sysDictItemDto = sysDictItemConverter.paramToDto(sysDictItemParam);
+    public boolean update(final String code, final SysDictItemRequest sysDictItemRequest) {
+        final SysDictItemDto sysDictItemDto = sysDictItemDtoConverter.requestToDto(sysDictItemRequest);
         sysDictItemDto.setCode(code);
         return sysDictItemService.update(sysDictItemDto);
     }
@@ -65,29 +65,29 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
      * @return 系统字典项的响应对象
      */
     @Override
-    public SysDictItemVo findByCode(final String code) {
+    public SysDictItemResponse findByCode(final String code) {
         final SysDictItemDto sysDictItemDto = sysDictItemService.findByCode(code);
-        return sysDictItemConverter.dtoToVo(sysDictItemDto);
+        return sysDictItemDtoConverter.dtoToResponse(sysDictItemDto);
     }
 
     /**
      * 根据条件分页查询系统字典项
      *
-     * @param sysDictItemParam 系统字典项的数据请求对象
+     * @param sysDictItemRequest 系统字典项的数据请求对象
      * @return 系统字典项的响应对象集合
      */
     @Override
-    public PageVo<SysDictItemVo> pageByCondition(final SysDictItemParam sysDictItemParam) {
-        final SysDictItemDto sysDictItemDto = sysDictItemConverter.paramToDto(sysDictItemParam);
+    public PageResponse<SysDictItemResponse> pageByCondition(final SysDictItemRequest sysDictItemRequest) {
+        final SysDictItemDto sysDictItemDto = sysDictItemDtoConverter.requestToDto(sysDictItemRequest);
         final Page<SysDictItemDto> sysDictItemDtos = sysDictItemService.pageByCondition(sysDictItemDto);
-        return sysDictItemConverter.dtoPageToVoPage(sysDictItemDtos);
+        return sysDictItemDtoConverter.dtoPageToResponsePage(sysDictItemDtos);
     }
 
     /**
-     * 系统字典项的对象转换接口
+     * 系统字典项数据传输类转换接口
      */
     @Resource
-    private SysDictItemConverter sysDictItemConverter;
+    private SysDictItemDtoConverter sysDictItemDtoConverter;
 
     /**
      * 系统字典项的业务处理接口

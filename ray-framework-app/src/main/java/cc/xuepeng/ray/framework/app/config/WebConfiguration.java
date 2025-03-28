@@ -3,7 +3,7 @@ package cc.xuepeng.ray.framework.app.config;
 import cc.xuepeng.ray.framework.core.web.converter.EnumConverterFactory;
 import cc.xuepeng.ray.framework.core.web.converter.Jackson2HttpMessageConverter;
 import cc.xuepeng.ray.framework.core.web.converter.LocalDateTimeConverter;
-import cc.xuepeng.ray.framework.core.web.log.interceptor.LogTrackInterceptor;
+import cc.xuepeng.ray.framework.core.web.interceptor.LogTrackInterceptor;
 import cc.xuepeng.ray.framework.core.web.security.cors.CorsProperty;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;

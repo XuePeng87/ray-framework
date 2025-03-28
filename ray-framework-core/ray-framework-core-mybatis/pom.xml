@@ -24,11 +24,6 @@
         <!-- RayFramework -->
         <dependency>
             <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-core-model</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-core-common</artifactId>
             <version>${project.version}</version>
         </dependency>

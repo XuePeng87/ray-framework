@@ -1,12 +1,12 @@
 package cc.xuepeng.ray.framework.module.system.api.facade.impl;
 
 import cc.xuepeng.ray.framework.core.common.util.TreeUtil;
+import cc.xuepeng.ray.framework.module.system.api.converter.SysFuncDtoConverter;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysFuncFacade;
-import cc.xuepeng.ray.framework.module.system.domain.converter.SysFuncConverter;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysFuncDto;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysFuncParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysFuncVo;
-import cc.xuepeng.ray.framework.module.system.service.SysFuncService;
+import cc.xuepeng.ray.framework.module.system.api.request.SysFuncRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysFuncResponse;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysFuncDto;
+import cc.xuepeng.ray.framework.module.system.service.service.SysFuncService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -23,12 +23,12 @@ public class SysFuncFacadeImpl implements SysFuncFacade {
     /**
      * 创建系统功能
      *
-     * @param sysFuncParam 系统功能的请求对象
+     * @param sysFuncRequest 系统功能的请求对象
      * @return 是否创建成功
      */
     @Override
-    public boolean create(final SysFuncParam sysFuncParam) {
-        final SysFuncDto sysFuncDto = sysFuncConverter.paramToDto(sysFuncParam);
+    public boolean create(final SysFuncRequest sysFuncRequest) {
+        final SysFuncDto sysFuncDto = sysFuncDtoConverter.requestToDto(sysFuncRequest);
         return sysFuncService.create(sysFuncDto);
     }
 
@@ -36,12 +36,12 @@ public class SysFuncFacadeImpl implements SysFuncFacade {
      * 修改系统功能
      *
      * @param code         系统功能的编号
-     * @param sysFuncParam 系统功能的请求对象
+     * @param sysFuncRequest 系统功能的请求对象
      * @return 是否修改成功
      */
     @Override
-    public boolean update(final String code, final SysFuncParam sysFuncParam) {
-        final SysFuncDto sysFuncDto = sysFuncConverter.paramToDto(sysFuncParam);
+    public boolean update(final String code, final SysFuncRequest sysFuncRequest) {
+        final SysFuncDto sysFuncDto = sysFuncDtoConverter.requestToDto(sysFuncRequest);
         sysFuncDto.setCode(code);
         return sysFuncService.update(sysFuncDto);
     }
@@ -64,29 +64,29 @@ public class SysFuncFacadeImpl implements SysFuncFacade {
      * @return 是否删除成功
      */
     @Override
-    public SysFuncVo findByCode(final String code) {
+    public SysFuncResponse findByCode(final String code) {
         final SysFuncDto sysFuncDto = sysFuncService.findByCode(code);
-        return sysFuncConverter.dtoToVo(sysFuncDto);
+        return sysFuncDtoConverter.dtoToResponse(sysFuncDto);
     }
 
     /**
      * 根据条件查询系统功能
      *
-     * @param sysFuncParam 系统功能的请求对象
+     * @param sysFuncRequest 系统功能的请求对象
      * @return 系统功能的响应对象集合
      */
     @Override
-    public List<SysFuncVo> treeByCondition(final SysFuncParam sysFuncParam) {
-        final SysFuncDto sysFuncDto = sysFuncConverter.paramToDto(sysFuncParam);
+    public List<SysFuncResponse> treeByCondition(final SysFuncRequest sysFuncRequest) {
+        final SysFuncDto sysFuncDto = sysFuncDtoConverter.requestToDto(sysFuncRequest);
         final List<SysFuncDto> sysFuncDtoList = sysFuncService.listByCondition(sysFuncDto);
-        return sysFuncConverter.dtoListToVoList(TreeUtil.format(sysFuncDtoList));
+        return sysFuncDtoConverter.dtoListToResponseList(TreeUtil.format(sysFuncDtoList));
     }
 
     /**
-     * 系统功能的对象转换接口
+     * 系统功能数据传输类转换接口
      */
     @Resource
-    private SysFuncConverter sysFuncConverter;
+    private SysFuncDtoConverter sysFuncDtoConverter;
 
     /**
      * 系统功能的业务处理接口

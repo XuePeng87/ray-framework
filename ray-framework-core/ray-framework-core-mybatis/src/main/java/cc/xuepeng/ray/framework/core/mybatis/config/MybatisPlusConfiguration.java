@@ -23,12 +23,12 @@ import org.springframework.context.annotation.Configuration;
  * @author xuepeng
  */
 @Configuration
-@MapperScan(basePackages = {"cc.xuepeng.ray.framework.**.dao"})
+@MapperScan(basePackages = {"cc.xuepeng.ray.framework.**.repository"})
 @EnableConfigurationProperties(MybatisPlusProperty.class)
 public class MybatisPlusConfiguration {
 
     /**
-     * @return 配置MybaitsPlus属性
+     * @return 配置MyBatisPlus属性
      */
     @Bean
     public MybatisPlusPropertiesCustomizer mybatisPlusPropertiesCustomizer() {

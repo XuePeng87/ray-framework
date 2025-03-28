@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.core.web.security.file;
 
-import cc.xuepeng.ray.framework.core.common.consts.FileType;
+import cc.xuepeng.ray.framework.core.common.enums.FileType;
 
 import java.lang.annotation.*;
 

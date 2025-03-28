@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.module.system.service.decorator.dept;
 
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysDeptDto;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysDeptDto;
 
 import java.util.List;
 

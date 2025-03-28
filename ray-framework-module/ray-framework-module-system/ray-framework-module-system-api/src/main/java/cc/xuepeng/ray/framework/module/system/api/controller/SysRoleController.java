@@ -1,15 +1,15 @@
 package cc.xuepeng.ray.framework.module.system.api.controller;
 
-import cc.xuepeng.ray.framework.core.model.param.ParamValidateScope;
-import cc.xuepeng.ray.framework.core.model.result.DefaultResultFactory;
-import cc.xuepeng.ray.framework.core.model.result.Result;
-import cc.xuepeng.ray.framework.core.model.vo.PageVo;
+import cc.xuepeng.ray.framework.core.common.domain.request.RequestValidateScope;
+import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
+import cc.xuepeng.ray.framework.core.common.domain.result.DefaultResultFactory;
+import cc.xuepeng.ray.framework.core.common.domain.result.Result;
 import cc.xuepeng.ray.framework.core.web.controller.BaseController;
-import cc.xuepeng.ray.framework.core.web.log.annotation.OperateLog;
-import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogAction;
+import cc.xuepeng.ray.framework.module.common.log.annotation.OperateLog;
+import cc.xuepeng.ray.framework.module.common.log.enums.SysOperateLogAction;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysRoleFacade;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysRoleParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysRoleVo;
+import cc.xuepeng.ray.framework.module.system.api.request.SysRoleRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysRoleResponse;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.annotation.SaMode;
@@ -35,16 +35,16 @@ public class SysRoleController extends BaseController {
     /**
      * 创建系统角色
      *
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 是否创建成功
      */
     @PostMapping("/v1")
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "角色管理", remark = "创建角色", action = SysOperateLogAction.CREATE)
     public Result<Boolean> create(
-            @Validated(ParamValidateScope.create.class) @RequestBody final SysRoleParam sysRoleParam
+            @Validated(RequestValidateScope.create.class) @RequestBody final SysRoleRequest sysRoleRequest
     ) {
-        return sysRoleFacade.create(sysRoleParam) ?
+        return sysRoleFacade.create(sysRoleRequest) ?
                 DefaultResultFactory.success("创建系统角色成功", Boolean.TRUE) :
                 DefaultResultFactory.fail("创建系统角色失败", Boolean.FALSE);
     }
@@ -53,7 +53,7 @@ public class SysRoleController extends BaseController {
      * 修改系统角色
      *
      * @param code         系统角色的编号
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
@@ -61,9 +61,9 @@ public class SysRoleController extends BaseController {
     @OperateLog(module = "系统管理", func = "角色管理", remark = "修改角色", action = SysOperateLogAction.UPDATE)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
-            @Validated(ParamValidateScope.create.class) @RequestBody final SysRoleParam sysRoleParam
+            @Validated(RequestValidateScope.create.class) @RequestBody final SysRoleRequest sysRoleRequest
     ) {
-        return sysRoleFacade.update(code, sysRoleParam) ?
+        return sysRoleFacade.update(code, sysRoleRequest) ?
                 DefaultResultFactory.success("修改系统角色成功", Boolean.TRUE) :
                 DefaultResultFactory.fail("修改系统角色失败", Boolean.FALSE);
     }
@@ -93,38 +93,38 @@ public class SysRoleController extends BaseController {
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "角色管理", remark = "查询角色",
             action = SysOperateLogAction.DETAIL, persistent = false)
-    public Result<SysRoleVo> findByCode(@PathVariable(value = "code") final String code) {
-        final SysRoleVo result = sysRoleFacade.findByCode(code);
+    public Result<SysRoleResponse> findByCode(@PathVariable(value = "code") final String code) {
+        final SysRoleResponse result = sysRoleFacade.findByCode(code);
         return DefaultResultFactory.success("查询系统角色", result);
     }
 
     /**
      * 查询系统角色
      *
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 系统角色的响应对象集合
      */
     @GetMapping("/v1/list")
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "角色管理", remark = "查询角色列表",
             action = SysOperateLogAction.QUERY, persistent = false)
-    public Result<List<SysRoleVo>> listByCondition(final SysRoleParam sysRoleParam) {
-        final List<SysRoleVo> result = sysRoleFacade.listByCondition(sysRoleParam);
+    public Result<List<SysRoleResponse>> listByCondition(final SysRoleRequest sysRoleRequest) {
+        final List<SysRoleResponse> result = sysRoleFacade.listByCondition(sysRoleRequest);
         return DefaultResultFactory.success("查询系统角色列表", result);
     }
 
     /**
      * 分页查询系统角色
      *
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 系统角色的响应对象集合
      */
     @GetMapping("/v1/page")
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "角色管理", remark = "分页查询角色",
             action = SysOperateLogAction.QUERY, persistent = false)
-    public Result<PageVo<SysRoleVo>> pageByCondition(final SysRoleParam sysRoleParam) {
-        final PageVo<SysRoleVo> result = sysRoleFacade.pageByCondition(sysRoleParam);
+    public Result<PageResponse<SysRoleResponse>> pageByCondition(final SysRoleRequest sysRoleRequest) {
+        final PageResponse<SysRoleResponse> result = sysRoleFacade.pageByCondition(sysRoleRequest);
         return DefaultResultFactory.success("分页查询角色列表", result);
     }
 

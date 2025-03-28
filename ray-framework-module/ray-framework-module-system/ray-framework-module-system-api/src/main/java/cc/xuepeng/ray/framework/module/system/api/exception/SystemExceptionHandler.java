@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.module.system.api.exception;
 
-import cc.xuepeng.ray.framework.core.model.result.Result;
+import cc.xuepeng.ray.framework.core.common.domain.result.Result;
 import cc.xuepeng.ray.framework.module.system.service.exception.dept.SysDeptDuplicateException;
 import cc.xuepeng.ray.framework.module.system.service.exception.dept.SysDeptNotFoundException;
 import cc.xuepeng.ray.framework.module.system.service.exception.dict.SysDictDuplicateException;

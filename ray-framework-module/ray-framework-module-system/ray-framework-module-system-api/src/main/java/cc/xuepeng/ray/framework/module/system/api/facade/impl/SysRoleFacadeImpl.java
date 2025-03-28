@@ -1,13 +1,13 @@
 package cc.xuepeng.ray.framework.module.system.api.facade.impl;
 
-import cc.xuepeng.ray.framework.core.model.vo.PageVo;
+import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
+import cc.xuepeng.ray.framework.module.system.api.converter.SysRoleDtoConverter;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysRoleFacade;
-import cc.xuepeng.ray.framework.module.system.domain.converter.SysRoleConverter;
-import cc.xuepeng.ray.framework.module.system.domain.dto.SysRoleDto;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysRoleParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysRoleVo;
-import cc.xuepeng.ray.framework.module.system.service.SysRoleFuncGrantService;
-import cc.xuepeng.ray.framework.module.system.service.SysRoleService;
+import cc.xuepeng.ray.framework.module.system.api.request.SysRoleRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysRoleResponse;
+import cc.xuepeng.ray.framework.module.system.service.dto.SysRoleDto;
+import cc.xuepeng.ray.framework.module.system.service.service.SysRoleFuncGrantService;
+import cc.xuepeng.ray.framework.module.system.service.service.SysRoleService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -25,12 +25,12 @@ public class SysRoleFacadeImpl implements SysRoleFacade {
     /**
      * 创建系统角色
      *
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 是否创建成功
      */
     @Override
-    public boolean create(final SysRoleParam sysRoleParam) {
-        final SysRoleDto sysRoleDto = sysRoleConverter.paramToDto(sysRoleParam);
+    public boolean create(final SysRoleRequest sysRoleRequest) {
+        final SysRoleDto sysRoleDto = sysRoleDtoConverter.requestToDto(sysRoleRequest);
         return sysRoleService.create(sysRoleDto);
     }
 
@@ -38,12 +38,12 @@ public class SysRoleFacadeImpl implements SysRoleFacade {
      * 修改系统角色
      *
      * @param code         系统角色的编号
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 是否修改成功
      */
     @Override
-    public boolean update(final String code, final SysRoleParam sysRoleParam) {
-        final SysRoleDto sysRoleDto = sysRoleConverter.paramToDto(sysRoleParam);
+    public boolean update(final String code, final SysRoleRequest sysRoleRequest) {
+        final SysRoleDto sysRoleDto = sysRoleDtoConverter.requestToDto(sysRoleRequest);
         sysRoleDto.setCode(code);
         return sysRoleService.update(sysRoleDto);
     }
@@ -66,9 +66,9 @@ public class SysRoleFacadeImpl implements SysRoleFacade {
      * @return 系统角色的响应对象
      */
     @Override
-    public SysRoleVo findByCode(final String code) {
+    public SysRoleResponse findByCode(final String code) {
         final SysRoleDto sysRoleDto = sysRoleService.findByCode(code);
-        return sysRoleConverter.dtoToVo(sysRoleDto);
+        return sysRoleDtoConverter.dtoToResponse(sysRoleDto);
     }
 
     /**
@@ -78,35 +78,35 @@ public class SysRoleFacadeImpl implements SysRoleFacade {
      * @return 系统角色的响应对象集合
      */
     @Override
-    public List<SysRoleVo> findByCodes(final List<String> codes) {
+    public List<SysRoleResponse> findByCodes(final List<String> codes) {
         final List<SysRoleDto> sysRoleDtos = sysRoleService.findByCodes(codes);
-        return sysRoleConverter.dtoListToVoList(sysRoleDtos);
+        return sysRoleDtoConverter.dtoListToResponseList(sysRoleDtos);
     }
 
     /**
      * 根据条件查询系统角色
      *
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 系统角色的响应对象集合
      */
     @Override
-    public List<SysRoleVo> listByCondition(final SysRoleParam sysRoleParam) {
-        final SysRoleDto sysRoleDto = sysRoleConverter.paramToDto(sysRoleParam);
+    public List<SysRoleResponse> listByCondition(final SysRoleRequest sysRoleRequest) {
+        final SysRoleDto sysRoleDto = sysRoleDtoConverter.requestToDto(sysRoleRequest);
         final List<SysRoleDto> sysRoleDtos = sysRoleService.listByCondition(sysRoleDto);
-        return sysRoleConverter.dtoListToVoList(sysRoleDtos);
+        return sysRoleDtoConverter.dtoListToResponseList(sysRoleDtos);
     }
 
     /**
      * 根据条件分页查询系统角色
      *
-     * @param sysRoleParam 系统角色的请求对象
+     * @param sysRoleRequest 系统角色的请求对象
      * @return 系统角色的响应对象集合
      */
     @Override
-    public PageVo<SysRoleVo> pageByCondition(final SysRoleParam sysRoleParam) {
-        final SysRoleDto sysRoleDto = sysRoleConverter.paramToDto(sysRoleParam);
+    public PageResponse<SysRoleResponse> pageByCondition(final SysRoleRequest sysRoleRequest) {
+        final SysRoleDto sysRoleDto = sysRoleDtoConverter.requestToDto(sysRoleRequest);
         final Page<SysRoleDto> sysRoleDtos = sysRoleService.pageByCondition(sysRoleDto);
-        return sysRoleConverter.dtoPageToVoPage(sysRoleDtos);
+        return sysRoleDtoConverter.dtoPageToResponsePage(sysRoleDtos);
     }
 
     /**
@@ -132,10 +132,10 @@ public class SysRoleFacadeImpl implements SysRoleFacade {
     }
 
     /**
-     * 系统角色对象转换接口
+     * 系统角色数据传输类转换接口
      */
     @Resource
-    private SysRoleConverter sysRoleConverter;
+    private SysRoleDtoConverter sysRoleDtoConverter;
 
     /**
      * 系统角色的业务处理接口

@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.module.system.api.facade;
 
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
+import cc.xuepeng.ray.framework.module.system.api.request.SysDeptRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysDeptResponse;
 
 import java.util.List;
 
@@ -15,19 +15,19 @@ public interface SysDeptFacade {
     /**
      * 创建系统部门
      *
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 是否创建成功
      */
-    boolean create(final SysDeptParam sysDeptParam);
+    boolean create(final SysDeptRequest sysDeptRequest);
 
     /**
      * 修改系统部门
      *
      * @param code         系统部门的编号
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 是否修改成功
      */
-    boolean update(final String code, final SysDeptParam sysDeptParam);
+    boolean update(final String code, final SysDeptRequest sysDeptRequest);
 
     /**
      * 删除系统部门
@@ -43,14 +43,14 @@ public interface SysDeptFacade {
      * @param code 系统部门的编号
      * @return 系统部门的响应对象
      */
-    SysDeptVo findByCode(final String code);
+    SysDeptResponse findByCode(final String code);
 
     /**
      * 根据条件查询系统部门
      *
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 系统部门的响应对象集合
      */
-    List<SysDeptVo> treeByCondition(final SysDeptParam sysDeptParam);
+    List<SysDeptResponse> treeByCondition(final SysDeptRequest sysDeptRequest);
 
 }

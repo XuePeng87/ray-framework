@@ -1,8 +1,8 @@
 package cc.xuepeng.ray.framework.module.system.api.facade;
 
-import cc.xuepeng.ray.framework.core.model.vo.PageVo;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDictItemParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDictItemVo;
+import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
+import cc.xuepeng.ray.framework.module.system.api.request.SysDictItemRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysDictItemResponse;
 
 import java.util.List;
 
@@ -16,19 +16,19 @@ public interface SysDictItemFacade {
     /**
      * 创建系统字典项
      *
-     * @param sysDictItemParam 系统字典项的请求对象
+     * @param sysDictItemRequest 系统字典项的请求对象
      * @return 是否创建成功
      */
-    boolean create(final SysDictItemParam sysDictItemParam);
+    boolean create(final SysDictItemRequest sysDictItemRequest);
 
     /**
      * 修改系统字典项
      *
      * @param code             系统字典项的编号
-     * @param sysDictItemParam 系统字典项的请求对象
+     * @param sysDictItemRequest 系统字典项的请求对象
      * @return 是否修改成功
      */
-    boolean update(final String code, final SysDictItemParam sysDictItemParam);
+    boolean update(final String code, final SysDictItemRequest sysDictItemRequest);
 
     /**
      * 删除系统字典项
@@ -44,14 +44,14 @@ public interface SysDictItemFacade {
      * @param code 系统字典项的编号
      * @return 系统字典项的响应对象
      */
-    SysDictItemVo findByCode(final String code);
+    SysDictItemResponse findByCode(final String code);
 
     /**
      * 根据条件分页查询系统字典项
      *
-     * @param sysDictItemParam 系统字典项的数据请求对象
+     * @param sysDictItemRequest 系统字典项的数据请求对象
      * @return 系统字典项的响应对象集合
      */
-    PageVo<SysDictItemVo> pageByCondition(final SysDictItemParam sysDictItemParam);
+    PageResponse<SysDictItemResponse> pageByCondition(final SysDictItemRequest sysDictItemRequest);
 
 }

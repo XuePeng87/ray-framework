@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.sdk.verifycode.enums;
 
-import cc.xuepeng.ray.framework.core.model.enums.BaseEnum;
+import cc.xuepeng.ray.framework.core.common.domain.enums.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;

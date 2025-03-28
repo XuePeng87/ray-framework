@@ -7,30 +7,34 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 验证某个对象是否存在的工具类
+ * ExistsUtil 类是一个用于验证某个对象是否存在的工具类。
+ * 它提供了静态方法来判断值在给定列表中是否存在，以及一个自定义的 Lambda 接口来定义存在性检查逻辑。
  *
  * @author xuepeng
  */
 public class ExistsUtil {
 
     /**
-     * 构造函数
+     * 私有构造函数，防止外部实例化该类。
+     * 因为该类提供的是静态方法，所以不需要实例化。
      */
     private ExistsUtil() {
     }
 
     /**
-     * 判断值是否存在
-     * 存在返回true，不存在返回false
+     * 判断值是否存在。
+     * 如果值在列表中存在，则返回 true；否则返回 false。
+     * 该方法通过调用另一个重载的 exists 方法，并传入一个默认的存在性检查逻辑。
      *
-     * @param list  根据要验证的值查询出的数据列表
-     * @param value 要验证是否存在的值
-     * @return 是否存在
+     * @param list  根据要验证的值查询出的数据列表。
+     * @param value 要验证是否存在的值。
+     * @param field 用于从列表中的对象获取唯一标识的属性名。
+     * @return 如果值存在，则返回 true；否则返回 false。
      */
     public static <T> boolean exists(final List<T> list, final String value, final String field) {
         return exists(list, value, (l, v) -> {
             if (l.size() > 1) {
-                // 如果list中的数据数量大于1个，则表示已经存在了，返回ture
+                // 如果list中的数据数量大于1个，则表示已经存在了，返回true
                 return true;
             } else if (l.isEmpty()) {
                 // 如果list中没有记录，则认为是要新增，此时返回false
@@ -46,27 +50,33 @@ public class ExistsUtil {
     }
 
     /**
-     * 判断值是否存在
+     * 判断值是否存在。
+     * 该方法接受一个自定义的 Lambda 表达式（ExistsFunction 接口的实现），用于定义存在性检查逻辑。
      *
-     * @param list           数据列表
-     * @param value          要验证是否存在的值
-     * @param existsFunction 验证存在的Lambda接口
-     * @return 是否存在
+     * @param list           数据列表。
+     * @param value          要验证是否存在的值。
+     * @param existsFunction 自定义的存在性检查逻辑。
+     * @return 如果值存在，则返回 true；否则返回 false。
      */
     public static <T> boolean exists(final List<T> list, final String value, final ExistsFunction<T> existsFunction) {
         return existsFunction.exists(list, value);
     }
 
+    /**
+     * ExistsFunction 是一个函数式接口，用于定义值存在性的检查逻辑。
+     * 实现该接口的类必须提供一个 exists 方法，该方法接受一个数据列表和一个要验证的值，并返回一个布尔值来表示值是否存在。
+     *
+     * @param <T> 数据列表中的元素类型。
+     */
     @FunctionalInterface
     public interface ExistsFunction<T> {
 
         /**
-         * 判断值是否存在
-         * 存在返回true，不存在返回false
+         * 判断值是否存在。
          *
-         * @param list  根据要验证的值查询出的数据列表
-         * @param value 要验证是否存在的值
-         * @return 是否存在
+         * @param list  根据要验证的值查询出的数据列表。
+         * @param value 要验证是否存在的值。
+         * @return 如果值存在，则返回 true；否则返回 false。
          */
         boolean exists(List<T> list, Serializable value);
 

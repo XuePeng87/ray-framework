@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.module.system.api.exception;
 
-import cc.xuepeng.ray.framework.core.model.result.ResultStatus;
+import cc.xuepeng.ray.framework.core.common.domain.result.ResultStatus;
 
 /**
  * 系统管理异常响应状态

@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.core.web.util;
 
-import cc.xuepeng.ray.framework.core.common.consts.FileType;
+import cc.xuepeng.ray.framework.core.common.enums.FileType;
 import cc.xuepeng.ray.framework.core.common.exception.FileUtilException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;

@@ -47,7 +47,7 @@
         <mysql.version>8.3.0</mysql.version>
         <nashorn-core.version>15.4</nashorn-core.version>
         <reflectasm.version>1.11.9</reflectasm.version>
-        <sa-token.version>1.37.0</sa-token.version>
+        <sa-token.version>1.41.0</sa-token.version>
     </properties>
 
     <!-- 依赖管理 -->

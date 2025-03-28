@@ -17,6 +17,7 @@
     <modules>
         <module>ray-framework-module-system</module>
         <module>ray-framework-module-auth</module>
+        <module>ray-framework-module-common</module>
     </modules>
 
     <!-- 属性管理 -->

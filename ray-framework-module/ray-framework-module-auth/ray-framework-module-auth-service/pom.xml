@@ -21,11 +21,7 @@
 
     <!-- 依赖管理 -->
     <dependencies>
-        <dependency>
-            <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-module-auth-domain</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+        <!-- Ray Framework -->
         <dependency>
             <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-module-system-service</artifactId>

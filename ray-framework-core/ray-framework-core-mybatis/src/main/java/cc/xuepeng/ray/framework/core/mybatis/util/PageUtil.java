@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.core.mybatis.util;
 
-import cc.xuepeng.ray.framework.core.model.dto.BaseDto;
+import cc.xuepeng.ray.framework.core.common.domain.dto.BaseDto;
 import cc.xuepeng.ray.framework.core.mybatis.consts.QueryConst;
 import cc.xuepeng.ray.framework.core.mybatis.entity.BaseEntity;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;

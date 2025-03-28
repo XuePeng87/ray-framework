@@ -1,14 +1,14 @@
 package cc.xuepeng.ray.framework.module.system.api.controller;
 
-import cc.xuepeng.ray.framework.core.model.param.ParamValidateScope;
-import cc.xuepeng.ray.framework.core.model.result.DefaultResultFactory;
-import cc.xuepeng.ray.framework.core.model.result.Result;
+import cc.xuepeng.ray.framework.core.common.domain.request.RequestValidateScope;
+import cc.xuepeng.ray.framework.core.common.domain.result.DefaultResultFactory;
+import cc.xuepeng.ray.framework.core.common.domain.result.Result;
 import cc.xuepeng.ray.framework.core.web.controller.BaseController;
-import cc.xuepeng.ray.framework.core.web.log.annotation.OperateLog;
-import cc.xuepeng.ray.framework.core.web.log.enums.SysOperateLogAction;
+import cc.xuepeng.ray.framework.module.common.log.annotation.OperateLog;
+import cc.xuepeng.ray.framework.module.common.log.enums.SysOperateLogAction;
 import cc.xuepeng.ray.framework.module.system.api.facade.SysDeptFacade;
-import cc.xuepeng.ray.framework.module.system.domain.param.SysDeptParam;
-import cc.xuepeng.ray.framework.module.system.domain.vo.SysDeptVo;
+import cc.xuepeng.ray.framework.module.system.api.request.SysDeptRequest;
+import cc.xuepeng.ray.framework.module.system.api.response.SysDeptResponse;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.annotation.SaMode;
@@ -34,16 +34,17 @@ public class SysDeptController extends BaseController {
     /**
      * 创建系统部门
      *
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 是否创建成功
      */
     @PostMapping("/v1")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "创建部门", action = SysOperateLogAction.CREATE)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> create(
-            @Validated(ParamValidateScope.create.class) @RequestBody final SysDeptParam sysDeptParam
+            @Validated(RequestValidateScope.create.class)
+            @RequestBody final SysDeptRequest sysDeptRequest
     ) {
-        return sysDeptFacade.create(sysDeptParam) ?
+        return sysDeptFacade.create(sysDeptRequest) ?
                 DefaultResultFactory.success("创建部门成功", Boolean.TRUE) :
                 DefaultResultFactory.fail("创建部门失败", Boolean.FALSE);
     }
@@ -52,7 +53,7 @@ public class SysDeptController extends BaseController {
      * 修改系统部门
      *
      * @param code         系统部门的编号
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
@@ -60,9 +61,9 @@ public class SysDeptController extends BaseController {
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
-            @Validated(ParamValidateScope.update.class) @RequestBody final SysDeptParam sysDeptParam
+            @Validated(RequestValidateScope.update.class) @RequestBody final SysDeptRequest sysDeptRequest
     ) {
-        return sysDeptFacade.update(code, sysDeptParam) ?
+        return sysDeptFacade.update(code, sysDeptRequest) ?
                 DefaultResultFactory.success("修改部门成功", Boolean.TRUE) :
                 DefaultResultFactory.fail("修改部门失败", Boolean.FALSE);
     }
@@ -92,25 +93,25 @@ public class SysDeptController extends BaseController {
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门",
             action = SysOperateLogAction.DETAIL, persistent = false)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
-    public Result<SysDeptVo> findByCode(@PathVariable(value = "code") final String code) {
-        final SysDeptVo result = sysDeptFacade.findByCode(code);
+    public Result<SysDeptResponse> findByCode(@PathVariable(value = "code") final String code) {
+        final SysDeptResponse result = sysDeptFacade.findByCode(code);
         return DefaultResultFactory.success("根据编号查询部门", result);
     }
 
     /**
      * 根据条件查询系统部门
      *
-     * @param sysDeptParam 系统部门的请求对象
+     * @param sysDeptRequest 系统部门的请求对象
      * @return 系统部门的响应对象集合
      */
     @GetMapping("/v1")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门树",
             action = SysOperateLogAction.QUERY, persistent = false)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
-    public Result<List<SysDeptVo>> treeByCondition(
-            @Validated(ParamValidateScope.page.class) final SysDeptParam sysDeptParam
+    public Result<List<SysDeptResponse>> treeByCondition(
+            @Validated(RequestValidateScope.page.class) final SysDeptRequest sysDeptRequest
     ) {
-        final List<SysDeptVo> result = sysDeptFacade.treeByCondition(sysDeptParam);
+        final List<SysDeptResponse> result = sysDeptFacade.treeByCondition(sysDeptRequest);
         return DefaultResultFactory.success("查询系统部门", result);
     }
 
