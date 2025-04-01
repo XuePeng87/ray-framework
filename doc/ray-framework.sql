@@ -38,7 +38,7 @@ CREATE TABLE `sys_auth_log`
     `engine_version`  varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL DEFAULT '' COMMENT '引擎版本',
     `exe_time`        bigint                                                        NOT NULL DEFAULT '0' COMMENT '执行时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统认证日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统认证日志表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -408,7 +408,43 @@ VALUES (1, 1, '2024-04-28 07:23:27', '2bd631f674af40f19c73c0d8962a4d28', '127.0.
        (179, 1, '2025-01-07 08:21:22', 'bd385b2b16e64aba89e46a668901fbe8', '127.0.0.1', 'Chrome', '131.0.0.0', 'Mac',
         'OSX', '10_15_7', 'Webkit', '537.36', 45),
        (180, 1, '2025-03-12 11:12:52', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '133.0.0.0', 'Mac',
-        'OSX', '10_15_7', 'Webkit', '537.36', 192);
+        'OSX', '10_15_7', 'Webkit', '537.36', 192),
+       (181, 1, '2025-03-28 09:28:11', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 202),
+       (182, 2, '2025-03-28 09:35:19', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 3),
+       (183, 1, '2025-03-28 09:36:14', '67348a262c4048a9b12ddbdbfb2b437c', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 22),
+       (184, 2, '2025-03-28 10:31:53', '67348a262c4048a9b12ddbdbfb2b437c', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 3),
+       (185, 1, '2025-03-28 10:31:56', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 9),
+       (186, 2, '2025-03-28 10:32:45', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 3),
+       (187, 1, '2025-03-28 10:32:52', '67348a262c4048a9b12ddbdbfb2b437c', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 13),
+       (188, 2, '2025-03-28 10:33:17', '67348a262c4048a9b12ddbdbfb2b437c', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 4),
+       (189, 1, '2025-03-28 10:33:22', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 13),
+       (190, 1, '2025-03-31 02:36:04', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 177),
+       (191, 2, '2025-03-31 07:26:23', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 4),
+       (192, 1, '2025-03-31 07:26:26', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 15),
+       (193, 2, '2025-03-31 07:28:39', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 3),
+       (194, 1, '2025-03-31 07:28:46', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 15),
+       (195, 1, '2025-03-31 07:29:00', '67348a262c4048a9b12ddbdbfb2b437c', '127.0.0.1', 'Safari', '17.4.1', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '605.1.15', 12),
+       (196, 1, '2025-04-01 07:47:50', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 178),
+       (197, 2, '2025-04-01 09:20:28', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 7),
+       (198, 1, '2025-04-01 09:20:30', '2bd631f674af40f19c73c0d8962a4d28', '127.0.0.1', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 16);
 /*!40000 ALTER TABLE `sys_auth_log` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -615,7 +651,7 @@ CREATE TABLE `sys_func`
     `modify_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`id`),
     UNIQUE KEY `sys_func_unique` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统功能表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统功能表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -645,8 +681,8 @@ VALUES (1, '0', '0e5580ae61f54380bbc9f473655060bc', '系统管理', 0, 'system',
         0, 1, 0, 'ray:system:dicts', 'system/dict/index', 5, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
         '2024-05-25 09:48:49', '2bd631f674af40f19c73c0d8962a4d28', '2024-10-08 06:18:09'),
        (7, '0e5580ae61f54380bbc9f473655060bc', '76ed9e00ddcc4e58a60a8b86ebc5bbc6', '日志管理', 1, 'document', 'log', '',
-        0, 1, 1, 0, 'ray:system:logs', 'system/log/index', 6, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
-        '2024-09-30 03:29:58', '2bd631f674af40f19c73c0d8962a4d28', '2024-10-08 06:17:35'),
+        0, 1, 1, 0, 'ray:system:logs', 'system/log/index', 7, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
+        '2024-09-30 03:29:58', '2bd631f674af40f19c73c0d8962a4d28', '2025-04-01 08:45:07'),
        (8, '5b9a474efbc14b6e865e51cbbd16f311', 'cf7068d9d6d84afcb4a59b803e1e1a2f', '创建字典', 2, '', '', '', 0, 0, 0,
         0, 'ray:system:dicts:create', '', 1, '', 0, '2bd631f674af40f19c73c0d8962a4d28', '2024-10-08 02:20:18',
         '2bd631f674af40f19c73c0d8962a4d28', '2025-01-06 07:35:07'),
@@ -694,7 +730,10 @@ VALUES (1, '0', '0e5580ae61f54380bbc9f473655060bc', '系统管理', 0, 'system',
         '2bd631f674af40f19c73c0d8962a4d28', '2025-01-06 09:11:59'),
        (23, '9c476acf5ed34dd19a4f8037a065a669', '9b3793acfb7d485dbeee68e11524cc1d', '删除部门', 2, '', '', '', 0, 0, 0,
         0, 'ray:system:depts:delete', '', 3, '', 0, '2bd631f674af40f19c73c0d8962a4d28', '2025-01-06 09:12:11',
-        '2bd631f674af40f19c73c0d8962a4d28', '2025-01-06 09:12:11');
+        '2bd631f674af40f19c73c0d8962a4d28', '2025-01-06 09:12:11'),
+       (24, '0e5580ae61f54380bbc9f473655060bc', '51e96aa3fa43456eb5ff9be56ae26914', '字典项管理', 1, 'dict', 'dictItem',
+        '', 0, 0, 1, 0, 'ray:system:dict-items', 'system/dict/item', 6, '', 0, '2bd631f674af40f19c73c0d8962a4d28',
+        '2025-04-01 08:44:32', '2bd631f674af40f19c73c0d8962a4d28', '2025-04-01 09:20:24');
 /*!40000 ALTER TABLE `sys_func` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -731,7 +770,7 @@ CREATE TABLE `sys_operate_log`
     `engine_version`  varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL DEFAULT '' COMMENT '引擎版本',
     `exe_time`        bigint                                                        NOT NULL DEFAULT '0' COMMENT '执行时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统操作日志表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1219,7 +1258,96 @@ VALUES (2, 1, '2024-09-14 08:18:03', '2bd631f674af40f19c73c0d8962a4d28', '系统
         '127.0.0.1', 'http://127.0.0.1:28080/console/v1/dicts/v1/a812a48ce14a48f38c8ddc9f5ab984af',
         '/console/v1/dicts/v1/a812a48ce14a48f38c8ddc9f5ab984af', 'PUT',
         'cc.xuepeng.ray.framework.module.system.api.controller.SysDictController', '', 'Chrome', '131.0.0.0', 'Mac',
-        'OSX', '10_15_7', 'Webkit', '537.36', 29);
+        'OSX', '10_15_7', 'Webkit', '537.36', 29),
+       (104, 1, '2025-03-28 10:32:41', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '角色管理', '保存授权功能',
+        'GRANT', '127.0.0.1', 'http://127.0.0.1:28080/console/v1/roles/v1/c1b1d17824a14a2286a0150c048987d8/grant-func',
+        '/console/v1/roles/v1/c1b1d17824a14a2286a0150c048987d8/grant-func', 'POST',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysRoleController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 24),
+       (105, 1, '2025-03-28 10:33:44', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '角色管理', '保存授权功能',
+        'GRANT', '127.0.0.1', 'http://127.0.0.1:28080/console/v1/roles/v1/c1b1d17824a14a2286a0150c048987d8/grant-func',
+        '/console/v1/roles/v1/c1b1d17824a14a2286a0150c048987d8/grant-func', 'POST',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysRoleController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 13),
+       (106, 1, '2025-03-31 02:48:59', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '用户管理', '修改用户', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/users/v1/2bd631f674af40f19c73c0d8962a4d28',
+        '/console/v1/users/v1/2bd631f674af40f19c73c0d8962a4d28', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysUserController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 22),
+       (107, 1, '2025-03-31 02:49:37', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '用户管理', '修改用户', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/users/v1/2bd631f674af40f19c73c0d8962a4d28',
+        '/console/v1/users/v1/2bd631f674af40f19c73c0d8962a4d28', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysUserController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 22),
+       (108, 1, '2025-03-31 02:50:35', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '用户管理', '修改用户', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/users/v1/bd385b2b16e64aba89e46a668901fbe8',
+        '/console/v1/users/v1/bd385b2b16e64aba89e46a668901fbe8', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysUserController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 14),
+       (109, 1, '2025-03-31 07:26:51', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '角色管理', '保存授权功能',
+        'GRANT', '127.0.0.1', 'http://127.0.0.1:28080/console/v1/roles/v1/2c2650abd2814511a7eee37e422ac97a/grant-func',
+        '/console/v1/roles/v1/2c2650abd2814511a7eee37e422ac97a/grant-func', 'POST',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysRoleController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 17),
+       (110, 1, '2025-03-31 07:28:35', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '角色管理', '保存授权功能',
+        'GRANT', '127.0.0.1', 'http://127.0.0.1:28080/console/v1/roles/v1/c1b1d17824a14a2286a0150c048987d8/grant-func',
+        '/console/v1/roles/v1/c1b1d17824a14a2286a0150c048987d8/grant-func', 'POST',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysRoleController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 7),
+       (111, 1, '2025-03-31 07:55:08', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/76ed9e00ddcc4e58a60a8b86ebc5bbc6',
+        '/console/v1/funcs/v1/76ed9e00ddcc4e58a60a8b86ebc5bbc6', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 18),
+       (112, 1, '2025-03-31 08:45:12', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '部门管理', '修改部门', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/depts/v1/c31ab656ddcd4446aef40ba8eaabdea1',
+        '/console/v1/depts/v1/c31ab656ddcd4446aef40ba8eaabdea1', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysDeptController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 6),
+       (113, 1, '2025-04-01 08:44:32', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '创建功能', 'CREATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1', '/console/v1/funcs/v1', 'POST',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 13),
+       (114, 1, '2025-04-01 08:44:45', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914',
+        '/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 15),
+       (115, 1, '2025-04-01 08:44:51', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914',
+        '/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 8),
+       (116, 1, '2025-04-01 08:44:58', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914',
+        '/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 7),
+       (117, 1, '2025-04-01 08:45:07', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/76ed9e00ddcc4e58a60a8b86ebc5bbc6',
+        '/console/v1/funcs/v1/76ed9e00ddcc4e58a60a8b86ebc5bbc6', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 9),
+       (118, 1, '2025-04-01 08:45:13', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914',
+        '/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 8),
+       (119, 1, '2025-04-01 09:17:44', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914',
+        '/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 9),
+       (120, 1, '2025-04-01 09:18:45', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '角色管理', '保存授权功能',
+        'GRANT', '127.0.0.1', 'http://127.0.0.1:28080/console/v1/roles/v1/2c2650abd2814511a7eee37e422ac97a/grant-func',
+        '/console/v1/roles/v1/2c2650abd2814511a7eee37e422ac97a/grant-func', 'POST',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysRoleController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 22),
+       (121, 1, '2025-04-01 09:20:25', '2bd631f674af40f19c73c0d8962a4d28', '系统管理', '功能管理', '修改功能', 'UPDATE',
+        '127.0.0.1', 'http://127.0.0.1:28080/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914',
+        '/console/v1/funcs/v1/51e96aa3fa43456eb5ff9be56ae26914', 'PUT',
+        'cc.xuepeng.ray.framework.module.system.api.controller.SysFuncController', '', 'Chrome', '134.0.0.0', 'Mac',
+        'OSX', '10_15_7', 'Webkit', '537.36', 10);
 /*!40000 ALTER TABLE `sys_operate_log` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -1240,7 +1368,7 @@ CREATE TABLE `sys_operate_log_detail`
     `results` text COLLATE utf8mb4_general_ci COMMENT '返回值',
     `error`   text COLLATE utf8mb4_general_ci COMMENT '错误信息',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统操作日志详情表';
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统操作日志详情表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1400,7 +1528,7 @@ VALUES (1, 2, NULL,
        (54, 55, NULL,
         '[arg0:SysUserParam(deptCode=6220837f5a994d11a4f5cb4833fc216a, phoneNumber=15810051066, name=卡特琳娜, email=66695802@qq.com, status=SysUserStatus.ENABLE(code=1, desc=启用), remark=null)]',
         NULL,
-        '\n### Error updating database.  Cause: java.sql.SQLException: Field \'dept_code\' doesn\'t have a default value\n### The error may exist in cc/xuepeng/ray/framework/module/system/dao/SysUserDao.java (best guess)\n### The error may involve cc.xuepeng.ray.framework.module.system.repository.SysUserRepository.insert-Inline\n### The error occurred while setting parameters\n### SQL: INSERT INTO sys_user  ( code, phone_number, name, password, email,  status,   create_user,  modify_user )  VALUES (  ?, ?, ?, ?, ?,  ?,   ?,  ?  )\n### Cause: java.sql.SQLException: Field \'dept_code\' doesn\'t have a default value\n; Field \'dept_code\' doesn\'t have a default value'),(55,56,NULL,'[arg0:SysUserParam(deptCode=6220837f5a994d11a4f5cb4833fc216a, phoneNumber=15810051066, name=卡特琳娜, email=66695802@qq.com, status=SysUserStatus.ENABLE(code=1, desc=启用), remark=null)]',NULL,NULL),(56,57,NULL,'[arg0:67348a262c4048a9b12ddbdbfb2b437c][arg1:SysUserParam(deptCode=6220837f5a994d11a4f5cb4833fc216a, phoneNumber=15810051066, name=卡特琳娜, email=15810051066@qq.com, status=SysUserStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL),(57,58,NULL,'[arg0:undefined]',NULL,NULL),(58,59,NULL,'[arg0:[3606a726056c4f72903493a43a62b193]]',NULL,NULL),(59,60,NULL,'[arg0:67348a262c4048a9b12ddbdbfb2b437c]',NULL,NULL),(60,61,NULL,'[arg0:c1b1d17824a14a2286a0150c048987d8][arg1:[0e5580ae61f54380bbc9f473655060bc,
+        '\n### Error updating database.  Cause: java.sql.SQLException: Field \'dept_code\' doesn\'t have a default value\n### The error may exist in cc/xuepeng/ray/framework/module/system/dao/SysUserDao.java (best guess)\n### The error may involve cc.xuepeng.ray.framework.module.system.dao.SysUserDao.insert-Inline\n### The error occurred while setting parameters\n### SQL: INSERT INTO sys_user  ( code, phone_number, name, password, email,  status,   create_user,  modify_user )  VALUES (  ?, ?, ?, ?, ?,  ?,   ?,  ?  )\n### Cause: java.sql.SQLException: Field \'dept_code\' doesn\'t have a default value\n; Field \'dept_code\' doesn\'t have a default value'),(55,56,NULL,'[arg0:SysUserParam(deptCode=6220837f5a994d11a4f5cb4833fc216a, phoneNumber=15810051066, name=卡特琳娜, email=66695802@qq.com, status=SysUserStatus.ENABLE(code=1, desc=启用), remark=null)]',NULL,NULL),(56,57,NULL,'[arg0:67348a262c4048a9b12ddbdbfb2b437c][arg1:SysUserParam(deptCode=6220837f5a994d11a4f5cb4833fc216a, phoneNumber=15810051066, name=卡特琳娜, email=15810051066@qq.com, status=SysUserStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL),(57,58,NULL,'[arg0:undefined]',NULL,NULL),(58,59,NULL,'[arg0:[3606a726056c4f72903493a43a62b193]]',NULL,NULL),(59,60,NULL,'[arg0:67348a262c4048a9b12ddbdbfb2b437c]',NULL,NULL),(60,61,NULL,'[arg0:c1b1d17824a14a2286a0150c048987d8][arg1:[0e5580ae61f54380bbc9f473655060bc,
         6bfb7cc5de7a4d9c9b70d8563c7377ec, 7982cdc53a124340ab7da5e3f130b419, 86132348f09a4a8299d949d12f1237b4,
         9c476acf5ed34dd19a4f8037a065a669, 5b9a474efbc14b6e865e51cbbd16f311, 97d0150bf2ec45fbbf14cc3c6e0f5d14,
         cf7068d9d6d84afcb4a59b803e1e1a2f, 0bd07cc721d94942bc1001ccd1fe9e14, fb05ae0889da4e089c09a987e2e1673c,
@@ -1440,7 +1568,37 @@ VALUES (1, 2, NULL,
         743f88e0ec7a4047b74d9487a8826e93, 6371d5a4b47c41fe984d8e4d960c9460, 9b3793acfb7d485dbeee68e11524cc1d,
         5b9a474efbc14b6e865e51cbbd16f311, cf7068d9d6d84afcb4a59b803e1e1a2f, 0bd07cc721d94942bc1001ccd1fe9e14,
         fb05ae0889da4e089c09a987e2e1673c, 6b7666bd1dab4e20974422295de536e2, 89bdd7e788e1476fb56035a8b4760e44,
-        62e4f7d81aa2417db99845a4f663d419]]',NULL,NULL),(99,100,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8]',NULL,NULL),(100,101,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8]',NULL,NULL),(101,102,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8]',NULL,NULL),(102,103,NULL,'[arg0:a812a48ce14a48f38c8ddc9f5ab984af][arg1:SysDictParam(name=方向, value=DIRECTION, status=SysDictStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL);
+        62e4f7d81aa2417db99845a4f663d419]]',NULL,NULL),(99,100,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8]',NULL,NULL),(100,101,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8]',NULL,NULL),(101,102,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8]',NULL,NULL),(102,103,NULL,'[arg0:a812a48ce14a48f38c8ddc9f5ab984af][arg1:SysDictParam(name=方向, value=DIRECTION, status=SysDictStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL),(103,104,NULL,'[arg0:c1b1d17824a14a2286a0150c048987d8][arg1:[0e5580ae61f54380bbc9f473655060bc,
+        6bfb7cc5de7a4d9c9b70d8563c7377ec, a69358b0070f447db2ad7c3c42297270, 85471b98e6e0478f916c431b93e65dad,
+        4fe517c3a47a4b3e820ae812327f48cd, b60ca056b2404078ac905f59caa992d2, 9c476acf5ed34dd19a4f8037a065a669,
+        743f88e0ec7a4047b74d9487a8826e93, 5b9a474efbc14b6e865e51cbbd16f311, cf7068d9d6d84afcb4a59b803e1e1a2f,
+        0bd07cc721d94942bc1001ccd1fe9e14, fb05ae0889da4e089c09a987e2e1673c, 6b7666bd1dab4e20974422295de536e2,
+        89bdd7e788e1476fb56035a8b4760e44,
+        62e4f7d81aa2417db99845a4f663d419]]',NULL,NULL),(104,105,NULL,'[arg0:c1b1d17824a14a2286a0150c048987d8][arg1:[0e5580ae61f54380bbc9f473655060bc,
+        6bfb7cc5de7a4d9c9b70d8563c7377ec, a69358b0070f447db2ad7c3c42297270, 85471b98e6e0478f916c431b93e65dad,
+        4fe517c3a47a4b3e820ae812327f48cd, b60ca056b2404078ac905f59caa992d2, 9c476acf5ed34dd19a4f8037a065a669,
+        743f88e0ec7a4047b74d9487a8826e93, 6371d5a4b47c41fe984d8e4d960c9460, 9b3793acfb7d485dbeee68e11524cc1d,
+        5b9a474efbc14b6e865e51cbbd16f311, cf7068d9d6d84afcb4a59b803e1e1a2f, 0bd07cc721d94942bc1001ccd1fe9e14,
+        fb05ae0889da4e089c09a987e2e1673c, 6b7666bd1dab4e20974422295de536e2, 89bdd7e788e1476fb56035a8b4760e44,
+        62e4f7d81aa2417db99845a4f663d419]]',NULL,NULL),(105,106,NULL,'[arg0:2bd631f674af40f19c73c0d8962a4d28][arg1:SysUserRequest(deptCode=6220837f5a994d11a4f5cb4833fc216a, roleCodes=[2c2650abd2814511a7eee37e422ac97a], phoneNumber=17600891908, name=盖伦, email=17600891908@qq.com, status=BizStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL),(106,107,NULL,'[arg0:2bd631f674af40f19c73c0d8962a4d28][arg1:SysUserRequest(deptCode=6220837f5a994d11a4f5cb4833fc216a, roleCodes=[2c2650abd2814511a7eee37e422ac97a], phoneNumber=17600891908, name=盖伦, email=17600891908@qq.com, status=BizStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL),(107,108,NULL,'[arg0:bd385b2b16e64aba89e46a668901fbe8][arg1:SysUserRequest(deptCode=66ec739c41644db9a1ef6c2f085c8370, roleCodes=[c1b1d17824a14a2286a0150c048987d8], phoneNumber=13840586729, name=伊泽瑞尔, email=13840586729@qq.com, status=BizStatus.ENABLE(code=1, desc=启用), remark=)]',NULL,NULL),(108,109,NULL,'[arg0:2c2650abd2814511a7eee37e422ac97a][arg1:[0e5580ae61f54380bbc9f473655060bc,
+        6bfb7cc5de7a4d9c9b70d8563c7377ec, a69358b0070f447db2ad7c3c42297270, 85471b98e6e0478f916c431b93e65dad,
+        4fe517c3a47a4b3e820ae812327f48cd, b60ca056b2404078ac905f59caa992d2, 7982cdc53a124340ab7da5e3f130b419,
+        86132348f09a4a8299d949d12f1237b4, 9c476acf5ed34dd19a4f8037a065a669, 743f88e0ec7a4047b74d9487a8826e93,
+        6371d5a4b47c41fe984d8e4d960c9460, 9b3793acfb7d485dbeee68e11524cc1d, 5b9a474efbc14b6e865e51cbbd16f311,
+        cf7068d9d6d84afcb4a59b803e1e1a2f, 0bd07cc721d94942bc1001ccd1fe9e14, fb05ae0889da4e089c09a987e2e1673c,
+        6b7666bd1dab4e20974422295de536e2, 89bdd7e788e1476fb56035a8b4760e44, 62e4f7d81aa2417db99845a4f663d419,
+        76ed9e00ddcc4e58a60a8b86ebc5bbc6]]',NULL,NULL),(109,110,NULL,'[arg0:c1b1d17824a14a2286a0150c048987d8][arg1:[0e5580ae61f54380bbc9f473655060bc,
+        6bfb7cc5de7a4d9c9b70d8563c7377ec, a69358b0070f447db2ad7c3c42297270, 85471b98e6e0478f916c431b93e65dad,
+        4fe517c3a47a4b3e820ae812327f48cd, b60ca056b2404078ac905f59caa992d2, 9c476acf5ed34dd19a4f8037a065a669,
+        743f88e0ec7a4047b74d9487a8826e93, 6371d5a4b47c41fe984d8e4d960c9460,
+        9b3793acfb7d485dbeee68e11524cc1d]]',NULL,NULL),(110,111,NULL,'[arg0:76ed9e00ddcc4e58a60a8b86ebc5bbc6][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=日志管理, type=SysFuncType.MENU(code=1, desc=功能), icon=document, path=log, redirect=, linkable=false, cacheable=true, visible=true, alwaysShow=false, permission=ray:system:logs, component=system/log/index, sequence=6, remark=)]',NULL,NULL),(111,112,NULL,'[arg0:c31ab656ddcd4446aef40ba8eaabdea1][arg1:SysDeptRequest(parentCode=4baaf0e7b8384147ab1309f5f12d8294, code=c31ab656ddcd4446aef40ba8eaabdea1, name=研发二部, status=BizStatus.ENABLE(code=1, desc=启用), sequence=2, remark=)]',NULL,NULL),(112,113,NULL,'[arg0:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dict-item, redirect=null, linkable=null, cacheable=false, visible=true, alwaysShow=false, permission=null, component=system/dict-item/index, sequence=2, remark=null)]',NULL,NULL),(113,114,NULL,'[arg0:51e96aa3fa43456eb5ff9be56ae26914][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dict-item, redirect=, linkable=false, cacheable=false, visible=true, alwaysShow=false, permission=, component=system/dict-item/index, sequence=6, remark=)]',NULL,NULL),(114,115,NULL,'[arg0:51e96aa3fa43456eb5ff9be56ae26914][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dict-item, redirect=, linkable=false, cacheable=false, visible=true, alwaysShow=false, permission=, component=system/dict-item/index, sequence=7, remark=)]',NULL,NULL),(115,116,NULL,'[arg0:51e96aa3fa43456eb5ff9be56ae26914][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dict-item, redirect=, linkable=false, cacheable=false, visible=true, alwaysShow=false, permission=, component=system/dict-item/index, sequence=6, remark=)]',NULL,NULL),(116,117,NULL,'[arg0:76ed9e00ddcc4e58a60a8b86ebc5bbc6][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=日志管理, type=SysFuncType.MENU(code=1, desc=功能), icon=document, path=log, redirect=, linkable=false, cacheable=true, visible=true, alwaysShow=false, permission=ray:system:logs, component=system/log/index, sequence=7, remark=)]',NULL,NULL),(117,118,NULL,'[arg0:51e96aa3fa43456eb5ff9be56ae26914][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dict-item, redirect=, linkable=false, cacheable=false, visible=true, alwaysShow=false, permission=ray:system:dict-items, component=system/dict-item/index, sequence=6, remark=)]',NULL,NULL),(118,119,NULL,'[arg0:51e96aa3fa43456eb5ff9be56ae26914][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dict-item, redirect=, linkable=false, cacheable=false, visible=true, alwaysShow=false, permission=ray:system:dict-items, component=system/dict/item, sequence=6, remark=)]',NULL,NULL),(119,120,NULL,'[arg0:2c2650abd2814511a7eee37e422ac97a][arg1:[0e5580ae61f54380bbc9f473655060bc,
+        6bfb7cc5de7a4d9c9b70d8563c7377ec, a69358b0070f447db2ad7c3c42297270, 85471b98e6e0478f916c431b93e65dad,
+        4fe517c3a47a4b3e820ae812327f48cd, b60ca056b2404078ac905f59caa992d2, 7982cdc53a124340ab7da5e3f130b419,
+        86132348f09a4a8299d949d12f1237b4, 9c476acf5ed34dd19a4f8037a065a669, 743f88e0ec7a4047b74d9487a8826e93,
+        6371d5a4b47c41fe984d8e4d960c9460, 9b3793acfb7d485dbeee68e11524cc1d, 5b9a474efbc14b6e865e51cbbd16f311,
+        cf7068d9d6d84afcb4a59b803e1e1a2f, 0bd07cc721d94942bc1001ccd1fe9e14, fb05ae0889da4e089c09a987e2e1673c,
+        6b7666bd1dab4e20974422295de536e2, 89bdd7e788e1476fb56035a8b4760e44, 62e4f7d81aa2417db99845a4f663d419,
+        51e96aa3fa43456eb5ff9be56ae26914, 76ed9e00ddcc4e58a60a8b86ebc5bbc6]]',NULL,NULL),(120,121,NULL,'[arg0:51e96aa3fa43456eb5ff9be56ae26914][arg1:SysFuncRequest(parentCode=0e5580ae61f54380bbc9f473655060bc, name=字典项管理, type=SysFuncType.MENU(code=1, desc=功能), icon=dict, path=dictItem, redirect=, linkable=false, cacheable=false, visible=true, alwaysShow=false, permission=ray:system:dict-items, component=system/dict/item, sequence=6, remark=)]',NULL,NULL);
 /*!40000 ALTER TABLE `sys_operate_log_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1490,7 +1648,7 @@ CREATE TABLE `sys_role_func_relation` (
   `role_code` char(32) COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色编号',
   `func_code` char(32) COLLATE utf8mb4_general_ci NOT NULL COMMENT '功能编号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统角色与功能的关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统角色与功能的关系表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1499,7 +1657,7 @@ CREATE TABLE `sys_role_func_relation` (
 
 LOCK TABLES `sys_role_func_relation` WRITE;
 /*!40000 ALTER TABLE `sys_role_func_relation` DISABLE KEYS */;
-INSERT INTO `sys_role_func_relation` VALUES (97,'2c2650abd2814511a7eee37e422ac97a','0e5580ae61f54380bbc9f473655060bc'),(98,'2c2650abd2814511a7eee37e422ac97a','6bfb7cc5de7a4d9c9b70d8563c7377ec'),(99,'2c2650abd2814511a7eee37e422ac97a','a69358b0070f447db2ad7c3c42297270'),(100,'2c2650abd2814511a7eee37e422ac97a','85471b98e6e0478f916c431b93e65dad'),(101,'2c2650abd2814511a7eee37e422ac97a','4fe517c3a47a4b3e820ae812327f48cd'),(102,'2c2650abd2814511a7eee37e422ac97a','b60ca056b2404078ac905f59caa992d2'),(103,'2c2650abd2814511a7eee37e422ac97a','7982cdc53a124340ab7da5e3f130b419'),(104,'2c2650abd2814511a7eee37e422ac97a','86132348f09a4a8299d949d12f1237b4'),(105,'2c2650abd2814511a7eee37e422ac97a','9c476acf5ed34dd19a4f8037a065a669'),(106,'2c2650abd2814511a7eee37e422ac97a','5b9a474efbc14b6e865e51cbbd16f311'),(107,'2c2650abd2814511a7eee37e422ac97a','cf7068d9d6d84afcb4a59b803e1e1a2f'),(108,'2c2650abd2814511a7eee37e422ac97a','0bd07cc721d94942bc1001ccd1fe9e14'),(109,'2c2650abd2814511a7eee37e422ac97a','fb05ae0889da4e089c09a987e2e1673c'),(110,'2c2650abd2814511a7eee37e422ac97a','6b7666bd1dab4e20974422295de536e2'),(111,'2c2650abd2814511a7eee37e422ac97a','89bdd7e788e1476fb56035a8b4760e44'),(112,'2c2650abd2814511a7eee37e422ac97a','62e4f7d81aa2417db99845a4f663d419'),(113,'2c2650abd2814511a7eee37e422ac97a','76ed9e00ddcc4e58a60a8b86ebc5bbc6'),(131,'c1b1d17824a14a2286a0150c048987d8','0e5580ae61f54380bbc9f473655060bc'),(132,'c1b1d17824a14a2286a0150c048987d8','6bfb7cc5de7a4d9c9b70d8563c7377ec'),(133,'c1b1d17824a14a2286a0150c048987d8','a69358b0070f447db2ad7c3c42297270'),(134,'c1b1d17824a14a2286a0150c048987d8','85471b98e6e0478f916c431b93e65dad'),(135,'c1b1d17824a14a2286a0150c048987d8','4fe517c3a47a4b3e820ae812327f48cd'),(136,'c1b1d17824a14a2286a0150c048987d8','b60ca056b2404078ac905f59caa992d2'),(137,'c1b1d17824a14a2286a0150c048987d8','9c476acf5ed34dd19a4f8037a065a669'),(138,'c1b1d17824a14a2286a0150c048987d8','743f88e0ec7a4047b74d9487a8826e93'),(139,'c1b1d17824a14a2286a0150c048987d8','6371d5a4b47c41fe984d8e4d960c9460'),(140,'c1b1d17824a14a2286a0150c048987d8','9b3793acfb7d485dbeee68e11524cc1d'),(141,'c1b1d17824a14a2286a0150c048987d8','5b9a474efbc14b6e865e51cbbd16f311'),(142,'c1b1d17824a14a2286a0150c048987d8','cf7068d9d6d84afcb4a59b803e1e1a2f'),(143,'c1b1d17824a14a2286a0150c048987d8','0bd07cc721d94942bc1001ccd1fe9e14'),(144,'c1b1d17824a14a2286a0150c048987d8','fb05ae0889da4e089c09a987e2e1673c'),(145,'c1b1d17824a14a2286a0150c048987d8','6b7666bd1dab4e20974422295de536e2'),(146,'c1b1d17824a14a2286a0150c048987d8','89bdd7e788e1476fb56035a8b4760e44'),(147,'c1b1d17824a14a2286a0150c048987d8','62e4f7d81aa2417db99845a4f663d419');
+INSERT INTO `sys_role_func_relation` VALUES (200,'c1b1d17824a14a2286a0150c048987d8','0e5580ae61f54380bbc9f473655060bc'),(201,'c1b1d17824a14a2286a0150c048987d8','6bfb7cc5de7a4d9c9b70d8563c7377ec'),(202,'c1b1d17824a14a2286a0150c048987d8','a69358b0070f447db2ad7c3c42297270'),(203,'c1b1d17824a14a2286a0150c048987d8','85471b98e6e0478f916c431b93e65dad'),(204,'c1b1d17824a14a2286a0150c048987d8','4fe517c3a47a4b3e820ae812327f48cd'),(205,'c1b1d17824a14a2286a0150c048987d8','b60ca056b2404078ac905f59caa992d2'),(206,'c1b1d17824a14a2286a0150c048987d8','9c476acf5ed34dd19a4f8037a065a669'),(207,'c1b1d17824a14a2286a0150c048987d8','743f88e0ec7a4047b74d9487a8826e93'),(208,'c1b1d17824a14a2286a0150c048987d8','6371d5a4b47c41fe984d8e4d960c9460'),(209,'c1b1d17824a14a2286a0150c048987d8','9b3793acfb7d485dbeee68e11524cc1d'),(210,'2c2650abd2814511a7eee37e422ac97a','0e5580ae61f54380bbc9f473655060bc'),(211,'2c2650abd2814511a7eee37e422ac97a','6bfb7cc5de7a4d9c9b70d8563c7377ec'),(212,'2c2650abd2814511a7eee37e422ac97a','a69358b0070f447db2ad7c3c42297270'),(213,'2c2650abd2814511a7eee37e422ac97a','85471b98e6e0478f916c431b93e65dad'),(214,'2c2650abd2814511a7eee37e422ac97a','4fe517c3a47a4b3e820ae812327f48cd'),(215,'2c2650abd2814511a7eee37e422ac97a','b60ca056b2404078ac905f59caa992d2'),(216,'2c2650abd2814511a7eee37e422ac97a','7982cdc53a124340ab7da5e3f130b419'),(217,'2c2650abd2814511a7eee37e422ac97a','86132348f09a4a8299d949d12f1237b4'),(218,'2c2650abd2814511a7eee37e422ac97a','9c476acf5ed34dd19a4f8037a065a669'),(219,'2c2650abd2814511a7eee37e422ac97a','743f88e0ec7a4047b74d9487a8826e93'),(220,'2c2650abd2814511a7eee37e422ac97a','6371d5a4b47c41fe984d8e4d960c9460'),(221,'2c2650abd2814511a7eee37e422ac97a','9b3793acfb7d485dbeee68e11524cc1d'),(222,'2c2650abd2814511a7eee37e422ac97a','5b9a474efbc14b6e865e51cbbd16f311'),(223,'2c2650abd2814511a7eee37e422ac97a','cf7068d9d6d84afcb4a59b803e1e1a2f'),(224,'2c2650abd2814511a7eee37e422ac97a','0bd07cc721d94942bc1001ccd1fe9e14'),(225,'2c2650abd2814511a7eee37e422ac97a','fb05ae0889da4e089c09a987e2e1673c'),(226,'2c2650abd2814511a7eee37e422ac97a','6b7666bd1dab4e20974422295de536e2'),(227,'2c2650abd2814511a7eee37e422ac97a','89bdd7e788e1476fb56035a8b4760e44'),(228,'2c2650abd2814511a7eee37e422ac97a','62e4f7d81aa2417db99845a4f663d419'),(229,'2c2650abd2814511a7eee37e422ac97a','51e96aa3fa43456eb5ff9be56ae26914'),(230,'2c2650abd2814511a7eee37e422ac97a','76ed9e00ddcc4e58a60a8b86ebc5bbc6');
 /*!40000 ALTER TABLE `sys_role_func_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1515,7 +1673,7 @@ CREATE TABLE `sys_role_user_relation` (
   `role_code` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色编号',
   `user_code` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户编号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统角色与用户的关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='系统角色与用户的关系表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1524,7 +1682,7 @@ CREATE TABLE `sys_role_user_relation` (
 
 LOCK TABLES `sys_role_user_relation` WRITE;
 /*!40000 ALTER TABLE `sys_role_user_relation` DISABLE KEYS */;
-INSERT INTO `sys_role_user_relation` VALUES (1,'2c2650abd2814511a7eee37e422ac97a','2bd631f674af40f19c73c0d8962a4d28'),(3,'c1b1d17824a14a2286a0150c048987d8','bd385b2b16e64aba89e46a668901fbe8'),(4,'c1b1d17824a14a2286a0150c048987d8','67348a262c4048a9b12ddbdbfb2b437c');
+INSERT INTO `sys_role_user_relation` VALUES (4,'c1b1d17824a14a2286a0150c048987d8','67348a262c4048a9b12ddbdbfb2b437c'),(6,'2c2650abd2814511a7eee37e422ac97a','2bd631f674af40f19c73c0d8962a4d28'),(7,'c1b1d17824a14a2286a0150c048987d8','bd385b2b16e64aba89e46a668901fbe8');
 /*!40000 ALTER TABLE `sys_role_user_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1562,7 +1720,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,'6220837f5a994d11a4f5cb4833fc216a','2bd631f674af40f19c73c0d8962a4d28','17600891908','盖伦','670b14728ad9902aecba32e22fa4f6bd','17600891908@qq.com','https://oss.youlai.tech/youlai-boot/2023/05/16/811270ef31f548af9cffc026dfc3777b.gif',1,'',0,'6220837f5a994d11a4f5cb4833fc216a','2024-04-25 08:18:08','6220837f5a994d11a4f5cb4833fc216a','2024-10-22 08:58:24'),(2,'6220837f5a994d11a4f5cb4833fc216a','67348a262c4048a9b12ddbdbfb2b437c','15810051066','卡特琳娜','670b14728ad9902aecba32e22fa4f6bd','15810051066@qq.com','',1,'',0,'2bd631f674af40f19c73c0d8962a4d28','2024-10-22 02:03:21','2bd631f674af40f19c73c0d8962a4d28','2025-01-02 05:58:00'),(3,'66ec739c41644db9a1ef6c2f085c8370','bd385b2b16e64aba89e46a668901fbe8','13840586729','伊泽瑞尔','670b14728ad9902aecba32e22fa4f6bd','13840586729@qq.com','',1,'',0,'2bd631f674af40f19c73c0d8962a4d28','2025-01-02 05:57:52','2bd631f674af40f19c73c0d8962a4d28','2025-01-07 08:20:42');
+INSERT INTO `sys_user` VALUES (1,'6220837f5a994d11a4f5cb4833fc216a','2bd631f674af40f19c73c0d8962a4d28','17600891908','盖伦','670b14728ad9902aecba32e22fa4f6bd','17600891908@qq.com','https://oss.youlai.tech/youlai-boot/2023/05/16/811270ef31f548af9cffc026dfc3777b.gif',1,'',0,'6220837f5a994d11a4f5cb4833fc216a','2024-04-25 08:18:08','2bd631f674af40f19c73c0d8962a4d28','2025-03-31 02:48:59'),(2,'6220837f5a994d11a4f5cb4833fc216a','67348a262c4048a9b12ddbdbfb2b437c','15810051066','卡特琳娜','670b14728ad9902aecba32e22fa4f6bd','15810051066@qq.com','',1,'',0,'2bd631f674af40f19c73c0d8962a4d28','2024-10-22 02:03:21','2bd631f674af40f19c73c0d8962a4d28','2025-01-02 05:58:00'),(3,'66ec739c41644db9a1ef6c2f085c8370','bd385b2b16e64aba89e46a668901fbe8','13840586729','伊泽瑞尔','670b14728ad9902aecba32e22fa4f6bd','13840586729@qq.com','',1,'',0,'2bd631f674af40f19c73c0d8962a4d28','2025-01-02 05:57:52','2bd631f674af40f19c73c0d8962a4d28','2025-01-07 08:20:42');
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1579,4 +1737,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-12 19:19:52
+-- Dump completed on 2025-04-01 17:24:54
