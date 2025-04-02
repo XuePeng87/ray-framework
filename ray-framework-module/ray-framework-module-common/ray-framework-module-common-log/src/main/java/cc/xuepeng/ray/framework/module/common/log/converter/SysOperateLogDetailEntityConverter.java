@@ -7,12 +7,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 /**
- * 系统操作日志详情对象转换接口
+ * 系统操作日志详情实体类转换接口
  *
  * @author xuepeng
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface SysOperateLogDetailConverter
+public interface SysOperateLogDetailEntityConverter
         extends EntityConverter<SysOperateLogDetailDto, SysOperateLogDetail> {
 
 }

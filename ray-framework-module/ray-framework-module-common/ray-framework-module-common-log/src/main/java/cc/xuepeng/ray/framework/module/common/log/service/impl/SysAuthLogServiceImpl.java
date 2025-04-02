@@ -2,7 +2,7 @@ package cc.xuepeng.ray.framework.module.common.log.service.impl;
 
 import cc.xuepeng.ray.framework.core.mybatis.util.PageUtil;
 import cc.xuepeng.ray.framework.core.mybatis.util.QueryWrapperUtil;
-import cc.xuepeng.ray.framework.module.common.log.converter.SysAuthLogConverter;
+import cc.xuepeng.ray.framework.module.common.log.converter.SysAuthLogEntityConverter;
 import cc.xuepeng.ray.framework.module.common.log.domain.dto.SysAuthLogDto;
 import cc.xuepeng.ray.framework.module.common.log.domain.entity.SysAuthLog;
 import cc.xuepeng.ray.framework.module.common.log.repository.SysAuthLogRepository;
@@ -33,7 +33,7 @@ public class SysAuthLogServiceImpl
      */
     @Override
     public void create(final SysAuthLogDto sysAuthLogDto) {
-        final SysAuthLog sysAuthLog = sysAuthLogConverter.dtoToEntity(sysAuthLogDto);
+        final SysAuthLog sysAuthLog = sysAuthLogEntityConverter.dtoToEntity(sysAuthLogDto);
         super.save(sysAuthLog);
     }
 
@@ -45,7 +45,7 @@ public class SysAuthLogServiceImpl
      */
     @Override
     public Page<SysAuthLogDto> pageByCondition(final SysAuthLogDto sysAuthLogDto) {
-        final SysAuthLog sysAuthLog = this.sysAuthLogConverter.dtoToEntity(sysAuthLogDto);
+        final SysAuthLog sysAuthLog = this.sysAuthLogEntityConverter.dtoToEntity(sysAuthLogDto);
         final QueryWrapper<SysAuthLog> wrapper = QueryWrapperUtil.createQueryWrapper();
         final LambdaQueryWrapper<SysAuthLog> lambda = wrapper.lambda();
         lambda.eq(ObjectUtils.isNotEmpty(sysAuthLog.getType()), SysAuthLog::getType, sysAuthLog.getType());
@@ -60,13 +60,13 @@ public class SysAuthLogServiceImpl
         lambda.orderByDesc(SysAuthLog::getCreateTime);
         final Page<SysAuthLog> page = PageUtil.createPage(sysAuthLogDto);
         final Page<SysAuthLog> logs = super.page(page, wrapper);
-        return this.sysAuthLogConverter.entityPageToDtoPage(logs);
+        return this.sysAuthLogEntityConverter.entityPageToDtoPage(logs);
     }
 
     /**
-     * 系统登录登出对象转换接口
+     * 系统登录登出日志实体类转换接口
      */
     @Resource
-    private SysAuthLogConverter sysAuthLogConverter;
+    private SysAuthLogEntityConverter sysAuthLogEntityConverter;
 
 }

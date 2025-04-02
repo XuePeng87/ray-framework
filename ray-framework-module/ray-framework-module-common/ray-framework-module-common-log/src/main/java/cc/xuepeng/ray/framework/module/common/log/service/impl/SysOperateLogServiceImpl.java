@@ -2,7 +2,7 @@ package cc.xuepeng.ray.framework.module.common.log.service.impl;
 
 import cc.xuepeng.ray.framework.core.mybatis.util.PageUtil;
 import cc.xuepeng.ray.framework.core.mybatis.util.QueryWrapperUtil;
-import cc.xuepeng.ray.framework.module.common.log.converter.SysOperateLogConverter;
+import cc.xuepeng.ray.framework.module.common.log.converter.SysOperateLogEntityConverter;
 import cc.xuepeng.ray.framework.module.common.log.domain.dto.SysOperateLogDetailDto;
 import cc.xuepeng.ray.framework.module.common.log.domain.dto.SysOperateLogDto;
 import cc.xuepeng.ray.framework.module.common.log.domain.entity.SysOperateLog;
@@ -37,12 +37,12 @@ public class SysOperateLogServiceImpl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(final SysOperateLogDto sysOperateLogDto) {
-        final SysOperateLog operateLog = sysOperateLogConverter.dtoToEntity(sysOperateLogDto);
+        final SysOperateLog operateLog = sysOperateLogEntityConverter.dtoToEntity(sysOperateLogDto);
         operateLog.setType(SysOperateLogType.ACCESS);
         super.save(operateLog);
         final SysOperateLogDetailDto sysOperateLogDetailDto = sysOperateLogDto.getDetail();
         sysOperateLogDetailDto.setLogId(operateLog.getId());
-        sysOpLogDetailService.create(sysOperateLogDto.getDetail());
+        sysOperateLogDetailServiceImpl.create(sysOperateLogDto.getDetail());
     }
 
     /**
@@ -53,7 +53,7 @@ public class SysOperateLogServiceImpl
      */
     @Override
     public Page<SysOperateLogDto> pageByCondition(final SysOperateLogDto sysOperateLogDto) {
-        final SysOperateLog sysOperateLog = sysOperateLogConverter.dtoToEntity(sysOperateLogDto);
+        final SysOperateLog sysOperateLog = sysOperateLogEntityConverter.dtoToEntity(sysOperateLogDto);
         final QueryWrapper<SysOperateLog> wrapper = QueryWrapperUtil.createQueryWrapper();
         final LambdaQueryWrapper<SysOperateLog> lambda = wrapper.lambda();
         lambda.eq(ObjectUtils.isNotEmpty(sysOperateLog.getType()), SysOperateLog::getType, sysOperateLog.getType());
@@ -67,19 +67,19 @@ public class SysOperateLogServiceImpl
         lambda.orderByDesc(SysOperateLog::getCreateTime);
         final Page<SysOperateLog> page = PageUtil.createPage(sysOperateLogDto);
         final Page<SysOperateLog> logs = super.page(page, wrapper);
-        return sysOperateLogConverter.entityPageToDtoPage(logs);
+        return sysOperateLogEntityConverter.entityPageToDtoPage(logs);
     }
 
     /**
-     * 系统操作日志对象转换接口
+     * 系统操作日志实体类转换接口
      */
     @Resource
-    private SysOperateLogConverter sysOperateLogConverter;
+    private SysOperateLogEntityConverter sysOperateLogEntityConverter;
 
     /**
      * 系统操作日志详情的业务处理对象
      */
     @Resource
-    private SysOperateLogDetailServiceImpl sysOpLogDetailService;
+    private SysOperateLogDetailServiceImpl sysOperateLogDetailServiceImpl;
 
 }
