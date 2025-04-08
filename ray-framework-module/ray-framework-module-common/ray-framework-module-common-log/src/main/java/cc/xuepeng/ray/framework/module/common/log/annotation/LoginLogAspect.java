@@ -71,6 +71,7 @@ public class LoginLogAspect {
                 final SysAuthLogDto sysAuthLogDto = (SysAuthLogDto) ThreadLocalUtil.getAndRemove(THREAD_LOCAL_KEY);
                 final CurrentUser currentUser = identificationService.getCurrentUser();
                 sysAuthLogDto.setCreateUser(currentUser.getCode());
+                sysAuthLogDto.setPhoneNumber(currentUser.getPhoneNumber());
                 final Duration exeTime = Duration.between(sysAuthLogDto.getCreateTime(), LocalDateTime.now());
                 sysAuthLogDto.setExeTime(exeTime.toMillis());
                 sysAuthLogDto.setType(SysAuthLogType.LOGIN);

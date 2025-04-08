@@ -22,6 +22,11 @@ public class SysOperateLogDto extends BaseDto {
     private SysOperateLogType type;
 
     /**
+     * 手机号
+     */
+    private String phoneNumber;
+
+    /**
      * 模块名称
      */
     private String module;

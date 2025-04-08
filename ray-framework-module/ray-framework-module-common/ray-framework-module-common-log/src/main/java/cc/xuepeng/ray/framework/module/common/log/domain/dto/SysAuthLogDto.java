@@ -32,6 +32,11 @@ public class SysAuthLogDto extends BaseDto {
     private String userCode;
 
     /**
+     * 手机号
+     */
+    private String phoneNumber;
+
+    /**
      * 浏览器
      */
     private String browser;

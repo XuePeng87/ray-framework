@@ -57,6 +57,7 @@ public class LogoutLogAspect {
         if (identificationService.isLogin()) {
             final CurrentUser currentUser = identificationService.getCurrentUser();
             sysAuthLogDto.setCreateUser(currentUser.getCode());
+            sysAuthLogDto.setPhoneNumber(currentUser.getPhoneNumber());
         }
         // 保存封装信息到ThreadLocal中
         ThreadLocalUtil.put(THREAD_LOCAL_KEY, sysAuthLogDto);

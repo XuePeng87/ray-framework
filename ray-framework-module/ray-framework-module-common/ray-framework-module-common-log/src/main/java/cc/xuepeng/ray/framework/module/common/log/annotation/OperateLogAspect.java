@@ -133,6 +133,7 @@ public class OperateLogAspect {
         if (identificationService.isLogin()) {
             final CurrentUser currentUser = identificationService.getCurrentUser();
             sysOperateLogDto.setCreateUser(currentUser.getCode());
+            sysOperateLogDto.setPhoneNumber(currentUser.getPhoneNumber());
         }
     }
 

@@ -38,6 +38,12 @@ public class SysOperateLog extends BaseEntity {
     private LocalDateTime createTime;
 
     /**
+     * 手机号
+     * 数据库字段：phone_number,char(32)
+     */
+    private String phoneNumber;
+
+    /**
      * 模块名称
      * 数据库字段：module,varchar(16)
      */

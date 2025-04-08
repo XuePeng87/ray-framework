@@ -38,6 +38,12 @@ public class SysAuthLog extends BaseEntity {
     private LocalDateTime createTime;
 
     /**
+     * 手机号
+     * 数据库字段：phone_number,char(32)
+     */
+    private String phoneNumber;
+
+    /**
      * 登录IP地址
      * 数据库字段：login_ip,varchar(32)
      */

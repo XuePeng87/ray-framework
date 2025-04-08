@@ -27,6 +27,11 @@ public class SysAuthLogResponse extends BaseResponse {
     private SysAuthLogType type;
 
     /**
+     * 手机号
+     */
+    private String phoneNumber;
+
+    /**
      * 登录IP地址
      */
     private String loginIp;

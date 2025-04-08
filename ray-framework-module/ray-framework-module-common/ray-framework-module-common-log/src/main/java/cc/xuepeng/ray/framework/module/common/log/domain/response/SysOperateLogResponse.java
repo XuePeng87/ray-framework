@@ -34,6 +34,11 @@ public class SysOperateLogResponse extends BaseResponse {
     private LocalDateTime createTime;
 
     /**
+     * 手机号
+     */
+    private String phoneNumber;
+
+    /**
      * 日志类型：1=操作日志；2=系统日志
      */
     private SysOperateLogType type;
